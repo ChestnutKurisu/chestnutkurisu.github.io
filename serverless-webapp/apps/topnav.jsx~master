@@ -21,7 +21,7 @@ var TopNav = React.createClass({
               <div className="background">
                 <img src="../assets/images/hustle.png"/>
                </div>
-               <img className="circle" src="http://chestnutkurisu.github.io/images/param-autumn.jpeg"/>
+               <img className="circle" src="http://chestnutkurisu.github.io/images/param-autumn-1.jpeg"/>
                 <a href="#!name"><span class="white-text name">Param Somane</span></a>
                <div className="row">
                  <div className="col l2 m2 s2">
