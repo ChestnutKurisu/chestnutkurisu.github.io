@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>UX on Param Somane</title>
+    <link>https://chestnutkurisu.github.io/tags/ux/</link>
+    <description>Recent content in UX on Param Somane</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>param.somane@xcissa.com (Param Somane)</managingEditor>
+    <webMaster>param.somane@xcissa.com (Param Somane)</webMaster>
+    <lastBuildDate>Mon, 21 Nov 2022 00:00:00 +0000</lastBuildDate><atom:link href="https://chestnutkurisu.github.io/tags/ux/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>The Design Behind OkCupid&#39;s Offline-first Chat App</title>
+      <link>https://chestnutkurisu.github.io/post/the-design-behind-okcupids-offline-first-chat-app/</link>
+      <pubDate>Mon, 21 Nov 2022 00:00:00 +0000</pubDate>
+      <author>param.somane@xcissa.com (Param Somane)</author>
+      <guid>https://chestnutkurisu.github.io/post/the-design-behind-okcupids-offline-first-chat-app/</guid>
+      <description>&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;The chat app is a table-stakes feature for any dating app. A responsive and reliable messaging experience encourages users to stay on the platform for communications. This is desirable from a trust and safety standpoint, as abusive messages produced on the platform can be effectively moderated and proper actions can be promptly taken.&lt;/p&gt;
+&lt;p&gt;In this article, we will explore the design of an offline-first chat app on the OkCupid website, in particular, how we achieved responsiveness by implementing optimistic UI design patterns and reliability by incorporating a messages cache to support offline-mode.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Web Developer Playbook: Optimistic UI</title>
+      <link>https://chestnutkurisu.github.io/post/web-developer-playbook-optimistic-ui/</link>
+      <pubDate>Thu, 25 Aug 2022 00:00:00 +0000</pubDate>
+      <author>param.somane@xcissa.com (Param Somane)</author>
+      <guid>https://chestnutkurisu.github.io/post/web-developer-playbook-optimistic-ui/</guid>
+      <description>&lt;p&gt;In classic implementations of a CRUD app, the client app makes a request to the server and only updates its display state if the server responds to the request. However, in many modern applications like chat apps and note taking apps, users expect the display state to immediately update after they initiate an action.&lt;/p&gt;
+&lt;p&gt;Quick response time from the server is not always achievable, especially when the user is on a slow network on a mobile device.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Web Developer Playbook: Rich Text Editor</title>
+      <link>https://chestnutkurisu.github.io/post/web-developer-playbook-rich-text-editor/</link>
+      <pubDate>Tue, 14 Aug 2018 00:00:00 +0000</pubDate>
+      <author>param.somane@xcissa.com (Param Somane)</author>
+      <guid>https://chestnutkurisu.github.io/post/web-developer-playbook-rich-text-editor/</guid>
+      <description>&lt;p&gt;In this article, I will show you add a rich text editor based on &lt;a href=&#34;https://draftjs.org/&#34;&gt;Draft.js&lt;/a&gt; to your web app. This post is part of the Web Developer Playbook series, created to provide examples, best practice, and suggestions for designing and building web services. I will be using libraries from the JavaScript ecosystem (e.g., Node.js, React.js) in all my examples.
+&lt;img src=&#34;https://chestnutkurisu.github.io/post/images/projects/draftjs.png&#34; alt=&#34;draftjs&#34;&gt;&lt;/p&gt;
+&lt;p&gt;Let&amp;rsquo;s get started!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Single Page Application For Work</title>
+      <link>https://chestnutkurisu.github.io/post/single-page-application-for-work/</link>
+      <pubDate>Wed, 09 May 2018 00:00:00 +0000</pubDate>
+      <author>param.somane@xcissa.com (Param Somane)</author>
+      <guid>https://chestnutkurisu.github.io/post/single-page-application-for-work/</guid>
+      <description>&lt;p&gt;When I work at my federal job on a close intranet network, we often had to access information from different databases and filesystems through custom or share point websites which did not have the best user interface. It was a pain point for me and many of my colleagues. I decided to make a set of single page applications (SPAs) with nicer UX for querying the databases and file systems.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

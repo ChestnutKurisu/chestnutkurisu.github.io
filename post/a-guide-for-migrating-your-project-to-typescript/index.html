@@ -1,0 +1,1411 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/chestnutkurisu.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "Param Somane",
+    
+    "image": "https://chestnutkurisu.github.io/images/xyang.png"
+    
+  },
+  "name":"Param Somane",
+  "description":"\u003cp\u003eIntroduction to TypeScript and guide for how to migrate your project from Flow to TypeScript.\u003c\/p\u003e\n\u003cp\u003eThis post is a WIP.\u003c\/p\u003e",
+  "url":"https:\/\/chestnutkurisu.github.io\/post\/a-guide-for-migrating-your-project-to-typescript\/",
+  "keywords":"[programming, web development, typescript, javascript, guide, best practice]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.113.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="Param Somane">
+<meta name="keywords" content="programming, web development, typescript, javascript, guide, best practice">
+<meta name="description" content="Introduction to TypeScript and guide for how to migrate your project from Flow to TypeScript.
+This post is a WIP.">
+
+
+<meta property="og:description" content="Introduction to TypeScript and guide for how to migrate your project from Flow to TypeScript.
+This post is a WIP.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="A Guide For Migrating Your Project to TypeScript">
+<meta name="twitter:title" content="A Guide For Migrating Your Project to TypeScript">
+<meta property="og:url" content="https://chestnutkurisu.github.io/post/a-guide-for-migrating-your-project-to-typescript/">
+<meta property="twitter:url" content="https://chestnutkurisu.github.io/post/a-guide-for-migrating-your-project-to-typescript/">
+<meta property="og:site_name" content="Param Somane">
+<meta property="og:description" content="Introduction to TypeScript and guide for how to migrate your project from Flow to TypeScript.
+This post is a WIP.">
+<meta name="twitter:description" content="Introduction to TypeScript and guide for how to migrate your project from Flow to TypeScript.
+This post is a WIP.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2019-07-24T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-07-24T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="blog">
+    
+  
+  
+    
+      <meta property="article:tag" content="JavaScript">
+    
+      <meta property="article:tag" content="TypeScript">
+    
+      <meta property="article:tag" content="Guide">
+    
+      <meta property="article:tag" content="Software Design">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://chestnutkurisu.github.io/images/xyang.png">
+  <meta property="twitter:image" content="https://chestnutkurisu.github.io/images/xyang.png">
+
+
+
+
+
+  <meta property="og:image" content="https://chestnutkurisu.github.io/post/images/typescript.png">
+  <meta property="twitter:image" content="https://chestnutkurisu.github.io/post/images/typescript.png">
+
+
+    <title>A Guide For Migrating Your Project to TypeScript</title>
+
+    <link rel="icon" href="https://chestnutkurisu.github.io/favicon-96x96.png">
+    
+
+    
+
+    <link rel="canonical" href="https://chestnutkurisu.github.io/post/a-guide-for-migrating-your-project-to-typescript/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://chestnutkurisu.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+      
+        <link rel="stylesheet" href="https://chestnutkurisu.github.io/css/custom.css">
+      
+    
+      
+        <link rel="stylesheet" href="https://chestnutkurisu.github.io/css/syntax.css">
+      
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://chestnutkurisu.github.io/" aria-label="Go to homepage">Param Somane</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://chestnutkurisu.github.io/#about" aria-label="Open the link: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://chestnutkurisu.github.io/images/xyang.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://chestnutkurisu.github.io/#about" aria-label="Read more about the author">
+          <img class="sidebar-profile-picture" src="https://chestnutkurisu.github.io/images/xyang.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Param Somane</h4>
+        
+          <h5 class="sidebar-profile-bio">Software Engineer. Climber. Snowboarder.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/categories/projects" title="Projects">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-code"></i>
+      
+      <span class="sidebar-button-desc">Projects</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/categories/blog" title="Blog">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-pen-square"></i>
+      
+      <span class="sidebar-button-desc">Blog</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/about" title="About">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-user"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/ChestnutKurisu/" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://medium.com" target="_blank" rel="noopener" title="Medium">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-medium"></i>
+      
+      <span class="sidebar-button-desc">Medium</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://linkedin.com/in/param-somane" target="_blank" rel="noopener" title="Linkedin">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://angel.co" target="_blank" rel="noopener" title="AngelList">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-angellist"></i>
+      
+      <span class="sidebar-button-desc">AngelList</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:xyang232@gmail.com" target="_blank" rel="noopener" title="Email Me">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope"></i>
+      
+      <span class="sidebar-button-desc">Email Me</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      A Guide For Migrating Your Project to TypeScript
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2019-07-24T00:00:00Z">
+        
+  July 24, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://chestnutkurisu.github.io/categories/blog">blog</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Introduction to TypeScript and guide for how to migrate your project from Flow to TypeScript.</p>
+<p>This post is a WIP.</p>
+<h1 id="table-of-contents">Table of Contents</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#phase-1-configure-project-to-use-typescript">Phase 1: Configure Project to use TypeScript</a>
+      <ul>
+        <li><a href="#update-loader">Update Loader</a></li>
+        <li><a href="#add-packages">Add packages</a></li>
+        <li><a href="#set-up-lint">Set up Lint</a></li>
+        <li><a href="#typescript-vscode-integration">TypeScript VSCode Integration</a></li>
+      </ul>
+    </li>
+    <li><a href="#phase-2-typescriptify-flow-project">Phase 2 TypeScriptify Flow Project</a>
+      <ul>
+        <li><a href="#update-files">Update files</a></li>
+        <li><a href="#update-plain-js-code-to-typescript">Update Plain JS Code to TypeScript</a></li>
+        <li><a href="#gotchas">Gotchas</a></li>
+        <li><a href="#optional">Optional</a></li>
+      </ul>
+    </li>
+    <li><a href="#phase-3-regression-testing">Phase 3 Regression Testing</a></li>
+  </ul>
+</nav>
+
+<h1 id="motivation">Motivation</h1>
+<p>Why use TypeScript?</p>
+<ul>
+<li>TypeScript adds static typing for JavaScript, a dynamically typed and interpreted language. This significantly improves the maintainability and quality of the code.</li>
+<li>TypeScript has powerful integration with VS Code, which is the defacto editor for JavaScript application and is also created and maintained by Microsoft.</li>
+<li>TypeScript is backed by a big company - Microsoft.</li>
+<li>TypeScript is more popular than its competitors, e.g., Flow. According to the StackOverflow Survey 2019, TypeScript is the third most loved language, <a href="https://insights.stackoverflow.com/survey/2019">see insights from stackoverflow&rsquo;s 2019 survey</a></li>
+<li>TypeScript transpiles into to JavaScript because it&rsquo;s a superset of JavaScript.</li>
+</ul>
+<h1 id="migrating-project-to-typescript">Migrating Project to TypeScript</h1>
+<p>Assuming the project used Flow.</p>
+<h2 id="phase-1-configure-project-to-use-typescript">Phase 1: Configure Project to use TypeScript</h2>
+<h3 id="update-loader">Update Loader</h3>
+<p><strong>Option 1</strong> - Delete .babelrc and babel dependencies</p>
+<p>Why? TypeScript now supports transpiling JavaScript.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>yarn remove eslint-loader
+</span></span><span style="display:flex;"><span>yarn remove babel-loader
+</span></span><span style="display:flex;"><span>yarn add --dev awesome-typescript-loader source-map-loader typings-for-css-modules-loader
+</span></span></code></pre></div><p><strong>Option 2</strong> - Update babel loader</p>
+<p>If you have a project that needs to support both JS and TS, update babel</p>
+<pre tabindex="0"><code>rm .babelrc
+touch babel.config.js
+</code></pre><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#75715e">// babel.config.js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">babelConfig</span>(<span style="color:#a6e22e">api</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">api</span>.<span style="color:#a6e22e">cache</span>(<span style="color:#66d9ef">true</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">presets</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;@smartling/babel-preset-smartling&#34;</span>, <span style="color:#e6db74">&#34;@babel/preset-typescript&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;@babel/plugin-transform-modules-commonjs&#34;</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">env</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;@babel/plugin-transform-modules-commonjs&#34;</span>],
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>  };
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>Update Webpack Config to use new loader</p>
+<p>Assuming we went with <code>babel-loader</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">/* eslint-disable @typescript-eslint/no-var-requires */</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">path</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;path&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">MiniCssExtractPlugin</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;mini-css-extract-plugin&#34;</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">webpack</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#e6db74">&#34;webpack&#34;</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">isDevelopmentMode</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">NODE_ENV</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#34;development&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">bail</span><span style="color:#f92672">:</span> <span style="color:#f92672">!</span><span style="color:#a6e22e">isDevelopmentMode</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">cache</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">devtool</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">isDevelopmentMode</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;eval-source-map&#34;</span> <span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">mode</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">isDevelopmentMode</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;development&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;production&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">module</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">rules</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/\.(t|j)sx?$/</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">exclude</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/node_modules/</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">loader</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;eslint-loader&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">enforce</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;pre&#34;</span>,
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/\.(t|j)sx?$/</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">exclude</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/node_modules/</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">loader</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;babel-loader&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">query</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">cacheDirectory</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/\.(woff2?|ttf|eot|svg)(\?[\s\S]+)?$/</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">loader</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;url-loader&#34;</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">options</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>          <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;[name]-[hash].[ext]&#34;</span>,
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">webpack</span>.<span style="color:#a6e22e">DefinePlugin</span>({
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;process.env.NODE_ENV&#34;</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">env</span>.<span style="color:#a6e22e">NODE_ENV</span>),
+</span></span><span style="display:flex;"><span>    }),
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">MiniCssExtractPlugin</span>({ <span style="color:#a6e22e">filename</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;editor.css&#34;</span>, <span style="color:#a6e22e">allChunks</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span> }),
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">resolve</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">extensions</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;.js&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;.jsx&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;.ts&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;.tsx&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;.d.ts&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;.scss&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;.json&#34;</span>,
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;.css&#34;</span>,
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">modules</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">__dirname</span>, <span style="color:#e6db74">&#34;../src&#34;</span>),
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">path</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#a6e22e">__dirname</span>, <span style="color:#e6db74">&#34;../node_modules&#34;</span>),
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>After updating the webpack config, build the project (or run webpack) to generate the .d.ts files for your css / sass / pcss. This will ensure that these modules can be imported into your TypeScript project.</p>
+<p>For more on TypeScript + WebPack + Sass</p>
+<ul>
+<li><a href="https://stackoverflow.com/a/55993985/4399522">https://stackoverflow.com/a/55993985/4399522</a></li>
+<li><a href="https://medium.com/@chris_72272/migrating-to-typescript-write-a-declaration-file-for-a-third-party-npm-module-b1f75808ed2">https://medium.com/@chris_72272/migrating-to-typescript-write-a-declaration-file-for-a-third-party-npm-module-b1f75808ed2</a></li>
+<li><a href="https://medium.com/@sapegin/css-modules-with-typescript-and-webpack-6b221ebe5f10">https://medium.com/@sapegin/css-modules-with-typescript-and-webpack-6b221ebe5f10</a> &lt;== This one should work. Need to add typings-for-css-module</li>
+<li><a href="https://www.npmjs.com/package/typings-for-scss-modules-loader">https://www.npmjs.com/package/typings-for-scss-modules-loader</a></li>
+<li><a href="https://medium.com/@kvendrik/generating-typings-for-your-css-modules-in-webpack-2beb3739b342">https://medium.com/@kvendrik/generating-typings-for-your-css-modules-in-webpack-2beb3739b342</a></li>
+<li><a href="https://stackoverflow.com/questions/45411909/loading-sass-modules-with-typescript-in-webpack-2">https://stackoverflow.com/questions/45411909/loading-sass-modules-with-typescript-in-webpack-2</a></li>
+</ul>
+<h3 id="add-packages">Add packages</h3>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>yarn add --dev typescript @types/react @types/react-dom @types/jest @types/enzyme @typescript-eslint/eslint-plugin @typescript-eslint/parser eslint-import-resolver-typescript
+</span></span></code></pre></div><p>Add the TS version of all your library code</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>yarn add @types/deep-freeze --dev
+</span></span><span style="display:flex;"><span>yarn add @types/chai --dev
+</span></span><span style="display:flex;"><span>yarn add @types/classnames
+</span></span></code></pre></div><p>etc etc</p>
+<p><strong>Optional:</strong> Add type-check script in <code>package.json</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">scripts</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span> <span style="color:#e6db74">&#34;type-check&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;tsc&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h3 id="set-up-lint">Set up Lint</h3>
+<p>Add <code>tsconfig.json</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;compilerOptions&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>       <span style="color:#75715e">// Target latest version of ECMAScript.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>       <span style="color:#e6db74">&#34;target&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;esnext&#34;</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       <span style="color:#75715e">// Search under node_modules for non-relative imports.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>       <span style="color:#e6db74">&#34;moduleResolution&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;node&#34;</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       <span style="color:#75715e">// Process &amp; infer types from .js files.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>       <span style="color:#e6db74">&#34;allowJs&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       <span style="color:#75715e">// Don&#39;t emit; allow Babel to transform files.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>       <span style="color:#e6db74">&#34;noEmit&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       <span style="color:#75715e">// Enable strictest settings like strictNullChecks &amp; noImplicitAny.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>       <span style="color:#e6db74">&#34;strict&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       <span style="color:#75715e">// Disallow features that require cross-file information for emit.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>       <span style="color:#e6db74">&#34;isolatedModules&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       <span style="color:#75715e">// Import non-ES modules as default imports.
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>       <span style="color:#e6db74">&#34;esModuleInterop&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       <span style="color:#e6db74">&#34;jsx&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;react&#34;</span>,
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>       <span style="color:#e6db74">&#34;module&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;esNext&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>   },
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;include&#34;</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>       <span style="color:#e6db74">&#34;src/**/*.ts&#34;</span>,
+</span></span><span style="display:flex;"><span>       <span style="color:#e6db74">&#34;src/**/*.tsx&#34;</span>
+</span></span><span style="display:flex;"><span>   ],
+</span></span><span style="display:flex;"><span>   <span style="color:#e6db74">&#34;exclude&#34;</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>       <span style="color:#e6db74">&#34;src/**/*.js&#34;</span>
+</span></span><span style="display:flex;"><span>   ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Update <code>eslintrc.js</code></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">//eslintrc.js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">extends</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;plugin:@typescript-eslint/recommended&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;eslint:recommended&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@smartling/eslint-config-smartling&#34;</span>,
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">parser</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;@typescript-eslint/parser&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">plugins</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;import&#34;</span>, <span style="color:#e6db74">&#34;@typescript-eslint&#34;</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">parserOptions</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ecmaFeatures</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">jsx</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">sourceType</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;module&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">useJSXTextNode</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">project</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;./tsconfig.json&#34;</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">rules</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@typescript-eslint/explicit-function-return-type&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;off&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@typescript-eslint/explicit-member-accessibility&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;off&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;@typescript-eslint/member-delimiter-style&#34;</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">2</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;import/extensions&#34;</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">1</span>, <span style="color:#e6db74">&#34;never&#34;</span>, { <span style="color:#a6e22e">ts</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;never&#34;</span>, <span style="color:#a6e22e">json</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;always&#34;</span> }],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;react/jsx-indent&#34;</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">0</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;react/jsx-indent-props&#34;</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">0</span>],
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">indent</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">0</span>],
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">overrides</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">files</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;**/*.ts&#34;</span>, <span style="color:#e6db74">&#34;**/*.tsx&#34;</span>],
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">rules</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">semi</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;no-unused-vars&#34;</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;off&#34;</span>],
+</span></span><span style="display:flex;"><span>        <span style="color:#e6db74">&#34;quote-props&#34;</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;error&#34;</span>, <span style="color:#e6db74">&#34;as-needed&#34;</span>],
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>  ],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">settings</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;import/resolver&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">node</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">extensions</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;.js&#34;</span>, <span style="color:#e6db74">&#34;.jsx&#34;</span>, <span style="color:#e6db74">&#34;.ts&#34;</span>, <span style="color:#e6db74">&#34;.tsx&#34;</span>],
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;eslint-import-resolver-typescript&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;import/parsers&#34;</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#e6db74">&#34;@typescript-eslint/parser&#34;</span><span style="color:#f92672">:</span> [<span style="color:#e6db74">&#34;.ts&#34;</span>, <span style="color:#e6db74">&#34;.tsx&#34;</span>],
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">react</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">version</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;detect&#34;</span>,
+</span></span><span style="display:flex;"><span>    },
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">env</span><span style="color:#f92672">:</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">jest</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">browser</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>  },
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>I suggest excluding <code>plugin:@typescript-eslint/recommended</code> for a big project at first to facilitate an incremental migration.</p>
+<h3 id="typescript-vscode-integration">TypeScript VSCode Integration</h3>
+<p>Open VSCode setting (See more about setting up TSLint <a href="http://artsy.github.io/blog/2019/01/29/from-tslint-to-eslint/">here</a> and <a href="https://dev.to/dorshinar/linting-your-reacttypescript-project-with-eslint-and-prettier-8hb">here</a>)</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span>{
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;eslint.autoFixOnSave&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;javascript.validate.enable&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;editor.minimap.enabled&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;git.enableSmartCommit&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;window.zoomLevel&#34;</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">1</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;workbench.activityBar.visible&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;javascript.updateImportsOnFileMove.enabled&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;always&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;typescript.implementationsCodeLens.enabled&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;editor.formatOnSave&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;eslint.validate&#34;</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;language&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;javascript&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;autoFix&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;language&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;javascriptreact&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;autoFix&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;language&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;typescript&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;autoFix&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>        },
+</span></span><span style="display:flex;"><span>        {
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;language&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;typescriptreact&#34;</span>,
+</span></span><span style="display:flex;"><span>            <span style="color:#e6db74">&#34;autoFix&#34;</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>
+</span></span><span style="display:flex;"><span>        }
+</span></span><span style="display:flex;"><span>    ]
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h2 id="phase-2-typescriptify-flow-project">Phase 2 TypeScriptify Flow Project</h2>
+<h3 id="update-files">Update files</h3>
+<ol>
+<li>
+<p>Delete Flow-related files. This include, but are not limited to:</p>
+<ul>
+<li><code>flow-typed</code> folder</li>
+<li>flowconfig</li>
+<li><code>flow-typed</code> in eslintignore</li>
+</ul>
+</li>
+<li>
+<p>Delete all instances of <code>// @flow</code> and update import. Also, delete all instances of <code>// $FlowFixMe</code></p>
+</li>
+<li>
+<p>Change all <code>.js</code> -&gt; <code>.ts</code> or <code>.tsx</code>. I wrote a Bash script</p>
+</li>
+</ol>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>sudo touch migrate.sh
+</span></span><span style="display:flex;"><span>vim migrate.sh
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span><span style="color:#75715e">#!/bin/bash
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>cd $1
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> f in <span style="color:#e6db74">`</span>find . -type f -name <span style="color:#e6db74">&#39;*.js&#39;</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  git mv -- <span style="color:#e6db74">&#34;</span>$f<span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>f%.js<span style="color:#e6db74">}</span><span style="color:#e6db74">.ts&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">for</span> f in <span style="color:#e6db74">`</span>find . -type f -name <span style="color:#e6db74">&#39;*.jsx&#39;</span><span style="color:#e6db74">`</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">do</span>
+</span></span><span style="display:flex;"><span>  git mv -- <span style="color:#e6db74">&#34;</span>$f<span style="color:#e6db74">&#34;</span> <span style="color:#e6db74">&#34;</span><span style="color:#e6db74">${</span>f%.js<span style="color:#e6db74">}</span><span style="color:#e6db74">.tsx&#34;</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">done</span>
+</span></span></code></pre></div><p>Then provide the directory that you want to migrate as first argument of and execute the script.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>chmod +x migrate.sh
+</span></span><span style="display:flex;"><span>./migrate.sh ~/tinext-editor/src
+</span></span></code></pre></div><p>⚠️ But be careful about this approach if you want to keep history of the file in git. If you simply delete the old file with a copy of the file with a different file name, all the commit history related to this file will be lost. See <a href="http://thisbythem.com/blog/preserving-history-when-renaming-files-in-git/">this</a> and <a href="https://joshpress.net/changing-file-names-git-repository-without-loosing-file-history/">this</a> for more on preserving history when renaming files in git. This happens somtimes when you are renaming a file and changing a substantial amount of the file in one commit. Basically you have to <a href="https://coderwall.com/p/_csouq/renaming-and-changing-files-in-git-without-losing-history">trick git into recognizing</a> file is renamed and not treat it as a delete-file / create-file case by commiting immediately after changing the name of the file, then commiting a second time after changing the contents of the file.</p>
+<p>When you are committing a lot of files at once, git gets confused about the file renaming and thinks that the js files were deleted and the ts files are new. This can make PR review very challenging. It might be worth renaming the ts files back to js files for the PR, then revert them back to ts.</p>
+<h3 id="update-plain-js-code-to-typescript">Update Plain JS Code to TypeScript</h3>
+<p>Check out:</p>
+<ul>
+<li>FreeCodeCamp&rsquo;s <a href="https://www.freecodecamp.org/news/effective-use-of-typescript-with-react-3a1389b6072a/">Best Practices using Typescript with React</a></li>
+<li><a href="https://github.com/piotrwitek/react-redux-typescript-guide">react-redux-typescript guide</a></li>
+</ul>
+<p>When in doubt, try things out in <a href="http://www.typescriptlang.org/play/">TypeScript Playground</a> or <a href="https://repl.it/">repl</a></p>
+<p>This is helpful if you are migrating from Flow to TypeScript: <a href="https://github.com/niieani/typescript-vs-flowtype">typescript-vs-flowtype</a></p>
+<p>Once the project is configured to use TypeScript, there will be a ton of type errors that need to be resolved. This could be a daunting task for one person and could take many weeks, which is a huge problem for an active codebase to which many changes are constantly made while the migration is happening. Depending on the size and complexity of the project you want to migrate, it might be a good idea to conduct a hackathon with peer programming so multiple people can dedicate their time resolving all the errors together and get it done in a short period of time. The <a href="https://marketplace.visualstudio.com/items?itemName=MS-vsliveshare.vsliveshare-pack">Live Share</a> VS Code extension is a useful tool for peer programming.</p>
+<h4 id="importing-types">Importing types</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Flow
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">type</span> { <span style="color:#a6e22e">Type1</span>, <span style="color:#a6e22e">Type2</span> } <span style="color:#a6e22e">from</span> .<span style="color:#f92672">/</span><span style="color:#a6e22e">dir</span><span style="color:#f92672">/</span><span style="color:#a6e22e">to</span><span style="color:#f92672">/</span><span style="color:#a6e22e">path</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">type</span> <span style="color:#a6e22e">Type3</span> } <span style="color:#a6e22e">from</span> .<span style="color:#f92672">/</span><span style="color:#a6e22e">dir</span><span style="color:#f92672">/</span><span style="color:#a6e22e">to</span><span style="color:#f92672">/</span><span style="color:#a6e22e">path</span>
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// Typescript
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">Type1</span>, <span style="color:#a6e22e">Type2</span> } <span style="color:#66d9ef">from</span> .<span style="color:#f92672">/</span><span style="color:#a6e22e">dir</span><span style="color:#f92672">/</span><span style="color:#a6e22e">to</span><span style="color:#f92672">/</span><span style="color:#a6e22e">path</span>
+</span></span></code></pre></div><h4 id="basic-types-in-typesscript">Basic Types in TypesScript</h4>
+<ul>
+<li><code>any</code></li>
+<li><code>void</code></li>
+<li>Primitives: <code>boolean</code>, <code>number</code>, <code>string</code>, <code>null</code>, <code>undefined</code></li>
+<li>Array
+<ul>
+<li><code>string[]</code></li>
+<li><code>Array&lt;string&gt;</code> (Generic. More on that later)</li>
+</ul>
+</li>
+<li>Tuple: <code>[string, number]</code></li>
+<li>Union: <code>string | null | undefined</code></li>
+<li>Unreachable: <code>never</code></li>
+</ul>
+<p>We can also use literals as types. For example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">One</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">one</span>: <span style="color:#66d9ef">One</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">1</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">two</span>: <span style="color:#66d9ef">One</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">2</span>; <span style="color:#75715e">// &lt;- error
+</span></span></span></code></pre></div><h4 id="typing-functions">Typing Functions</h4>
+<p>In TypeScript, there are <a href="https://mariusschulz.com/blog/typing-functions-in-typescript#function-type-literals">three ways</a> to type a function.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Flow
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">type</span> Date <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">toString</span><span style="color:#f92672">:</span> () =&gt; <span style="color:#a6e22e">string</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">setTime</span><span style="color:#f92672">:</span> (<span style="color:#a6e22e">time</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">number</span>) =&gt; <span style="color:#a6e22e">number</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// TypeScript
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">interface</span> Date {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">toString</span>()<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">setTime</span>(<span style="color:#a6e22e">time</span>: <span style="color:#66d9ef">number</span>)<span style="color:#f92672">:</span> <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="typing-objects">Typing Objects</h4>
+<p>In flow, we use <code>type</code>.</p>
+<p>In TypeScript, use <code>interface</code>. Interface types offer more capabilities they are generally preferred to type aliases. For instance:</p>
+<ul>
+<li>An interface can be named in an extends or implements clause, but a type alias for an object type literal cannot.</li>
+<li>An interface can have multiple merged declarations, but a type alias for an object type literal cannot.</li>
+</ul>
+<h4 id="maybe-types">Maybe Types</h4>
+<p>Flow has <a href="https://flow.org/en/docs/types/primitives/#toc-maybe-types">Maybe Types</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Flow
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">acceptsMaybeString</span>(<span style="color:#a6e22e">value</span><span style="color:#f92672">:</span> <span style="color:#f92672">?</span><span style="color:#a6e22e">string</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><p>In addition to the type in <code>?type</code>, maybe types can also be <code>null</code> or <code>void</code>.</p>
+<p>In TypeScript, explicit typing is preferred.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// TypeScript
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">acceptsMaybeString</span>(<span style="color:#a6e22e">value</span>: <span style="color:#66d9ef">string</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// ...
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h4 id="casting">Casting</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Flow
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">type</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">email</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Jane&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastname</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Doe&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">email</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;example@example.com&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">paidUser</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user2</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Jane&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastname</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Doe&#34;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">userAsUser</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">=</span> ((<span style="color:#a6e22e">user</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">User</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">User</span>);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user2AsUser</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">=</span> ((<span style="color:#a6e22e">user2</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">User</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">User</span>); <span style="color:#75715e">// Fails
+</span></span></span></code></pre></div><p>The casting for <code>user2AsUser</code> fails with the following error from flow:</p>
+<blockquote>
+<p>Cannot cast <code>user2</code> to <code>User</code> because property <code>email</code> is missing in object literal but exists in <code>User</code></p>
+</blockquote>
+<p>In TypeScript, we can do something like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// TypeScript
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">User</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastName</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">email</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">user</span>: <span style="color:#66d9ef">User</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">firstName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Jane&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastName</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Jane Doe&#34;</span>,
+</span></span><span style="display:flex;"><span>} <span style="color:#66d9ef">as</span> <span style="color:#66d9ef">any</span> <span style="color:#66d9ef">as</span> <span style="color:#a6e22e">User</span>;
+</span></span></code></pre></div><h4 id="readonly-property">Readonly property</h4>
+<p>In flow, Plus sign in front of property Means it’s read-only <a href="https://stackoverflow.com/questions/46338710/flow-type-what-does-the-symbol-mean-in-front-a-property">https://stackoverflow.com/questions/46338710/flow-type-what-does-the-symbol-mean-in-front-a-property</a></p>
+<p>In Typescript, use the “readonly” keyword <a href="https://mariusschulz.com/blog/read-only-properties-in-typescript">https://mariusschulz.com/blog/read-only-properties-in-typescript</a></p>
+<h4 id="inline">Inline</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Flow
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getUser</span> ()<span style="color:#f92672">:</span> { <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span>, <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">number</span> }
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-typescript" data-lang="typescript"><span style="display:flex;"><span><span style="color:#75715e">// TypeScript
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e">// Note the semicolon
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getUser</span>()<span style="color:#f92672">:</span> { <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>; <span style="color:#a6e22e">age</span>: <span style="color:#66d9ef">number</span> };
+</span></span></code></pre></div><h4 id="explicit">Explicit</h4>
+<p>Flow has <a href="https://flow.org/en/docs/types/aliases/">type alias</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Flow
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">type</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">number</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getUser</span> ()<span style="color:#f92672">:</span> <span style="color:#a6e22e">User</span>
+</span></span></code></pre></div><p>TypeScript has <a href="https://www.typescriptlang.org/docs/handbook/interfaces.html">interface</a></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// TypeScript
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">User</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">getUser</span>()<span style="color:#f92672">:</span> <span style="color:#a6e22e">User</span>;
+</span></span></code></pre></div><h4 id="optional-type">Optional Type</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Flow
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#a6e22e">type</span> <span style="color:#a6e22e">User</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">number</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">location</span><span style="color:#f92672">?:</span> <span style="color:#a6e22e">string</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#75715e">// TypeScript
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">User</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">age</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">location?</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="generics">Generics</h4>
+<p>Types can be parameterized. In TypeScript, we can create a generic type with type parameters, which are represented by an arbitary letter like <code>T</code>, in angle brackets.</p>
+<p>In Flow</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">type</span> <span style="color:#a6e22e">MyList</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">filter</span><span style="color:#f92672">:</span> (Array<span style="color:#f92672">&lt;*&gt;</span>) =&gt; Array<span style="color:#f92672">&lt;*&gt;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">head</span><span style="color:#f92672">:</span> (Array<span style="color:#f92672">&lt;*&gt;</span>) =&gt; <span style="color:#f92672">*</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>In TypeScript</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">List</span>&lt;<span style="color:#f92672">T</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">filter</span>: <span style="color:#66d9ef">T</span>[] <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">T</span>[];
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">head</span>: <span style="color:#66d9ef">T</span>[] <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">T</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">NumberList</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span>&lt;<span style="color:#f92672">number</span>&gt;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">StringList</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">List</span>&lt;<span style="color:#f92672">string</span>&gt;
+</span></span></code></pre></div><p>An interface can extend other interfaces as demonstrated in these more complex example.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Entry</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">name</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">EntryWithData</span>&lt;<span style="color:#f92672">T</span>&gt; <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">Entry</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">data?</span>: <span style="color:#66d9ef">T</span>[];
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">lastUpdated?</span>: <span style="color:#66d9ef">Date</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">stuff</span>: <span style="color:#66d9ef">EntryWithData</span>&lt;<span style="color:#f92672">number</span>&gt; <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">data</span><span style="color:#f92672">:</span> [<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">2</span>, <span style="color:#ae81ff">3</span>], <span style="color:#75715e">// TS error: name and id are required for EntryWithData
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>};
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">GenericIcfOrChunk</span>&lt;<span style="color:#f92672">T</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">readonly</span> <span style="color:#66d9ef">type</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">T</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">chunks?</span>: <span style="color:#66d9ef">Chunk</span>[];
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">text?</span>: <span style="color:#66d9ef">string</span> <span style="color:#f92672">|</span> <span style="color:#66d9ef">null</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">Chunk</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">GenericIcfOrChunk</span>&lt;<span style="color:#f92672">number</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">id?</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">group?</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">GenericIcf</span>&lt;<span style="color:#f92672">I</span>&gt; <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">GenericIcfOrChunk</span>&lt;<span style="color:#f92672">IcfType</span>&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">id</span>: <span style="color:#66d9ef">I</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">group</span>: <span style="color:#66d9ef">number</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">IcfDoc</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">GenericIcf</span>&lt;<span style="color:#f92672">0</span>&gt;;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">type</span> <span style="color:#a6e22e">IcfSegment</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">GenericIcf</span>&lt;<span style="color:#f92672">number</span>&gt;;
+</span></span></code></pre></div><p>For more on Generics in TypeScript See the <a href="https://www.typescriptlang.org/docs/handbook/generics.html">TypeScript handbook</a>.</p>
+<p>TypeScript supports many Generic types like <code>Record</code> and <code>ArrayLike</code>. See <a href="https://github.com/microsoft/TypeScript/blob/master/lib/lib.es5.d.ts">lib.es5.d.ts</a> for a complete listing.</p>
+<p>Note, in Flow, here&rsquo;s how you extend a type:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">type</span> <span style="color:#a6e22e">PremiumUser</span> {
+</span></span><span style="display:flex;"><span>    ...<span style="color:#a6e22e">User</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">annualPlan</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">boolean</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">monthlyPlan</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">boolean</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>There is a <a href="https://github.com/flowtype/flow-bin/issues/93">gotcha</a> with combining types like this in flow. Using object spread to combine types makes the combined types optional. Using <code>$Exact</code> when spreading properties solves that problem.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">type</span> <span style="color:#a6e22e">PremiumUser</span> {
+</span></span><span style="display:flex;"><span>    ...<span style="color:#a6e22e">$Exact</span><span style="color:#f92672">&lt;</span><span style="color:#a6e22e">User</span><span style="color:#f92672">&gt;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">annualPlan</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">boolean</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">monthlyPlan</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">boolean</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h4 id="class">Class</h4>
+<p>In the previous section, we saw that both <code>interface</code> and <code>class</code> can be used to create generic types. But this begs the question: what&rsquo;s the difference between <code>interface</code> and <code>class</code>?</p>
+<p>In object oriented programming, a class is a blueprint with properties and methods from which we can create objects. An interface is a collection of properties and methods.</p>
+<p>In that sense, class and interface are the same. TypeScript allows us to type with classes. If we were to change the <code>interface</code> keyword to <code>class</code> in the examples in the Generics section, the code would still work. So why do we need <code>class</code> and when do we use it?</p>
+<p>In short, <code>class</code> gives us more capability than <code>interface</code> such as designating properties as <code>private</code> or <code>public</code> and adding a constructor. <a href="https://ultimatecourses.com/blog/classes-vs-interfaces-in-typescript">This blog post</a> and <a href="https://www.typescriptlang.org/docs/handbook/classes.html">the official docs</a> provide some use cases of <code>class</code>. The class in TypeScript look almost identical to the JavaScript class in ES6. This is reasonable since TypeScript is a superset of JavaScript.</p>
+<h4 id="array-types">Array Types</h4>
+<p>In flow, we use <code>Array&lt;ObjectType&gt;</code></p>
+<p>In TypeScript, we use <code>ObjectType[]</code>, which is a shorthand for <code>Array&lt;ObjectType&gt;</code>. <code>Array</code> is a generic type in TypeScript.</p>
+<h4 id="enum">Enum</h4>
+<p>This section only deals with TypeScript since Flow does not support enum, rather, to get the same result as enum in Flow, you have to do something like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">FilterTypes</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ALL</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;ALL&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">COMPLETED</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;COMPLETED&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">UNASSIGNED</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;UNASSIGNED&#34;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">currentFilter</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">$Keys</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">FilterTypes</span><span style="color:#f92672">&gt;</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">FilterTypes</span>.<span style="color:#a6e22e">ALL</span>;
+</span></span></code></pre></div><p>Enum in TypeScript allow us to make a collection of constants as types. Some examples:</p>
+<h5 id="merging-enums">Merging Enums</h5>
+<p>Combining two enums</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Mammal</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">DOG</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;DOG&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">HORSE</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;HORSE&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">HUMAN</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;HUMAN&#34;</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Insect</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ANT</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ANT&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">BEE</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;BEE&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">FLY</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;FLY&#34;</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Animal</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  ...<span style="color:#a6e22e">Mammal</span>,
+</span></span><span style="display:flex;"><span>  ...<span style="color:#a6e22e">Insect</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Animal</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">Mammal</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">Insect</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">animalCounts</span> <span style="color:#f92672">=</span> { [<span style="color:#a6e22e">key</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">ValueOf</span>&lt;<span style="color:#f92672">typeof</span> <span style="color:#a6e22e">AnimalT</span>&gt;]<span style="color:#f92672">:</span> <span style="color:#66d9ef">number</span> };
+</span></span></code></pre></div><p>💡 ProTip: you can use the same name for the type and a value of merged enum</p>
+<p>The <a href="https://docs.microsoft.com/en-us/previous-versions/dotnet/netframework-1.1/4x252001(v=vs.71)">naming convention for enums</a> is to:</p>
+<blockquote>
+<p>Use a singular name for most Enum types, but use a plural name for Enum types that are bit fields.</p>
+</blockquote>
+<p>See Steve Faulkner&rsquo;s <a href="https://speakerdeck.com/southpolesteve/shipping-typescript-to-npm?slide=50">deck about best practice for TypeScript</a></p>
+<p>Also see: <a href="https://github.com/Microsoft/TypeScript/issues/17592">https://github.com/Microsoft/TypeScript/issues/17592</a></p>
+<p>Here&rsquo;s another Example:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">BasicEvents</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Start</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Start&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Finish</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Finish&#34;</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">AdvEvents</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Pause</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Pause&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Resume</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Resume&#34;</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Events</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">BasicEvents</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">AdvEvents</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">e</span>: <span style="color:#66d9ef">Events</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">AdvEvents</span>.<span style="color:#a6e22e">Pause</span>;
+</span></span></code></pre></div><h5 id="check-for-membership">Check for membership</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">export</span> <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">isMammal</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">animal</span>: <span style="color:#66d9ef">Animal</span>)<span style="color:#f92672">:</span> <span style="color:#a6e22e">animal</span> <span style="color:#66d9ef">is</span> <span style="color:#a6e22e">Animal</span> <span style="color:#f92672">=&gt;</span>
+</span></span><span style="display:flex;"><span>  Object.<span style="color:#a6e22e">values</span>(<span style="color:#a6e22e">Mammal</span>).<span style="color:#a6e22e">includes</span>(<span style="color:#a6e22e">animal</span>);
+</span></span></code></pre></div><h5 id="subset-of-enum">Subset of Enum</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">animals</span>: <span style="color:#66d9ef">AnimalT</span>[] <span style="color:#f92672">=</span> [<span style="color:#960050;background-color:#1e0010">“</span><span style="color:#a6e22e">DOG</span><span style="color:#960050;background-color:#1e0010">”</span>, <span style="color:#960050;background-color:#1e0010">“</span><span style="color:#a6e22e">ANT</span><span style="color:#960050;background-color:#1e0010">”</span>, <span style="color:#960050;background-color:#1e0010">“</span><span style="color:#a6e22e">HUMAN</span><span style="color:#960050;background-color:#1e0010">”</span>, <span style="color:#960050;background-color:#1e0010">“</span><span style="color:#a6e22e">BEE</span><span style="color:#960050;background-color:#1e0010">”</span>]
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">mammals</span>: <span style="color:#66d9ef">Mammal</span>[] <span style="color:#f92672">=</span> <span style="color:#a6e22e">animals</span>.<span style="color:#a6e22e">filter</span>(<span style="color:#a6e22e">animal</span> <span style="color:#f92672">=&gt;</span> <span style="color:#a6e22e">animal</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">Mammal</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">mammals</span>) <span style="color:#75715e">//&gt; [“DOG”, “HUMAN&#34;]
+</span></span></span></code></pre></div><p>Note the difference between Animal and AnimalT!</p>
+<h5 id="type-assertion">Type Assertion</h5>
+<p>Consider the case when you have a union type that could be one of the two interfaces.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">A</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">a</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">interface</span> <span style="color:#a6e22e">B</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">b</span>: <span style="color:#66d9ef">string</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">AorB</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">A</span> <span style="color:#f92672">|</span> <span style="color:#a6e22e">B</span>;
+</span></span></code></pre></div><p>We create the following objects:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">a</span>: <span style="color:#66d9ef">AorB</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">a</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;a&#34;</span> };
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">b</span>: <span style="color:#66d9ef">AorB</span> <span style="color:#f92672">=</span> { <span style="color:#a6e22e">b</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;b&#34;</span> };
+</span></span></code></pre></div><p>If we want to access the property <code>a</code> from <code>a</code>, sometimes we need to assert type like so:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">if</span> ((&lt;<span style="color:#f92672">A</span>&gt;<span style="color:#a6e22e">AorB</span>).<span style="color:#a6e22e">a</span>)
+</span></span></code></pre></div><p>See <a href="http://www.typescriptlang.org/docs/handbook/advanced-types.html#type-guards-and-type-assertions">Type guards and type assertions</a> section of <a href="http://www.typescriptlang.org/docs/handbook/advanced-types.html">Advanced Types</a>.</p>
+<h5 id="dictionary-typing-using-enum">Dictionary typing using enum</h5>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Var</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">X</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;x&#34;</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">Y</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;y&#34;</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Dict</span> <span style="color:#f92672">=</span> { [<span style="color:#66d9ef">var</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">Var</span>]<span style="color:#f92672">:</span> <span style="color:#66d9ef">string</span> };
+</span></span></code></pre></div><p>This is a lot simpler than Flow. In Flow, we had to do something like this:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Flow
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">Vars</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">X</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;x&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">Y</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;y&#34;</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">type</span> <span style="color:#a6e22e">VarType</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$Keys</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">Vars</span><span style="color:#f92672">&gt;</span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">type</span> <span style="color:#a6e22e">Dict</span> <span style="color:#f92672">=</span> { [<span style="color:#66d9ef">var</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">VarType</span>]<span style="color:#f92672">:</span> <span style="color:#a6e22e">string</span> }
+</span></span></code></pre></div><h4 id="exclude">Exclude</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Animal</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">LION</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;LION&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">PIG</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;PIG&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">COW</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;COW&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ANT</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;ANT&#34;</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">DomesticatedMammals</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  [<span style="color:#a6e22e">animal</span> <span style="color:#66d9ef">in</span> <span style="color:#a6e22e">Exclude</span>&lt;<span style="color:#f92672">Animal</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">Animal.ANT</span>&gt;]<span style="color:#f92672">:</span> <span style="color:#66d9ef">boolean</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><h4 id="using-enums-in-map">Using enums in <code>Map</code></h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">One</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">A</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;A&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">B</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;B&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">C</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;C&#34;</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">enum</span> <span style="color:#a6e22e">Two</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">D</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;D&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">E</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;E&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">F</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;F&#34;</span>,
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">map</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Map</span>&lt;<span style="color:#f92672">string</span><span style="color:#960050;background-color:#1e0010">,</span> <span style="color:#a6e22e">One</span> <span style="color:#960050;background-color:#1e0010">|</span> <span style="color:#a6e22e">Two</span>&gt;([
+</span></span><span style="display:flex;"><span>  [<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#a6e22e">One</span>.<span style="color:#a6e22e">A</span>],
+</span></span><span style="display:flex;"><span>  [<span style="color:#e6db74">&#34;d&#34;</span>, <span style="color:#a6e22e">Two</span>.<span style="color:#a6e22e">D</span>],
+</span></span><span style="display:flex;"><span>]);
+</span></span></code></pre></div><h4 id="shape">Shape</h4>
+<p><code>$Shape&lt;SomeObjectType&gt;</code> in Flow has an analog in TypeScript: <code>Partial&lt;SomeObjectType&gt;</code>.</p>
+<h3 id="gotchas">Gotchas</h3>
+<h4 id="tuple-types">Tuple Types</h4>
+<p>TypeScript sometimes does not recognize Tuple Types. Solution: explicit casting or typing when declaring new var</p>
+<p>Example</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">type</span> <span style="color:#a6e22e">Interval</span> <span style="color:#f92672">=</span> [<span style="color:#66d9ef">number</span>, <span style="color:#66d9ef">number</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">getMaxAndMin</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">interval</span>: <span style="color:#66d9ef">Interval</span>) <span style="color:#f92672">=&gt;</span> ({
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">min</span>: <span style="color:#66d9ef">interval</span>[<span style="color:#ae81ff">0</span>],
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">max</span>: <span style="color:#66d9ef">interval</span>[<span style="color:#ae81ff">1</span>],
+</span></span><span style="display:flex;"><span>});
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">interval</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">getMaxAndMin</span>(<span style="color:#a6e22e">interval</span>);
+</span></span></code></pre></div><p>TypeScript complains:</p>
+<blockquote>
+<p>Argument of type &rsquo;number[]&rsquo; is not assignable to parameter of type &lsquo;[number, number]&rsquo;. Type &rsquo;number[]&rsquo; is missing the following properties from type &lsquo;[number, number]&rsquo;</p>
+</blockquote>
+<p>Solution:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">interval</span>: <span style="color:#66d9ef">Interval</span> <span style="color:#f92672">=</span> [<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>];
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">getMaxAndMin</span>(<span style="color:#a6e22e">interval</span>);
+</span></span></code></pre></div><p>Or</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#a6e22e">getMaxAndMin</span>([<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">3</span>]);
+</span></span></code></pre></div><h4 id="enzyme-mount">Enzyme Mount</h4>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MyButton</span> <span style="color:#66d9ef">extends</span> <span style="color:#a6e22e">React</span>.<span style="color:#a6e22e">Component</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">constructor</span>() {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">this</span>.<span style="color:#a6e22e">handleClickBound</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">handleClick</span>.<span style="color:#a6e22e">bind</span>(<span style="color:#66d9ef">this</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">handleClick() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">&#34;do something&#34;</span>);
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">render() {</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> &lt;<span style="color:#f92672">button</span> <span style="color:#a6e22e">onClick</span><span style="color:#f92672">=</span>{<span style="color:#a6e22e">handleClickBound</span>}&gt;<span style="color:#a6e22e">Click</span> <span style="color:#a6e22e">Me</span>&lt;/<span style="color:#f92672">button</span>&gt;;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">button</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">mount</span>(&lt;<span style="color:#f92672">MyButton</span> /&gt;);
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">buttonInstance</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">button</span>.<span style="color:#a6e22e">instance</span>();
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">buttonInstance</span>.<span style="color:#a6e22e">handleClick</span>();
+</span></span></code></pre></div><blockquote>
+<p>Property &lsquo;handleClick&rsquo; does not exist on type &lsquo;Component&lt;{}, {}, any&gt;&rsquo;</p>
+</blockquote>
+<p>Solution:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-ts" data-lang="ts"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">button</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">mount</span>&lt;<span style="color:#f92672">MyButton</span>&gt;(&lt;<span style="color:#f92672">MyButton</span> /&gt;);
+</span></span></code></pre></div><h3 id="optional">Optional</h3>
+<h4 id="cicd">CI/CD</h4>
+<ul>
+<li>Update your CI/CD pipeline to include type checking as part of the build process. For example</li>
+</ul>
+<pre tabindex="0"><code>// Jenkinsfile
+stage(&#39;Type Check&#39;) {
+    sh &#39;yarn type-check&#39;
+}
+</code></pre><h4 id="storybook">Storybook</h4>
+<p>Easy set up</p>
+<ol>
+<li>
+<p>Add Storybook for React</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>npx -p @storybook/cli sb init --type react
+</span></span></code></pre></div><p>This create a <code>.storybook</code> directory at the root of your project. Alternatively, you can do everything manually.</p>
+<p>Add all the dependencies</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>yarn add -d @babel/core @storybook/addon-actions @storybook/addon-links @storybook/addons @storybook/react babel-loader
+</span></span></code></pre></div><div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>yarn add -D @storybook/react @storybook/addon-info @storybook/addon-jest @storybook/addon-knobs @storybook/addon-options @storybook/addons @storybook/react storybook-addon-jsx @types/react babel-core typescript awesome-typescript-loader react-docgen-typescript-webpack-plugin jest @types/jest ts-jest
+</span></span></code></pre></div><p>Create the files and folders</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>mkdir .storybook
+</span></span><span style="display:flex;"><span>touch .storybook/config.js .storybook/addons.js .storybook/webpack.config.js
+</span></span></code></pre></div></li>
+<li>
+<p>Add add-ons for Storybook</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>yarn add -D @storybook/addon-storysource @storybook/addon-knobs storybook-addon-jsx @storybook/addon-a11y
+</span></span></code></pre></div></li>
+<li>
+<p>Add the dependencies for typescript loader:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>yarn add awesome-typescript-loader @storybook/addon-info react-docgen-typescript-loader
+</span></span></code></pre></div></li>
+<li>
+<p>In <code>tsconfig.json</code>, make sure <code>compilerOptions</code> has the following attribute:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#e6db74">&#34;jsx&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;react&#34;</span>
+</span></span></code></pre></div><p>And make sure <code>rootDir</code> includes <code>stories</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#e6db74">&#34;rootDirs&#34;</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>    <span style="color:#e6db74">&#34;src&#34;</span>, <span style="color:#e6db74">&#34;stories&#34;</span>
+</span></span><span style="display:flex;"><span>],
+</span></span></code></pre></div></li>
+<li>
+<p>Update <code>.storybook/config.js</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">configure</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;@storybook/react&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">setAddon</span>, <span style="color:#a6e22e">addDecorator</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;@storybook/react&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">JSXAddon</span> <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;storybook-addon-jsx&#34;</span>;
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">import</span> { <span style="color:#a6e22e">withKnobs</span>, <span style="color:#a6e22e">select</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;@storybook/addon-knobs/react&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">addDecorator</span>(<span style="color:#a6e22e">withKnobs</span>);
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">setAddon</span>(<span style="color:#a6e22e">JSXAddon</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// automatically import all files ending in *.stories.js
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">req</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">context</span>(<span style="color:#e6db74">&#34;../stories&#34;</span>, <span style="color:#66d9ef">true</span>, <span style="color:#e6db74">/.stories.(t|j)sx?$/</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">loadStories</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">keys</span>().<span style="color:#a6e22e">forEach</span>((<span style="color:#a6e22e">filename</span>) =&gt; <span style="color:#a6e22e">req</span>(<span style="color:#a6e22e">filename</span>));
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">configure</span>(<span style="color:#a6e22e">loadStories</span>, <span style="color:#a6e22e">module</span>);
+</span></span></code></pre></div></li>
+<li>
+<p>Add <code>.storybook/webpack.config.js</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">exports</span> <span style="color:#f92672">=</span> ({ <span style="color:#a6e22e">config</span> }) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">rules</span>.<span style="color:#a6e22e">push</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/\.stories\.jsx?$/</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">use</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">loader</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">&#34;@storybook/addon-storysource/loader&#34;</span>),
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">module</span>.<span style="color:#a6e22e">rules</span>.<span style="color:#a6e22e">push</span>({
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">/\.stories\.tsx?$/</span>,
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">use</span><span style="color:#f92672">:</span> [
+</span></span><span style="display:flex;"><span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">loader</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">&#34;awesome-typescript-loader&#34;</span>),
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>      <span style="color:#75715e">// Optional
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>      {
+</span></span><span style="display:flex;"><span>        <span style="color:#a6e22e">loader</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">require</span>.<span style="color:#a6e22e">resolve</span>(<span style="color:#e6db74">&#34;react-docgen-typescript-loader&#34;</span>),
+</span></span><span style="display:flex;"><span>      },
+</span></span><span style="display:flex;"><span>    ],
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">config</span>.<span style="color:#a6e22e">resolve</span>.<span style="color:#a6e22e">extensions</span>.<span style="color:#a6e22e">push</span>(<span style="color:#e6db74">&#34;.ts&#34;</span>, <span style="color:#e6db74">&#34;.tsx&#34;</span>);
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">config</span>;
+</span></span><span style="display:flex;"><span>};
+</span></span></code></pre></div><p>This configuration gives us the ability to load both js and ts stories.</p>
+</li>
+</ol>
+<p>Guides and Resources</p>
+<ul>
+<li><a href="https://storybook.js.org/docs/configurations/typescript-config/">https://storybook.js.org/docs/configurations/typescript-config/</a></li>
+<li><a href="https://dev.to/swyx/quick-guide-to-setup-your-react--typescript-storybook-design-system-1c51">https://dev.to/swyx/quick-guide-to-setup-your-react--typescript-storybook-design-system-1c51</a> with <a href="https://github.com/sw-yx/react-typescript-storybook-starter">sample project</a></li>
+<li><a href="https://dev.to/swyx/quick-guide-to-setup-your-react--typescript-storybook-design-system-1c51">Quick guide to storybook TS setup</a></li>
+<li><a href="https://github.com/storybookjs/storybook/issues/4739">https://github.com/storybookjs/storybook/issues/4739</a></li>
+</ul>
+<h2 id="phase-3-regression-testing">Phase 3 Regression Testing</h2>
+<ul>
+<li>Re-run unit tests to make sure they all pass</li>
+<li>Integration testing - if the project is a library, make sure you can build it and integrate it into a project that&rsquo;s not TypeScript.</li>
+</ul>
+<h1 id="typescript-learning-resource">TypeScript Learning Resource</h1>
+<p>TypeScript Learning Resources</p>
+<ul>
+<li><a href="https://medium.com/@sapegin/css-modules-with-typescript-and-webpack-6b221ebe5f10">Tutorial for setting up loader for css module</a></li>
+<li><a href="https://www.typescriptlang.org/docs/handbook/interfaces.html">TypeScript Handbook</a></li>
+<li><a href="https://www.typescriptlang.org/docs/handbook/declaration-files/do-s-and-don-ts.html">Do&rsquo;s and Don&rsquo;ts</a></li>
+<li><a href="https://basarat.gitbooks.io/typescript/docs/types/type-assertion.html">TypeScript Deep Dive</a></li>
+<li><a href="http://artsy.github.io/blog/2019/01/29/from-tslint-to-eslint/">Typescript VS Code Integration</a></li>
+<li><a href="https://mariusschulz.com/blog/typing-destructured-object-parameters-in-typescript">TypeScript function</a></li>
+<li><a href="https://medium.freecodecamp.org/effective-use-of-typescript-with-react-3a1389b6072a">TypeScript and React best practice</a></li>
+<li><a href="https://www.typescriptlang.org/docs/handbook/advanced-types.html">Advanced Types</a></li>
+<li><a href="https://github.com/typescript-eslint/typescript-eslint/blob/master/.eslintrc.json">TypeScript Eslint Config</a></li>
+<li><a href="https://basarat.gitbooks.io/typescript/docs/const.html">TypeScript Docs</a></li>
+<li><a href="https://medium.com/@OlegVaraksin/narrow-interfaces-in-typescript-5dadbce7b463">Narrow Interfaces TypeScript</a></li>
+<li><a href="https://codeburst.io/five-tips-i-wish-i-knew-when-i-started-with-typescript-c9e8609029db">So Many Useful TypeScript Tips!</a></li>
+<li><a href="https://www.tutorialsteacher.com/typescript/type-assertion">Type Assertion</a></li>
+<li><a href="https://devhints.io/typescript">TypeScript Cheatsheet from devhint</a></li>
+<li><a href="https://ultimatecourses.com/blog/classes-vs-interfaces-in-typescript">Class vs Interface in TypeScript</a></li>
+</ul>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/javascript/">JavaScript</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/typescript/">TypeScript</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/guide/">Guide</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/software-design/">Software Design</a>
+
+                  </div>
+                
+              
+            
+            <a target="_blank" href="https://www.buymeacoffee.com/"
+  data-tooltip="Buy me a coffee!"
+  id="bmc-wbtn" 
+  style="display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgb(255, 129, 63); color: white; border-radius: 32px; position: fixed; right: 18px; bottom: 18px; box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px; z-index: 999; cursor: pointer; font-weight: 600; transition: all 0.2s ease 0s; transform: scale(1);"><img src="https://cdn.buymeacoffee.com/widget/assets/coffee%20cup.svg" 
+  alt="Buy Me A Coffee" 
+  style="height: 40px; width: 40px; margin: 0; padding: 0;"
+></a>
+
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/effective-unit-testing-of-react-components-with-jest-and-enzyme/" data-tooltip="Effective Unit Testing of React Components With Jest And Enzyme" aria-label="NEXT: Effective Unit Testing of React Components With Jest And Enzyme">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/the-algorithm-for-managing-stress/" data-tooltip="The Algorithm for Managing Stress" aria-label="PREVIOUS: The Algorithm for Managing Stress">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chestnutkurisu.github.io/post/a-guide-for-migrating-your-project-to-typescript/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chestnutkurisu.github.io/post/a-guide-for-migrating-your-project-to-typescript/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://chestnutkurisu.github.io/post/a-guide-for-migrating-your-project-to-typescript/" title="Share on Google&#43;" aria-label="Share on Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+              
+                <div id="disqus_thread"></div>
+<script>
+
+
+
+
+var disqus_config = function () {
+this.page.url = "https://chestnutkurisu.github.io/post/a-guide-for-migrating-your-project-to-typescript/";
+this.page.identifier = "A Guide For Migrating Your Project to TypeScript"; 
+};
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://http--github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 Param Somane. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/effective-unit-testing-of-react-components-with-jest-and-enzyme/" data-tooltip="Effective Unit Testing of React Components With Jest And Enzyme" aria-label="NEXT: Effective Unit Testing of React Components With Jest And Enzyme">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/the-algorithm-for-managing-stress/" data-tooltip="The Algorithm for Managing Stress" aria-label="PREVIOUS: The Algorithm for Managing Stress">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chestnutkurisu.github.io/post/a-guide-for-migrating-your-project-to-typescript/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chestnutkurisu.github.io/post/a-guide-for-migrating-your-project-to-typescript/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://chestnutkurisu.github.io/post/a-guide-for-migrating-your-project-to-typescript/" title="Share on Google&#43;" aria-label="Share on Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fchestnutkurisu.github.io%2Fpost%2Fa-guide-for-migrating-your-project-to-typescript%2F" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fchestnutkurisu.github.io%2Fpost%2Fa-guide-for-migrating-your-project-to-typescript%2F" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fchestnutkurisu.github.io%2Fpost%2Fa-guide-for-migrating-your-project-to-typescript%2F" aria-label="Share on Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://chestnutkurisu.github.io/images/xyang.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Param Somane</h4>
+    
+      <div id="about-card-bio">Software Engineer. Climber. Snowboarder.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Software Engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        New York
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      
+      <div id="cover" style="background-image:url('https://chestnutkurisu.github.io/images/cover-blue.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://chestnutkurisu.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

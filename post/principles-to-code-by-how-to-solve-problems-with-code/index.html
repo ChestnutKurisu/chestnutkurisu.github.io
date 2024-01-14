@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/chestnutkurisu.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "Param Somane",
+    
+    "image": "https://chestnutkurisu.github.io/images/xyang.png"
+    
+  },
+  "name":"Param Somane",
+  "description":"\u003cp\u003eWhat I love most about programming is the problem solving. I don\u0026rsquo;t believe anyone is born with problem solving skills. It\u0026rsquo;s a muscle that is built and sustained by repeated exercise. Like any exercise, there\u0026rsquo;s a set of guidelines to help you be more effective at developing your problem solving muscles. I will introduce 5 of the most important software design principles that have guided my problem solving process and show you how to apply these principles to solve a real problem.\u003c\/p\u003e",
+  "url":"https:\/\/chestnutkurisu.github.io\/post\/principles-to-code-by-how-to-solve-problems-with-code\/",
+  "keywords":"[software design principles, computer science, javascript, interview prep, algorithms, separation of concerns, learn to code, balanced parentheses, recursion]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.113.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="Param Somane">
+<meta name="keywords" content="software design principles, computer science, javascript, interview prep, algorithms, separation of concerns, learn to code, balanced parentheses, recursion">
+<meta name="description" content="What I love most about programming is the problem solving. I don&rsquo;t believe anyone is born with problem solving skills. It&rsquo;s a muscle that is built and sustained by repeated exercise. Like any exercise, there&rsquo;s a set of guidelines to help you be more effective at developing your problem solving muscles. I will introduce 5 of the most important software design principles that have guided my problem solving process and show you how to apply these principles to solve a real problem.">
+
+
+<meta property="og:description" content="What I love most about programming is the problem solving. I don&rsquo;t believe anyone is born with problem solving skills. It&rsquo;s a muscle that is built and sustained by repeated exercise. Like any exercise, there&rsquo;s a set of guidelines to help you be more effective at developing your problem solving muscles. I will introduce 5 of the most important software design principles that have guided my problem solving process and show you how to apply these principles to solve a real problem.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Principles To Code By: How To Solve Problems With Code">
+<meta name="twitter:title" content="Principles To Code By: How To Solve Problems With Code">
+<meta property="og:url" content="https://chestnutkurisu.github.io/post/principles-to-code-by-how-to-solve-problems-with-code/">
+<meta property="twitter:url" content="https://chestnutkurisu.github.io/post/principles-to-code-by-how-to-solve-problems-with-code/">
+<meta property="og:site_name" content="Param Somane">
+<meta property="og:description" content="What I love most about programming is the problem solving. I don&rsquo;t believe anyone is born with problem solving skills. It&rsquo;s a muscle that is built and sustained by repeated exercise. Like any exercise, there&rsquo;s a set of guidelines to help you be more effective at developing your problem solving muscles. I will introduce 5 of the most important software design principles that have guided my problem solving process and show you how to apply these principles to solve a real problem.">
+<meta name="twitter:description" content="What I love most about programming is the problem solving. I don&rsquo;t believe anyone is born with problem solving skills. It&rsquo;s a muscle that is built and sustained by repeated exercise. Like any exercise, there&rsquo;s a set of guidelines to help you be more effective at developing your problem solving muscles. I will introduce 5 of the most important software design principles that have guided my problem solving process and show you how to apply these principles to solve a real problem.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2018-04-23T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-04-23T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="blog">
+    
+  
+  
+    
+      <meta property="article:tag" content="JavaScript">
+    
+      <meta property="article:tag" content="Guide">
+    
+      <meta property="article:tag" content="Software Design">
+    
+      <meta property="article:tag" content="Programming">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://chestnutkurisu.github.io/images/xyang.png">
+  <meta property="twitter:image" content="https://chestnutkurisu.github.io/images/xyang.png">
+
+
+
+
+
+  <meta property="og:image" content="https://chestnutkurisu.github.io/post/images/brain-lightbulb.png">
+  <meta property="twitter:image" content="https://chestnutkurisu.github.io/post/images/brain-lightbulb.png">
+
+
+    <title>Principles To Code By: How To Solve Problems With Code</title>
+
+    <link rel="icon" href="https://chestnutkurisu.github.io/favicon-96x96.png">
+    
+
+    
+
+    <link rel="canonical" href="https://chestnutkurisu.github.io/post/principles-to-code-by-how-to-solve-problems-with-code/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://chestnutkurisu.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+      
+        <link rel="stylesheet" href="https://chestnutkurisu.github.io/css/custom.css">
+      
+    
+      
+        <link rel="stylesheet" href="https://chestnutkurisu.github.io/css/syntax.css">
+      
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://chestnutkurisu.github.io/" aria-label="Go to homepage">Param Somane</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://chestnutkurisu.github.io/#about" aria-label="Open the link: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://chestnutkurisu.github.io/images/xyang.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://chestnutkurisu.github.io/#about" aria-label="Read more about the author">
+          <img class="sidebar-profile-picture" src="https://chestnutkurisu.github.io/images/xyang.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Param Somane</h4>
+        
+          <h5 class="sidebar-profile-bio">Software Engineer. Climber. Snowboarder.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/categories/projects" title="Projects">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-code"></i>
+      
+      <span class="sidebar-button-desc">Projects</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/categories/blog" title="Blog">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-pen-square"></i>
+      
+      <span class="sidebar-button-desc">Blog</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/about" title="About">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-user"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/ChestnutKurisu/" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://medium.com" target="_blank" rel="noopener" title="Medium">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-medium"></i>
+      
+      <span class="sidebar-button-desc">Medium</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://linkedin.com/in/param-somane" target="_blank" rel="noopener" title="Linkedin">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://angel.co" target="_blank" rel="noopener" title="AngelList">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-angellist"></i>
+      
+      <span class="sidebar-button-desc">AngelList</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:xyang232@gmail.com" target="_blank" rel="noopener" title="Email Me">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope"></i>
+      
+      <span class="sidebar-button-desc">Email Me</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      Principles To Code By: How To Solve Problems With Code
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2018-04-23T00:00:00Z">
+        
+  April 23, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://chestnutkurisu.github.io/categories/blog">blog</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>What I love most about programming is the problem solving. I don&rsquo;t believe anyone is born with problem solving skills. It&rsquo;s a muscle that is built and sustained by repeated exercise. Like any exercise, there&rsquo;s a set of guidelines to help you be more effective at developing your problem solving muscles. I will introduce 5 of the most important software design principles that have guided my problem solving process and show you how to apply these principles to solve a real problem.</p>
+<div class="alert info ">
+  <p>This article was also <a href="https://medium.com/dailyjs/principles-to-code-by-3c516ad61fcc">published on Medium</a> under DailyJS.</p>
+</div>
+<p><img src="https://chestnutkurisu.github.io/post/images/brain-lightbulb-wide.png" alt=""></p>
+<h1 id="1-keep-it-simple-kiss">1. Keep It Simple (KISS)</h1>
+<p>If there&rsquo;s anything you should takeaway from this article, it&rsquo;s the &ldquo;keep it simple&rdquo; principle. This principle is often known as <a href="https://effectivesoftwaredesign.com/2013/08/05/simplicity-in-software-design-kiss-yagni-and-occams-razor/">KISS</a>, which stands for &ldquo;Keep it simple, stupid&rdquo;.</p>
+<p>Just because the problem we have to solve is complex, it doesn&rsquo;t mean our solution has to be complex.</p>
+<p>The rest of the principles guide our problem solving strategy to achieve simplicity in our solution. Generally speaking, we develop simple solutions to complicated problems by breaking the complex problem down to simpler sub-problems that we can easily solve.</p>
+<p>I&rsquo;m a fan of learning from examples so let&rsquo;s look at an example of what keeping it simple looks like.</p>
+<p>Suppose you were asked to write a function with the following signature to check for balanced parentheses in a string. For example, <code>'('</code> returns false, <code>')('</code> returns false, <code>'()'</code> returns true, and <code>'foo'</code> returns true.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">hasBalancedParen</span>(<span style="color:#a6e22e">str</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>So how do we approach this problem?</p>
+<p>Step 1 is to apply the KISS principle, develop an outline for an algorithm that can be articulated in simple English:</p>
+<blockquote>
+<p>Given a string, <code>s</code>, which consists of characters</p>
+</blockquote>
+<blockquote>
+<ol>
+<li>Start from the leftmost character and look at each character in the string</li>
+<li>Keep track of occurrences of <code>(</code>.</li>
+<li>Keep track of occurrences of <code>)</code> to &ldquo;cancel out&rdquo; a previous occurrence of <code>(</code>.</li>
+<li>Ignore characters that are not <code>(</code> or <code>)</code>.</li>
+<li>If there&rsquo;s a <code>)</code> for which there&rsquo;s no <code>(</code>, return false.</li>
+<li>Once we finish looking at the last character, if there&rsquo;s no leftover <code>(</code> or <code>)</code>, return true.</li>
+</ol>
+</blockquote>
+<p>The computational complexity is O(N) where N is the length of the string. In the worst case, we have to look at all of the characters in the string to be able to say that the string has balanced parentheses.</p>
+<h1 id="2-separation-of-concerns-soc">2. Separation of Concerns (SoC)</h1>
+<p>So we have developed our algorithm in simple English, which is essentially pseudocode! There are three logical domains for our algorithm:</p>
+<ol>
+<li><strong>Continue or Stop?</strong>: Logic for whether to continue looking at the characters or stop and return true or false.</li>
+<li><strong>Parentheses Tally</strong>: Logic for tallying up occurrences of <code>(</code> and <code>)</code> as we go through the characters.</li>
+<li><strong>What to Look At Next?</strong> Logic for determining what to look at next.</li>
+</ol>
+<p>Let&rsquo;s map the 6 steps of the pseudocode above to one of these three logical domains:</p>
+<table>
+<thead>
+<tr>
+<th>Continue or Stop?</th>
+<th>Parentheses Tally</th>
+<th>What to Look At Next?</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>If there&rsquo;s a <code>)</code> for which there&rsquo;s no <code>(</code>, return false</td>
+<td>Keep track of occurrences of <code>(</code></td>
+<td>Start from the leftmost character and look at each character in the string</td>
+</tr>
+<tr>
+<td>Once we finish looking at the last character, if there&rsquo;s no leftover <code>(</code> or <code>)</code>, return true</td>
+<td>Keep track of occurrences of <code>)</code> to &ldquo;cancel out&rdquo; a previous occurrence of <code>(</code>.</td>
+<td></td>
+</tr>
+<tr>
+<td></td>
+<td>Ignore characters that are not <code>(</code> or <code>)</code></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<p>What we just did was we partitioned the algorithm into three logical domains each dealing with a particular concern. Each domain specific concern can be tackled independently by a software component. The three software components are each designed to accomplish a specific mission and need not be concerned with what other components are doing. This demonstrates the principle of Separation of Concerns or SoC.</p>
+<p>SoC is the key to developing a complicated application or software system with many moving parts. For example, web applications separate concerns between presentation (how the webpage looks), business logic (content of the webpage), and content delivery (accessing the resource via a JSON API, querying the database, etc).</p>
+<h2 id="poorly-executed-soc">Poorly executed SoC</h2>
+<p>I&rsquo;ve seen poorly designed software in which the software is divided into separate domains but concerns are not separated. Consider the following example:</p>
+<blockquote>
+<p>Write a function foo that doubles then increments every number in an array of numbers.</p>
+</blockquote>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Poorly executed separation of concerns
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// Helper Functions
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#66d9ef">double</span>(<span style="color:#a6e22e">arrIn</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arrOut</span> <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">arrIn</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">arrOut</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">arrIn</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">arrOut</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">increment</span>(<span style="color:#a6e22e">arrIn</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">arrOut</span> <span style="color:#f92672">=</span> []
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">let</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> <span style="color:#f92672">&lt;</span> <span style="color:#a6e22e">arrIn</span>.<span style="color:#a6e22e">length</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">arrOut</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">arrIn</span>[<span style="color:#a6e22e">i</span>] <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">arrOut</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#75715e">// foo
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">foo</span>(<span style="color:#a6e22e">arrIn</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">increment</span>(<span style="color:#66d9ef">double</span>(<span style="color:#a6e22e">arrIn</span>))
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Why is this a poor execution of SoC?</p>
+<p>Well, <code>double</code> and <code>increment</code> are both concerned with looping through an array to modify each elements. Notice how the <code>double</code> and <code>increment</code> functions look almost identical with the exception of how they modify the array element. This is called boilerplate.</p>
+<p>Whenever you have boilerplate in your code, you know you can do better in separating concerns. This plays into the next principle:</p>
+<h1 id="3-dont-repeat-yourself-dry">3. Don&rsquo;t Repeat Yourself (DRY)</h1>
+<p>The Don&rsquo;t Repeat Yourself (DRY) principle and SoC go hand-in-hand. The DRY principle is aimed at reducing repetition and boilerplate in the software by forming abstractions. I can write a whole separate article on abstractions but here are the key points for how to apply abstraction to write code that doesn&rsquo;t repeat itself:</p>
+<ul>
+<li>Create functions for common software patterns. We call them <em>higher order functions</em>.</li>
+<li>Replace the boilerplate in your code with higher order functions.</li>
+</ul>
+<p>Some examples of higher order functions include:</p>
+<ul>
+<li><code>map</code> - modifying each element in the array based on a give rule</li>
+<li><code>filter</code> - getting a subset of the array that passes a given criterion</li>
+<li><code>reduce</code> - combining everything in the array based on a given rule</li>
+</ul>
+<p>Let&rsquo;s apply the DRY principle and rewrite <code>foo</code> to abstract away the boilerplate using the <code>map</code> higher order function:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Well executed separation of concerns and DRY code
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">double</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">elem</span> =&gt; <span style="color:#a6e22e">elem</span> <span style="color:#f92672">*</span> <span style="color:#ae81ff">2</span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">increment</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">elem</span> =&gt; <span style="color:#a6e22e">elem</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>  
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">foo</span>(<span style="color:#a6e22e">arrIn</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">arrIn</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">elem</span> =&gt; <span style="color:#a6e22e">increment</span>(<span style="color:#66d9ef">double</span>(<span style="color:#a6e22e">elem</span>)))
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>I&rsquo;m taking a shortcut by using the <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Functions/Arrow_functions">ES6 arrow functions</a>, which lets you create elegant one-liners. JavaScript provides higher order functions like <code>map</code> function for Array. <code>Array.map</code> takes one argument: a function. In this example, this function is <code>elem =&gt; increment(double(elem))</code>, which takes an argument <code>elem</code> and returns <code>elem * 2 + 1</code>.  Since this function doesn&rsquo;t have a name, it&rsquo;s called an <em>anonymous function</em>.</p>
+<p><strong>Ok that was a long detour. Can we get back to the hasBalancedParen problem?</strong></p>
+<p>Yes! We are close to arriving at the final solution but there&rsquo;s one more principle we need:</p>
+<h1 id="4-divide-and-conquer">4. Divide and Conquer</h1>
+<p>When you hear &ldquo;Divide and Conquer&rdquo; in the context of algorithm design, think recursion. The term recursion has roots in mathematics and commonly entails applying a rule repeatedly to update itself to create an infinite sequence for which the next things in the sequence depends on the previous things in the sequence. For example, fractals, the fibonacci series, and Pascal&rsquo;s triangle are all recursive mathematical constructs.</p>
+<p>For the <a href="https://www.wikiwand.com/en/Divide_and_conquer_algorithm">Divide and Conquer algorithms</a>, we are interested in the repeated application of a rule but instead of constructing a sequence, we want to deconstruct the problem space and eventually return a final solution. In pseudo code, a recursive function for divide and conquer algorithm has the basic structure:</p>
+<pre tabindex="0"><code>function recursiveFun(input, output) {
+  if we hit a base case, updated output as necessary and return the final output
+
+  otherwise, simplify the input. update the output then
+  return recursiveFun(simplerInput, updatedOutput)
+}
+</code></pre><p>The emphasis is simplifying input until the problem becomes trivial to solve and we can return an output immediately in the beginning of the function. This is called the <em>base case</em>. What if we forget to add a base case to the recursive function? The function will keep calling itself forever until you run out of memory and get a stack overflow error.</p>
+<p>Note, we don&rsquo;t have to use a recursive function to implement a Divide and Conquer algorithm. We can use a loop and a mutable data structure. I&rsquo;m not a fan of mutable data structures option although it is more efficient sometimes.</p>
+<p>Let&rsquo;s look at a simple example for a Divide and Conquer algorithm implemented with a recursive function and a mutable data structure:</p>
+<blockquote>
+<p>Write a function sum that takes an array of numbers and returns the sum of all the numbers</p>
+</blockquote>
+<h2 id="option-1-recursive-function">Option 1: Recursive Function</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">sum</span>(<span style="color:#a6e22e">arr</span>) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">arr</span>, <span style="color:#a6e22e">sum</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Base Case
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">sum</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Recursive Step
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">1</span>), <span style="color:#a6e22e">sum</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">arr</span>[<span style="color:#ae81ff">0</span>])
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">add</span>(<span style="color:#a6e22e">arr</span>, <span style="color:#ae81ff">0</span>) <span style="color:#75715e">// &lt;-- Initial Values
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>}
+</span></span></code></pre></div><h2 id="option-2-mutable-data-structure">Option 2: Mutable Data Structure</h2>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">sum</span>(<span style="color:#a6e22e">arr</span>) {
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Initial Values
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">let</span> <span style="color:#a6e22e">elems</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">arr</span> <span style="color:#75715e">// &lt;-- mutable data structure
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">while</span>(<span style="color:#a6e22e">elems</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">&gt;</span> <span style="color:#ae81ff">0</span>) { <span style="color:#75715e">// &lt;-- Base Case
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#a6e22e">result</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">elems</span>.<span style="color:#a6e22e">pop</span>() <span style="color:#75715e">// &lt;-- Recursive step
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>In both Options 1 and 2, every time we repeat the procedure of adding the next element to the current sum, we are creating a simpler array and an updated sum that’s a little closer to the final solution. The stopping point is when we run out of things in the array to add to the current sum, in which case we just return the current sum which is the final solution.</p>
+<p>Fans of functional programming and one-liners will implement sum as follows using the higher order function <code>reduce</code>, which JavaScript gives you out-of-the-box for the Array prototype:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">sum</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">arr</span>) =&gt; <span style="color:#a6e22e">arr</span>.<span style="color:#a6e22e">reduce</span>((<span style="color:#a6e22e">res</span>, <span style="color:#a6e22e">elem</span>) =&gt; <span style="color:#a6e22e">res</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">elem</span>, <span style="color:#ae81ff">0</span>)
+</span></span></code></pre></div><p>With Divide and Conquer, we have the last important problem solving principle to solve the hasBalancedParen problem:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#75715e">// Parentheses Tally
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">newOpenCnt</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">c</span>, <span style="color:#a6e22e">openCnt</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">c</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;(&#39;</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">openCnt</span> <span style="color:#f92672">+</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span>(<span style="color:#a6e22e">c</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;)&#39;</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">openCnt</span> <span style="color:#f92672">-</span> <span style="color:#ae81ff">1</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">openCnt</span>
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">isBalanced</span>(<span style="color:#a6e22e">str</span>, <span style="color:#a6e22e">openCnt</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// Continue or Stop?
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">typeof</span> <span style="color:#a6e22e">str</span> <span style="color:#f92672">!==</span> <span style="color:#e6db74">&#39;string&#39;</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">openCnt</span> <span style="color:#f92672">&lt;</span>  <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">false</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">length</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">openCnt</span> <span style="color:#f92672">===</span> <span style="color:#ae81ff">0</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#75715e">// What to Look At Next?
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">fst</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">str</span>[<span style="color:#ae81ff">0</span>]
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">rst</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">str</span>.<span style="color:#a6e22e">slice</span>(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">isBalanced</span>(<span style="color:#a6e22e">rst</span>, <span style="color:#a6e22e">newOpenCnt</span>(<span style="color:#a6e22e">fst</span>, <span style="color:#a6e22e">openCnt</span>))
+</span></span><span style="display:flex;"><span>}
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">hasBalancedParen</span>(<span style="color:#a6e22e">str</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">isBalanced</span>(<span style="color:#a6e22e">str</span>, <span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><h1 id="5-always-test-your-code">5. Always Test Your Code</h1>
+<p>The final problem solving principle is to always test your code to make sure there&rsquo;s no mistake in the implementation and your code behaves correctly for all edge cases. Below I created a unit test that incorporated most of the previous design principles:</p>
+<h3 id="kiss">KISS</h3>
+<p>Create a unit test function called <code>test</code> that performs unit testing on a function <code>fun</code> using a set of test cases. We want to be able to run a test for any function like so:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#a6e22e">test</span>(<span style="color:#a6e22e">fun</span>, <span style="color:#a6e22e">testCases</span>)
+</span></span></code></pre></div><p>For each test case, <code>test</code> should print to console &ldquo;passed&rdquo; if successful or &ldquo;failed&rdquo; with more details if unsuccessful.</p>
+<p><strong>SoC</strong> -  Keep the data (the input and expected value) in a data structure called <code>testCases</code> separate from the business logic of unit testing:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">testCases</span> <span style="color:#f92672">=</span> [
+</span></span><span style="display:flex;"><span>  {<span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;(&#39;</span>, <span style="color:#a6e22e">shouldBe</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>},
+</span></span><span style="display:flex;"><span>  {<span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;())&#39;</span>, <span style="color:#a6e22e">shouldBe</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>},
+</span></span><span style="display:flex;"><span>  {<span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">null</span>, <span style="color:#a6e22e">shouldBe</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>},
+</span></span><span style="display:flex;"><span>  {<span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">undefined</span>, <span style="color:#a6e22e">shouldBe</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>},
+</span></span><span style="display:flex;"><span>  {<span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">22</span>, <span style="color:#a6e22e">shouldBe</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>},
+</span></span><span style="display:flex;"><span>  {<span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;)(&#39;</span>, <span style="color:#a6e22e">shouldBe</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>},
+</span></span><span style="display:flex;"><span>  {<span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&#39;</span>, <span style="color:#a6e22e">shouldBe</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>},
+</span></span><span style="display:flex;"><span>  {<span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;()&#39;</span>, <span style="color:#a6e22e">shouldBe</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>},
+</span></span><span style="display:flex;"><span>  {<span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;()()&#39;</span>, <span style="color:#a6e22e">shouldBe</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>},
+</span></span><span style="display:flex;"><span>  {<span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;(())&#39;</span>, <span style="color:#a6e22e">shouldBe</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>},
+</span></span><span style="display:flex;"><span>  {<span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;hi&#39;</span>, <span style="color:#a6e22e">shouldBe</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>},
+</span></span><span style="display:flex;"><span>  {<span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;(hi)&#39;</span>, <span style="color:#a6e22e">shouldBe</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">true</span>},
+</span></span><span style="display:flex;"><span>  {<span style="color:#a6e22e">test</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;(((())(())&#39;</span>,<span style="color:#a6e22e">shouldBe</span><span style="color:#f92672">:</span> <span style="color:#66d9ef">false</span>}
+</span></span><span style="display:flex;"><span>]
+</span></span></code></pre></div><h3 id="dry">DRY</h3>
+<p>Abstract away the part of code that loops through all the testCases by using a higher order function <code>map</code>:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">test</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">fun</span> <span style="color:#a6e22e">testCases</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">testCases</span>.<span style="color:#a6e22e">map</span>(<span style="color:#a6e22e">t</span> =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">shouldBe</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">shouldBe</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">is</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">fun</span>(<span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">test</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">res</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">shouldBe</span> <span style="color:#f92672">===</span> <span style="color:#a6e22e">is</span>) <span style="color:#f92672">?</span> <span style="color:#e6db74">&#39;passed&#39;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;failed&#39;</span>;
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">moreInfo</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">res</span> <span style="color:#f92672">===</span> <span style="color:#e6db74">&#39;failed&#39;</span>) <span style="color:#f92672">?</span> <span style="color:#e6db74">`testing </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">t</span>.<span style="color:#a6e22e">test</span><span style="color:#e6db74">}</span><span style="color:#e6db74">. Should be </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">shouldBe</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> but got </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">is</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#39;&#39;</span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#e6db74">`</span><span style="color:#e6db74">${</span><span style="color:#a6e22e">res</span><span style="color:#e6db74">}</span><span style="color:#e6db74"> </span><span style="color:#e6db74">${</span><span style="color:#a6e22e">moreInfo</span><span style="color:#e6db74">}</span><span style="color:#e6db74">`</span>);
+</span></span><span style="display:flex;"><span>  })
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p><strong>Run the test:</strong></p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-javascript" data-lang="javascript"><span style="display:flex;"><span><span style="color:#66d9ef">let</span> <span style="color:#a6e22e">fun</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">str</span>) =&gt; <span style="color:#a6e22e">hasBalancedParen</span>(<span style="color:#a6e22e">str</span>)
+</span></span><span style="display:flex;"><span><span style="color:#a6e22e">test</span>(<span style="color:#a6e22e">fun</span>, <span style="color:#a6e22e">testCases</span>)
+</span></span></code></pre></div><h1 id="conclusion">Conclusion</h1>
+<p>Problem solving is the application of knowledge and tools to achieve a desired outcome so the better your knowledge and tools are, the better your problem solving will be. Without a framework for problem solving, the process of problem solving could be inefficient and iterative, requiring rounds of experimentation and refactoring. Use the these five principles to power your problem solving process to write more efficient and beautiful code!</p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/javascript/">JavaScript</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/guide/">Guide</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/software-design/">Software Design</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/programming/">Programming</a>
+
+                  </div>
+                
+              
+            
+            <a target="_blank" href="https://www.buymeacoffee.com/"
+  data-tooltip="Buy me a coffee!"
+  id="bmc-wbtn" 
+  style="display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgb(255, 129, 63); color: white; border-radius: 32px; position: fixed; right: 18px; bottom: 18px; box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px; z-index: 999; cursor: pointer; font-weight: 600; transition: all 0.2s ease 0s; transform: scale(1);"><img src="https://cdn.buymeacoffee.com/widget/assets/coffee%20cup.svg" 
+  alt="Buy Me A Coffee" 
+  style="height: 40px; width: 40px; margin: 0; padding: 0;"
+></a>
+
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/how-to-do-object-oriented-programming-the-right-way/" data-tooltip="How To Do Object Oriented Programming The Right Way" aria-label="NEXT: How To Do Object Oriented Programming The Right Way">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/a-career-transition-guide-for-overachievers/" data-tooltip="A Career Transition Guide For Overachievers" aria-label="PREVIOUS: A Career Transition Guide For Overachievers">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chestnutkurisu.github.io/post/principles-to-code-by-how-to-solve-problems-with-code/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chestnutkurisu.github.io/post/principles-to-code-by-how-to-solve-problems-with-code/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://chestnutkurisu.github.io/post/principles-to-code-by-how-to-solve-problems-with-code/" title="Share on Google&#43;" aria-label="Share on Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+              
+                <div id="disqus_thread"></div>
+<script>
+
+
+
+
+var disqus_config = function () {
+this.page.url = "https://chestnutkurisu.github.io/post/principles-to-code-by-how-to-solve-problems-with-code/";
+this.page.identifier = "Principles To Code By: How To Solve Problems With Code"; 
+};
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://http--github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 Param Somane. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/how-to-do-object-oriented-programming-the-right-way/" data-tooltip="How To Do Object Oriented Programming The Right Way" aria-label="NEXT: How To Do Object Oriented Programming The Right Way">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/a-career-transition-guide-for-overachievers/" data-tooltip="A Career Transition Guide For Overachievers" aria-label="PREVIOUS: A Career Transition Guide For Overachievers">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chestnutkurisu.github.io/post/principles-to-code-by-how-to-solve-problems-with-code/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chestnutkurisu.github.io/post/principles-to-code-by-how-to-solve-problems-with-code/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://chestnutkurisu.github.io/post/principles-to-code-by-how-to-solve-problems-with-code/" title="Share on Google&#43;" aria-label="Share on Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fchestnutkurisu.github.io%2Fpost%2Fprinciples-to-code-by-how-to-solve-problems-with-code%2F" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fchestnutkurisu.github.io%2Fpost%2Fprinciples-to-code-by-how-to-solve-problems-with-code%2F" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fchestnutkurisu.github.io%2Fpost%2Fprinciples-to-code-by-how-to-solve-problems-with-code%2F" aria-label="Share on Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://chestnutkurisu.github.io/images/xyang.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Param Somane</h4>
+    
+      <div id="about-card-bio">Software Engineer. Climber. Snowboarder.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Software Engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        New York
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      
+      <div id="cover" style="background-image:url('https://chestnutkurisu.github.io/images/cover-blue.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://chestnutkurisu.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

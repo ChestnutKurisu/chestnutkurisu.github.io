@@ -1,0 +1,851 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/chestnutkurisu.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "Param Somane",
+    
+    "image": "https://chestnutkurisu.github.io/images/xyang.png"
+    
+  },
+  "name":"Param Somane",
+  "description":"\u003cp\u003eGo is becoming pretty mainstream. Every job posting I\u0026rsquo;ve seen recently requires Go as a want-to-have or a need-to-have skill. This post serves as a guide to help you hit the ground running with Go.\u003c\/p\u003e",
+  "url":"https:\/\/chestnutkurisu.github.io\/post\/get-started-with-go\/",
+  "keywords":"[]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.113.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="Param Somane">
+<meta name="keywords" content="">
+<meta name="description" content="Go is becoming pretty mainstream. Every job posting I&rsquo;ve seen recently requires Go as a want-to-have or a need-to-have skill. This post serves as a guide to help you hit the ground running with Go.">
+
+
+<meta property="og:description" content="Go is becoming pretty mainstream. Every job posting I&rsquo;ve seen recently requires Go as a want-to-have or a need-to-have skill. This post serves as a guide to help you hit the ground running with Go.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Get Started With Go">
+<meta name="twitter:title" content="Get Started With Go">
+<meta property="og:url" content="https://chestnutkurisu.github.io/post/get-started-with-go/">
+<meta property="twitter:url" content="https://chestnutkurisu.github.io/post/get-started-with-go/">
+<meta property="og:site_name" content="Param Somane">
+<meta property="og:description" content="Go is becoming pretty mainstream. Every job posting I&rsquo;ve seen recently requires Go as a want-to-have or a need-to-have skill. This post serves as a guide to help you hit the ground running with Go.">
+<meta name="twitter:description" content="Go is becoming pretty mainstream. Every job posting I&rsquo;ve seen recently requires Go as a want-to-have or a need-to-have skill. This post serves as a guide to help you hit the ground running with Go.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2019-02-03T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2019-02-03T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="blog">
+    
+  
+  
+    
+      <meta property="article:tag" content="Go">
+    
+      <meta property="article:tag" content="Guide">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://chestnutkurisu.github.io/images/xyang.png">
+  <meta property="twitter:image" content="https://chestnutkurisu.github.io/images/xyang.png">
+
+
+
+
+
+  <meta property="og:image" content="https://images2.imgbox.com/49/17/WNnaYp5v_o.png">
+  <meta property="twitter:image" content="https://images2.imgbox.com/49/17/WNnaYp5v_o.png">
+
+
+    <title>Get Started With Go</title>
+
+    <link rel="icon" href="https://chestnutkurisu.github.io/favicon-96x96.png">
+    
+
+    
+
+    <link rel="canonical" href="https://chestnutkurisu.github.io/post/get-started-with-go/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://chestnutkurisu.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+      
+        <link rel="stylesheet" href="https://chestnutkurisu.github.io/css/custom.css">
+      
+    
+      
+        <link rel="stylesheet" href="https://chestnutkurisu.github.io/css/syntax.css">
+      
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://chestnutkurisu.github.io/" aria-label="Go to homepage">Param Somane</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://chestnutkurisu.github.io/#about" aria-label="Open the link: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://chestnutkurisu.github.io/images/xyang.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://chestnutkurisu.github.io/#about" aria-label="Read more about the author">
+          <img class="sidebar-profile-picture" src="https://chestnutkurisu.github.io/images/xyang.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Param Somane</h4>
+        
+          <h5 class="sidebar-profile-bio">Software Engineer. Climber. Snowboarder.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/categories/projects" title="Projects">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-code"></i>
+      
+      <span class="sidebar-button-desc">Projects</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/categories/blog" title="Blog">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-pen-square"></i>
+      
+      <span class="sidebar-button-desc">Blog</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/about" title="About">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-user"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/ChestnutKurisu/" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://medium.com" target="_blank" rel="noopener" title="Medium">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-medium"></i>
+      
+      <span class="sidebar-button-desc">Medium</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://linkedin.com/in/param-somane" target="_blank" rel="noopener" title="Linkedin">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://angel.co" target="_blank" rel="noopener" title="AngelList">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-angellist"></i>
+      
+      <span class="sidebar-button-desc">AngelList</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:xyang232@gmail.com" target="_blank" rel="noopener" title="Email Me">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope"></i>
+      
+      <span class="sidebar-button-desc">Email Me</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      Get Started With Go
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2019-02-03T00:00:00Z">
+        
+  February 3, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://chestnutkurisu.github.io/categories/blog">blog</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>Go is becoming pretty mainstream. Every job posting I&rsquo;ve seen recently requires Go as a want-to-have or a need-to-have skill. This post serves as a guide to help you hit the ground running with Go.</p>
+<h1 id="table-of-contents">Table of Contents</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#why-learn-go">Why Learn Go</a></li>
+    <li><a href="#language-features">Language Features</a></li>
+    <li><a href="#go-offers-best-balance">Go Offers Best Balance</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#set-up">Set up</a></li>
+    <li><a href="#cat-program">Cat program</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#go-modules">Go Modules</a></li>
+  </ul>
+</nav>
+
+<p><img src="https://images2.imgbox.com/f8/aa/OSwaqz8O_o.png" alt="Go Gopher"></p>
+<div class="alert info ">
+  <p>This is a Live Document. I will be updating it periodically.</p>
+</div>
+<h1 id="table-of-contents">Table of Contents</h1>
+<nav id="TableOfContents">
+  <ul>
+    <li><a href="#why-learn-go">Why Learn Go</a></li>
+    <li><a href="#language-features">Language Features</a></li>
+    <li><a href="#go-offers-best-balance">Go Offers Best Balance</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#set-up">Set up</a></li>
+    <li><a href="#cat-program">Cat program</a></li>
+  </ul>
+
+  <ul>
+    <li><a href="#go-modules">Go Modules</a></li>
+  </ul>
+</nav>
+
+<h1 id="what-is-go">What is Go</h1>
+<p><a href="https://github.com/golang/go">Go</a> is a programming language created by Google. It started as an experiment by some engineers, to develop to address the pain points of C++ and Java without compromising performance and capability that those languages provides. Other than a well-thought design, it has some specific features for concurrency like a type of light-weight processes called goroutines.</p>
+<p>In <a href="https://tomassetti.me/best-programming-languages/">Tomassett&rsquo;s blog article</a> on best articles for each situation, he writes:</p>
+<blockquote>
+<p>All its Go&rsquo;s authors expressed a dislike for C++ complexity. So, in some way, it is a language designed to persuade C people to enter the new century.</p>
+</blockquote>
+<h2 id="why-learn-go">Why Learn Go</h2>
+<ol>
+<li>It&rsquo;s <a href="https://movio.co/en/blog/migrate-Scala-to-Go/">easy to learn</a>.</li>
+<li>It let&rsquo;s you do concurrency without the overhead.</li>
+<li>It&rsquo;s type safe.</li>
+<li>It&rsquo;s fast.</li>
+</ol>
+<p>This article discusses the <a href="https://medium.com/@kevalpatel2106/why-should-you-learn-go-f607681fad65">business case for why learn go</a>, including Moore&rsquo;s law is failing, which drives the need for a language with built-in concurrency support. <a href="https://blog.golang.org/concurrency-is-not-parallelism">Concurrency is not parallelism</a>.</p>
+<blockquote>
+<p>concurrency is the <strong>composition</strong> of independently executing processes, while parallelism is the simultaneous execution of (possibly related) computations. Concurrency is about <strong>dealing with lots</strong> of things at once. Parallelism is about <strong>doing lots</strong> of things at once.</p>
+</blockquote>
+<h2 id="language-features">Language Features</h2>
+<ul>
+<li>Easy to learn - <a href="https://movio.co/en/blog/migrate-Scala-to-Go/">See this article</a></li>
+<li>Built-in Concurrency Support</li>
+<li>Go is that it&rsquo;s a modern high performant low level language with built in concurrency support and strong type system</li>
+<li>supports OOP but instead of class inheritance, it uses composition</li>
+<li>Supports lambda expressions with their function literals and also supports higher order functions</li>
+<li>The market share for Go is networking and servers but based on current trends, it seems Go will beat C, C++, Java, and Rust in the language for building infrastructure since the future is multicore processing. Go is not totally mainstream yet but is gaining a lot of traction</li>
+</ul>
+<h2 id="go-offers-best-balance">Go Offers Best Balance</h2>
+<p>There used to be a time when programmers have to make a tradeoff between and efficient code and clean and easy to read code when selecting a language.</p>
+<p>Go lets you write efficient and clean code.</p>
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-100 center" >
+  
+    <a class="fancybox" href="https://images2.imgbox.com/70/3b/DVneDl91_o.png" title="Go is efficient and easy to write and manage" data-fancybox="">
+  
+    <img class="fig-img" src="https://images2.imgbox.com/70/3b/DVneDl91_o.png"  alt="Go is efficient and easy to write and manage">
+  
+    </a>
+  
+   
+    <span class="caption">Go is efficient and easy to write and manage</span>
+  
+</div>
+
+  <div style="clear:both;"></div>
+
+<h1 id="your-first-go-program">Your First Go Program</h1>
+<h2 id="set-up">Set up</h2>
+<p>Download Go from <a href="https://golang.org/dl/">this link</a> and install Go on your computer.</p>
+<p>Set up GOPATH and GOBIN:</p>
+<ol>
+<li>
+<p>Add $GOPATH and $GOBIN</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ vim ~/.bash_profile
+</span></span></code></pre></div><p>Add the following lines to .bash_profile</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>export GOPATH<span style="color:#f92672">=</span>$HOME/go
+</span></span><span style="display:flex;"><span>export GOBIN<span style="color:#f92672">=</span>$HOME/go/bin
+</span></span></code></pre></div></li>
+<li>
+<p>Refresh <code>.bash_profile</code> for the GOPATH and GOBIN to take effect:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ . ~/.bash_profile<span style="color:#e6db74">`</span>
+</span></span></code></pre></div></li>
+<li>
+<p>Verify paths</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ echo $GOPATH
+</span></span><span style="display:flex;"><span>/Users/param/go
+</span></span></code></pre></div></li>
+</ol>
+<p>For more information about GOPATH, checkout <a href="https://github.com/golang/go/wiki/SettingGOPATH">the wiki</a>.</p>
+<h2 id="cat-program">Cat program</h2>
+<p>We will implement <code>cat</code> in Go. It should take at least one argument which specifies the file name and prints out the contents.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;fmt&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;io&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;os&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> len(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Args</span>) &lt; <span style="color:#ae81ff">2</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">Copy</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stdout</span>, <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stdin</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Fprintf</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stderr</span>, <span style="color:#e6db74">&#34;%v\n&#34;</span>, <span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Exit</span>(<span style="color:#ae81ff">1</span>)
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Exit</span>(<span style="color:#ae81ff">0</span>)
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">files</span> <span style="color:#f92672">:=</span> <span style="color:#66d9ef">range</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Args</span>[<span style="color:#ae81ff">1</span>:] {
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">r</span>, <span style="color:#a6e22e">err</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Open</span>(<span style="color:#a6e22e">files</span>)
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">err</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Fprintf</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stderr</span>, <span style="color:#e6db74">&#34;%v\n&#34;</span>, <span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">_</span>, <span style="color:#a6e22e">cerr</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">io</span>.<span style="color:#a6e22e">Copy</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stdout</span>, <span style="color:#a6e22e">r</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">cerr</span> <span style="color:#f92672">!=</span> <span style="color:#66d9ef">nil</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">fmt</span>.<span style="color:#a6e22e">Fprintf</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stderr</span>, <span style="color:#e6db74">&#34;%v\n&#34;</span>, <span style="color:#a6e22e">err</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">continue</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">r</span>.<span style="color:#a6e22e">Close</span>()
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Save the code to a file called <code>cat.go</code>. Then in the same directory, create two files:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-bash" data-lang="bash"><span style="display:flex;"><span>$ echo foo! &gt; foo
+</span></span><span style="display:flex;"><span>$ echo bar! &gt; bar
+</span></span></code></pre></div><p>Build the cat program in go:</p>
+<pre tabindex="0"><code>$ go build cat.go
+</code></pre><p>Then we can run our cat program as such:</p>
+<pre tabindex="0"><code>$ ./cat foo bar
+foo!
+bar!
+</code></pre><p>We don&rsquo;t have to build a program to run it. Another way to run the program:</p>
+<pre tabindex="0"><code>$ go run cat.go foo bar
+</code></pre><h1 id="dependencies">Dependencies</h1>
+<p>To use libraries created by the Go community in your code, we can use the <code>go get</code> command. A pre-requisite is to have <code>GOPATH</code> set.</p>
+<p>For example, let&rsquo;s use <a href="https://github.com/ajstarks/svgo">SVGo</a>:</p>
+<pre tabindex="0"><code>$ go get github.com/ajstarks/svgo
+</code></pre><p>The command above basically performs a <code>git clone</code> and download all the code from that repository into <code>$GOPATH/src/github.com/ajstarks/svgo</code>. After executing the command, you can use the svgo library as follows:</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-go" data-lang="go"><span style="display:flex;"><span><span style="color:#f92672">package</span> <span style="color:#a6e22e">main</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#f92672">import</span> (
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;math/rand&#34;</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#e6db74">&#34;os&#34;</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">svg</span> <span style="color:#e6db74">&#34;github.com/ajstarks/svgo&#34;</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">var</span> (
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">canvas</span> = <span style="color:#a6e22e">svg</span>.<span style="color:#a6e22e">New</span>(<span style="color:#a6e22e">os</span>.<span style="color:#a6e22e">Stdout</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">width</span>  = <span style="color:#ae81ff">1000</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">height</span> = <span style="color:#ae81ff">500</span>
+</span></span><span style="display:flex;"><span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">func</span> <span style="color:#a6e22e">main</span>() {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">Start</span>(<span style="color:#a6e22e">width</span>, <span style="color:#a6e22e">height</span>)
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">Gstyle</span>(<span style="color:#e6db74">&#34;fill:#22264b&#34;</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">color</span> <span style="color:#66d9ef">string</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">radius</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">90</span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">step</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">8</span>
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">i</span> <span style="color:#f92672">:=</span> <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">i</span> &lt; <span style="color:#ae81ff">200</span>; <span style="color:#a6e22e">i</span><span style="color:#f92672">++</span> {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">if</span> <span style="color:#a6e22e">i</span><span style="color:#f92672">%</span><span style="color:#ae81ff">4</span> <span style="color:#f92672">==</span> <span style="color:#ae81ff">0</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">color</span> = <span style="color:#e6db74">&#34;#e6cf8b&#34;</span>
+</span></span><span style="display:flex;"><span>    } <span style="color:#66d9ef">else</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">color</span> = <span style="color:#e6db74">&#34;#b56969&#34;</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">rand</span>.<span style="color:#a6e22e">Intn</span>(<span style="color:#a6e22e">width</span>), <span style="color:#a6e22e">rand</span>.<span style="color:#a6e22e">Intn</span>(<span style="color:#a6e22e">height</span>)
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">for</span> <span style="color:#a6e22e">r</span>, <span style="color:#a6e22e">nc</span> <span style="color:#f92672">:=</span> <span style="color:#a6e22e">radius</span>, <span style="color:#ae81ff">0</span>; <span style="color:#a6e22e">nc</span> &lt; <span style="color:#ae81ff">10</span>; <span style="color:#a6e22e">nc</span><span style="color:#f92672">++</span> {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">Circle</span>(<span style="color:#a6e22e">x</span>, <span style="color:#a6e22e">y</span>, <span style="color:#a6e22e">r</span>, <span style="color:#e6db74">&#34;stroke:&#34;</span><span style="color:#f92672">+</span><span style="color:#a6e22e">color</span>)
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">r</span> <span style="color:#f92672">-=</span> <span style="color:#a6e22e">step</span>
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">Gend</span>()
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">canvas</span>.<span style="color:#a6e22e">End</span>()
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>Run the code above using <code>go run main.go &gt; circles.html &amp;&amp; open circles.html</code> generates the following image:</p>
+<p><img src="https://images2.imgbox.com/03/bc/WbCkgbm6_o.png" alt=""></p>
+<h2 id="go-modules">Go Modules</h2>
+<p>Go v.1.11 introduced Go modules, which is a dependency management solution in Go. Here&rsquo;s a good introduction to go.modules:</p>
+<ul>
+<li><a href="https://github.com/Yigenana/WWGNYC/blob/master/go-modules/INSTRUCTIONS.md">Walkthrough</a></li>
+<li><a href="https://github.com/Yigenana/WWGNYC/blob/master/go-modules/Getting-Started-with-Go-Modules.pdf">Slides</a></li>
+</ul>
+<h1 id="stuff-to-check-out">Stuff to check out</h1>
+<ul>
+<li><a href="https://github.com/ajstarks/svgo">SVGo</a> - generates SVG and canvas elements</li>
+<li><a href="https://github.com/gomods/athens">Athens</a> - A Go module datastore and proxy (NPM for Go)</li>
+<li><a href="https://gopherize.me/">GopherizeMe</a> - Make Gopher version of yourself</li>
+</ul>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/go/">Go</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/guide/">Guide</a>
+
+                  </div>
+                
+              
+            
+            <a target="_blank" href="https://www.buymeacoffee.com/"
+  data-tooltip="Buy me a coffee!"
+  id="bmc-wbtn" 
+  style="display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgb(255, 129, 63); color: white; border-radius: 32px; position: fixed; right: 18px; bottom: 18px; box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px; z-index: 999; cursor: pointer; font-weight: 600; transition: all 0.2s ease 0s; transform: scale(1);"><img src="https://cdn.buymeacoffee.com/widget/assets/coffee%20cup.svg" 
+  alt="Buy Me A Coffee" 
+  style="height: 40px; width: 40px; margin: 0; padding: 0;"
+></a>
+
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/the-algorithm-for-managing-stress/" data-tooltip="The Algorithm for Managing Stress" aria-label="NEXT: The Algorithm for Managing Stress">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/thirsty-plant-automated-plant-waterer/" data-tooltip="Thirsty Plant: Automated Plant Waterer" aria-label="PREVIOUS: Thirsty Plant: Automated Plant Waterer">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chestnutkurisu.github.io/post/get-started-with-go/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chestnutkurisu.github.io/post/get-started-with-go/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://chestnutkurisu.github.io/post/get-started-with-go/" title="Share on Google&#43;" aria-label="Share on Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+              
+                <div id="disqus_thread"></div>
+<script>
+
+
+
+
+var disqus_config = function () {
+this.page.url = "https://chestnutkurisu.github.io/post/get-started-with-go/";
+this.page.identifier = "Get Started With Go"; 
+};
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://http--github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 Param Somane. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/the-algorithm-for-managing-stress/" data-tooltip="The Algorithm for Managing Stress" aria-label="NEXT: The Algorithm for Managing Stress">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/thirsty-plant-automated-plant-waterer/" data-tooltip="Thirsty Plant: Automated Plant Waterer" aria-label="PREVIOUS: Thirsty Plant: Automated Plant Waterer">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chestnutkurisu.github.io/post/get-started-with-go/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chestnutkurisu.github.io/post/get-started-with-go/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://chestnutkurisu.github.io/post/get-started-with-go/" title="Share on Google&#43;" aria-label="Share on Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fchestnutkurisu.github.io%2Fpost%2Fget-started-with-go%2F" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fchestnutkurisu.github.io%2Fpost%2Fget-started-with-go%2F" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fchestnutkurisu.github.io%2Fpost%2Fget-started-with-go%2F" aria-label="Share on Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://chestnutkurisu.github.io/images/xyang.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Param Somane</h4>
+    
+      <div id="about-card-bio">Software Engineer. Climber. Snowboarder.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Software Engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        New York
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      
+      <div id="cover" style="background-image:url('https://chestnutkurisu.github.io/images/cover-blue.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://chestnutkurisu.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

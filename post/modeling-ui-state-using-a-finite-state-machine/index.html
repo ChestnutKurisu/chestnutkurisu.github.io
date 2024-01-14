@@ -1,0 +1,944 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/chestnutkurisu.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "Param Somane",
+    
+    "image": "https://chestnutkurisu.github.io/images/xyang.png"
+    
+  },
+  "name":"Param Somane",
+  "description":"\u003cp\u003eA finite state machine (FSM) is an architectural design pattern that allows us to model a large system as a collection of loosely coupled components. Each component in the system changes its behavior when the internal state changes. This pattern allows us to write flexible, reusable, and testable code. In this article, we will explore the use of FSM in building complex React components.\u003c\/p\u003e\n\u003cp\u003eThe primary use of FSM has been in \u003ca href=\u0022https:\/\/www.embedded.com\/programming-embedded-systems-the-easy-way-with-state-machines\/\u0022\u003eprogramming embedded systems\u003c\/a\u003e but in recent years, there has been an emergence of FSM in other applications like \u003ca href=\u0022https:\/\/www.smashingmagazine.com\/2018\/01\/rise-state-machines\/\u0022\u003emanaging states in the browser\u003c\/a\u003e, \u003ca href=\u0022https:\/\/mind-simulation.com\/en\/blog\/tech\/using-finite-state-machines-to-model-behavior.html\u0022\u003emodeling behavior\u003c\/a\u003e, and \u003ca href=\u0022https:\/\/www.hamidadelyar.com\/blog\/finite-state-machine-chatbot\/\u0022\u003ebuilding chatbots\u003c\/a\u003e. The goal of this post is not to evangelize FSM as a better state management solution than its alternatives like \u003ca href=\u0022http:\/\/redux.js.org\/\u0022\u003eRedux\u003c\/a\u003e but rather, to introduce a pattern for simplifying the architecture of a system and write robust code that is understandable, extendable, and \u003ca href=\u0022https:\/\/programmingisterrible.com\/post\/139222674273\/how-to-write-disposable-code-in-large-systems\u0022\u003edelete-able\u003c\/a\u003e.\u003c\/p\u003e",
+  "url":"https:\/\/chestnutkurisu.github.io\/post\/modeling-ui-state-using-a-finite-state-machine\/",
+  "keywords":"[JavaScript, React, Best Practices, Web Design, Web Development, React.js, Finite State Machine, FSM, Design Pattern, Architecture, ]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.113.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="Param Somane">
+<meta name="keywords" content="JavaScript, React, Best Practices, Web Design, Web Development, React.js, Finite State Machine, FSM, Design Pattern, Architecture, ">
+<meta name="description" content="A finite state machine (FSM) is an architectural design pattern that allows us to model a large system as a collection of loosely coupled components. Each component in the system changes its behavior when the internal state changes. This pattern allows us to write flexible, reusable, and testable code. In this article, we will explore the use of FSM in building complex React components.
+The primary use of FSM has been in programming embedded systems but in recent years, there has been an emergence of FSM in other applications like managing states in the browser, modeling behavior, and building chatbots. The goal of this post is not to evangelize FSM as a better state management solution than its alternatives like Redux but rather, to introduce a pattern for simplifying the architecture of a system and write robust code that is understandable, extendable, and delete-able.">
+
+
+<meta property="og:description" content="A finite state machine (FSM) is an architectural design pattern that allows us to model a large system as a collection of loosely coupled components. Each component in the system changes its behavior when the internal state changes. This pattern allows us to write flexible, reusable, and testable code. In this article, we will explore the use of FSM in building complex React components.
+The primary use of FSM has been in programming embedded systems but in recent years, there has been an emergence of FSM in other applications like managing states in the browser, modeling behavior, and building chatbots. The goal of this post is not to evangelize FSM as a better state management solution than its alternatives like Redux but rather, to introduce a pattern for simplifying the architecture of a system and write robust code that is understandable, extendable, and delete-able.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Modeling UI State Using A Finite State Machine">
+<meta name="twitter:title" content="Modeling UI State Using A Finite State Machine">
+<meta property="og:url" content="https://chestnutkurisu.github.io/post/modeling-ui-state-using-a-finite-state-machine/">
+<meta property="twitter:url" content="https://chestnutkurisu.github.io/post/modeling-ui-state-using-a-finite-state-machine/">
+<meta property="og:site_name" content="Param Somane">
+<meta property="og:description" content="A finite state machine (FSM) is an architectural design pattern that allows us to model a large system as a collection of loosely coupled components. Each component in the system changes its behavior when the internal state changes. This pattern allows us to write flexible, reusable, and testable code. In this article, we will explore the use of FSM in building complex React components.
+The primary use of FSM has been in programming embedded systems but in recent years, there has been an emergence of FSM in other applications like managing states in the browser, modeling behavior, and building chatbots. The goal of this post is not to evangelize FSM as a better state management solution than its alternatives like Redux but rather, to introduce a pattern for simplifying the architecture of a system and write robust code that is understandable, extendable, and delete-able.">
+<meta name="twitter:description" content="A finite state machine (FSM) is an architectural design pattern that allows us to model a large system as a collection of loosely coupled components. Each component in the system changes its behavior when the internal state changes. This pattern allows us to write flexible, reusable, and testable code. In this article, we will explore the use of FSM in building complex React components.
+The primary use of FSM has been in programming embedded systems but in recent years, there has been an emergence of FSM in other applications like managing states in the browser, modeling behavior, and building chatbots. The goal of this post is not to evangelize FSM as a better state management solution than its alternatives like Redux but rather, to introduce a pattern for simplifying the architecture of a system and write robust code that is understandable, extendable, and delete-able.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2021-02-15T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2021-02-15T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="blog">
+    
+  
+  
+    
+      <meta property="article:tag" content="JavaScript">
+    
+      <meta property="article:tag" content="React">
+    
+      <meta property="article:tag" content="Web Dev">
+    
+      <meta property="article:tag" content="Frontend">
+    
+      <meta property="article:tag" content="Architecture">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://chestnutkurisu.github.io/images/xyang.png">
+  <meta property="twitter:image" content="https://chestnutkurisu.github.io/images/xyang.png">
+
+
+
+
+
+  <meta property="og:image" content="https://chestnutkurisu.github.io/post/images/fsm/machine-cover.png">
+  <meta property="twitter:image" content="https://chestnutkurisu.github.io/post/images/fsm/machine-cover.png">
+
+
+    <title>Modeling UI State Using A Finite State Machine</title>
+
+    <link rel="icon" href="https://chestnutkurisu.github.io/favicon-96x96.png">
+    
+
+    
+
+    <link rel="canonical" href="https://chestnutkurisu.github.io/post/modeling-ui-state-using-a-finite-state-machine/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://chestnutkurisu.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+      
+        <link rel="stylesheet" href="https://chestnutkurisu.github.io/css/custom.css">
+      
+    
+      
+        <link rel="stylesheet" href="https://chestnutkurisu.github.io/css/syntax.css">
+      
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://chestnutkurisu.github.io/" aria-label="Go to homepage">Param Somane</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://chestnutkurisu.github.io/#about" aria-label="Open the link: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://chestnutkurisu.github.io/images/xyang.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://chestnutkurisu.github.io/#about" aria-label="Read more about the author">
+          <img class="sidebar-profile-picture" src="https://chestnutkurisu.github.io/images/xyang.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Param Somane</h4>
+        
+          <h5 class="sidebar-profile-bio">Software Engineer. Climber. Snowboarder.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/categories/projects" title="Projects">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-code"></i>
+      
+      <span class="sidebar-button-desc">Projects</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/categories/blog" title="Blog">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-pen-square"></i>
+      
+      <span class="sidebar-button-desc">Blog</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/about" title="About">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-user"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/ChestnutKurisu/" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://medium.com" target="_blank" rel="noopener" title="Medium">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-medium"></i>
+      
+      <span class="sidebar-button-desc">Medium</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://linkedin.com/in/param-somane" target="_blank" rel="noopener" title="Linkedin">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://angel.co" target="_blank" rel="noopener" title="AngelList">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-angellist"></i>
+      
+      <span class="sidebar-button-desc">AngelList</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:xyang232@gmail.com" target="_blank" rel="noopener" title="Email Me">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope"></i>
+      
+      <span class="sidebar-button-desc">Email Me</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      Modeling UI State Using A Finite State Machine
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2021-02-15T00:00:00Z">
+        
+  February 15, 2021
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://chestnutkurisu.github.io/categories/blog">blog</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>A finite state machine (FSM) is an architectural design pattern that allows us to model a large system as a collection of loosely coupled components. Each component in the system changes its behavior when the internal state changes. This pattern allows us to write flexible, reusable, and testable code. In this article, we will explore the use of FSM in building complex React components.</p>
+<p>The primary use of FSM has been in <a href="https://www.embedded.com/programming-embedded-systems-the-easy-way-with-state-machines/">programming embedded systems</a> but in recent years, there has been an emergence of FSM in other applications like <a href="https://www.smashingmagazine.com/2018/01/rise-state-machines/">managing states in the browser</a>, <a href="https://mind-simulation.com/en/blog/tech/using-finite-state-machines-to-model-behavior.html">modeling behavior</a>, and <a href="https://www.hamidadelyar.com/blog/finite-state-machine-chatbot/">building chatbots</a>. The goal of this post is not to evangelize FSM as a better state management solution than its alternatives like <a href="http://redux.js.org/">Redux</a> but rather, to introduce a pattern for simplifying the architecture of a system and write robust code that is understandable, extendable, and <a href="https://programmingisterrible.com/post/139222674273/how-to-write-disposable-code-in-large-systems">delete-able</a>.</p>
+<h2 id="core-concepts">Core Concepts</h2>
+<p>An FSM consists of states and state transitions. It can be represented by a state machine <a href="https://medium.com/well-red/state-machines-for-everyone-part-1-introduction-b7ac9aaf482e">diagram</a>:</p>
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-75" >
+  
+    <a class="fancybox" href="https://chestnutkurisu.github.io/post/images/fsm/fsm-traffic-light.png" title="FSM representing a traffic light" data-fancybox="">
+  
+    <img class="fig-img" src="https://chestnutkurisu.github.io/post/images/fsm/fsm-traffic-light.png"  alt="FSM representing a traffic light">
+  
+    </a>
+  
+   
+    <span class="caption">FSM representing a traffic light</span>
+  
+</div>
+
+  <div style="clear:both;"></div>
+
+<p>Formally,</p>
+<ul>
+<li><strong>States</strong> represent the modes of the system and drive the output of the system. Light switches have two states: ON or OFF.  <a href="https://levelup.gitconnected.com/an-example-based-introduction-to-finite-state-machines-f908858e450f">Traffic lights contain three states</a>: RED, YELLOW, or GREEN. There are a finite number of states in an FSM. Every FSM has an initial state, which is the state the system is in when it first initiates.</li>
+<li><strong>State transitions</strong> are rules for going from the current state to the next state based on the current state and the system inputs.</li>
+</ul>
+<p>If we model a React component as an FSM, system inputs are provided externally by the user, the server, or callers of the component. These include events, such as a button click or having received a certain response from the server. The output of the system is the JSX (i.e., what is rendered) because that is what is ultimately returned from the component.</p>
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-100" >
+  
+    <a class="fancybox" href="https://chestnutkurisu.github.io/post/images/fsm/fsm-traffic-light.png" title="Inputs and outputs of a React component modeled as an FSM" data-fancybox="">
+  
+    <img class="fig-img" src="https://chestnutkurisu.github.io/post/images/fsm/react-component-fsm-input-output.png"  alt="Inputs and outputs of a React component modeled as an FSM">
+  
+    </a>
+  
+   
+    <span class="caption">Inputs and outputs of a React component modeled as an FSM</span>
+  
+</div>
+
+  <div style="clear:both;"></div>
+
+<p>Transitions out of a state must be mutually exclusive. That means a given input cannot cause transition into two states. This ensures the deterministic behavior of our system.</p>
+<h2 id="a-component-with-few-states">A Component with Few States</h2>
+<p>You probably already have had experience building React components that use component states like  isLoading  and isDisabled to determine how to render. These are examples of stateful components that can be modeled with a simple FSM with binary states. Let&rsquo;s apply what we learned about FSMs so far to model a simple stateful React component as an FSM in a concrete example.</p>
+<p>Suppose we are building the <code>&lt;FriendStatus&gt;</code> component from the <a href="https://reactjs.org/docs/hooks-effect.html#example-using-hooks-1">React Hooks documentation</a>. At any given time, this component displays one of the three messages &ldquo;Loading&hellip;&rdquo;, &ldquo;Online&rdquo;, and &ldquo;Offline&rdquo;.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span>, { <span style="color:#a6e22e">useState</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;react&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">FriendStatus</span>(<span style="color:#a6e22e">props</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">isOnline</span>, <span style="color:#a6e22e">setIsOnline</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#66d9ef">null</span>);
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">useEffect</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">handleStatusChange</span>(<span style="color:#a6e22e">status</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">setIsOnline</span>(<span style="color:#a6e22e">status</span>.<span style="color:#a6e22e">isOnline</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ChatAPI</span>.<span style="color:#a6e22e">subscribeToFriendStatus</span>(<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">friend</span>.<span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">handleStatusChange</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Specify how to clean up after this effect:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">cleanup</span>() {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">ChatAPI</span>.<span style="color:#a6e22e">unsubscribeFromFriendStatus</span>(<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">friend</span>.<span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">handleStatusChange</span>);
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">isOnline</span> <span style="color:#f92672">===</span> <span style="color:#66d9ef">null</span>) {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">return</span> <span style="color:#e6db74">&#34;Loading...&#34;</span>;
+</span></span><span style="display:flex;"><span>  }
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">isOnline</span> <span style="color:#f92672">?</span> <span style="color:#e6db74">&#34;Online&#34;</span> <span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Offline&#34;</span>;
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The <strong>component state</strong>  <code>isOnline</code> determines exactly what message to render and is initialized to <code>null</code> and updated to &ldquo;online&rdquo; or &ldquo;offline&rdquo; in the <code>useEffect</code>.</p>
+<p><code>isOnline</code> allows us to stores three <strong>UI States</strong>: LOADING, OFFLINE, ONLINE.</p>
+<p>We can rewrite <code>&lt;FriendStatus&gt;</code> to render based on the <strong>UI State</strong> instead.</p>
+<div class="highlight"><pre tabindex="0" style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4;"><code class="language-js" data-lang="js"><span style="display:flex;"><span><span style="color:#66d9ef">import</span> <span style="color:#a6e22e">React</span>, { <span style="color:#a6e22e">useState</span> } <span style="color:#a6e22e">from</span> <span style="color:#e6db74">&#34;react&#34;</span>;
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">UiState</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">LOADING</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;LOADING&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">ONLINE</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;ONLINE&#34;</span>,
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">OFFLINE</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;OFFLINE&#34;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">UiStateMessageMap</span> <span style="color:#f92672">=</span> {
+</span></span><span style="display:flex;"><span>  [<span style="color:#a6e22e">UiState</span>.<span style="color:#a6e22e">LOADING</span>]<span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Loading...&#34;</span>,
+</span></span><span style="display:flex;"><span>  [<span style="color:#a6e22e">UiState</span>.<span style="color:#a6e22e">ONLINE</span>]<span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Online&#34;</span>,
+</span></span><span style="display:flex;"><span>  [<span style="color:#a6e22e">UiState</span>.<span style="color:#a6e22e">OFFLINE</span>]<span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;Offline&#34;</span>,
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">const</span> <span style="color:#a6e22e">getUiState</span> <span style="color:#f92672">=</span> (<span style="color:#a6e22e">status</span>) =&gt; {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> { <span style="color:#a6e22e">isOnline</span> } <span style="color:#f92672">=</span> <span style="color:#a6e22e">status</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">if</span> (<span style="color:#a6e22e">isOnline</span> <span style="color:#f92672">===</span> <span style="color:#66d9ef">null</span>) <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">UiState</span>.<span style="color:#a6e22e">LOADING</span>;
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">isOnline</span> <span style="color:#f92672">?</span> <span style="color:#a6e22e">UiState</span>.<span style="color:#a6e22e">ONLINE</span> <span style="color:#f92672">:</span> <span style="color:#a6e22e">UiState</span>.<span style="color:#a6e22e">OFFLINE</span>
+</span></span><span style="display:flex;"><span>};
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">FriendStatus</span>(<span style="color:#a6e22e">props</span>) {
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">const</span> [<span style="color:#a6e22e">uiState</span>, <span style="color:#a6e22e">setUiState</span>] <span style="color:#f92672">=</span> <span style="color:#a6e22e">useState</span>(<span style="color:#a6e22e">UiState</span>.<span style="color:#a6e22e">LOADING</span>); <span style="color:#75715e">// init state
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>
+</span></span><span style="display:flex;"><span>  <span style="color:#a6e22e">useEffect</span>(() =&gt; {
+</span></span><span style="display:flex;"><span>    <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">handleStatusChange</span>(<span style="color:#a6e22e">status</span>) {
+</span></span><span style="display:flex;"><span>      <span style="color:#66d9ef">const</span> <span style="color:#a6e22e">nextUiState</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">getUiState</span>(<span style="color:#a6e22e">status</span>);
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">setUiState</span>(<span style="color:#a6e22e">nextUiState</span>);
+</span></span><span style="display:flex;"><span>    }
+</span></span><span style="display:flex;"><span>    <span style="color:#a6e22e">ChatAPI</span>.<span style="color:#a6e22e">subscribeToFriendStatus</span>(<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">friend</span>.<span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">handleStatusChange</span>);
+</span></span><span style="display:flex;"><span>    <span style="color:#75715e">// Specify how to clean up after this effect:
+</span></span></span><span style="display:flex;"><span><span style="color:#75715e"></span>    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">function</span> <span style="color:#a6e22e">cleanup</span>() {
+</span></span><span style="display:flex;"><span>      <span style="color:#a6e22e">ChatAPI</span>.<span style="color:#a6e22e">unsubscribeFromFriendStatus</span>(<span style="color:#a6e22e">props</span>.<span style="color:#a6e22e">friend</span>.<span style="color:#a6e22e">id</span>, <span style="color:#a6e22e">handleStatusChange</span>);
+</span></span><span style="display:flex;"><span>    };
+</span></span><span style="display:flex;"><span>  });
+</span></span><span style="display:flex;"><span>
+</span></span><span style="display:flex;"><span>  <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">UiStateMessageMap</span>[<span style="color:#a6e22e">uiState</span>];
+</span></span><span style="display:flex;"><span>}
+</span></span></code></pre></div><p>The state transition happens in <code>handleStatusChange</code>, which is triggered on every render because the <code>useEffect</code> has no second argument.</p>
+<p>The <code>setUiState(nextUiState)</code> is responsible for causing the transition from the current uiState to the next uiState based on the system input (i.e., <code>status</code> from ChatAPI).</p>
+<p>Our system output is the message we want to render, which comes directly from <code>UiStateMessageMap</code>. We can do this because our system can only ever be in one of three states. When the output of the system depends solely on the current state, we have a special type of FSM called a <a href="https://en.wikipedia.org/wiki/Moore_machine">Moore machine</a>. A Moore machine is more deterministic but reacts slower to input changes compared to a <a href="https://en.wikipedia.org/wiki/Mealy_machine">Mealy machine</a>. In a Mealy machine, the output depends on both the current state and the inputs of the system.</p>
+<p>Whether you build a Moore machine or a Mealy machine really depends on the requirements of your system. We will see in the next part of the post how we can build a system that is a hybrid Moore and Mealy machine using an architecture that delegates the implementation of state-driven output to the child components.</p>
+<h2 id="a-component-with-many-states">A Component with Many States</h2>
+<p>For simple components that have only two or three states, an FSM may be overkill. There is quite a lot of overhead to implement the FSM (e.g., defining all the UI States and transitions) for not much additional benefit.</p>
+<p>For a complex system consisting of many sub-systems with cross-cutting concerns, an FSM provides a huge benefit.</p>
+<p>Consider you have a system composed of multiple components in which one component needs to be disabled while another component is loading and the output of the two components determines the output of the third component.</p>
+<p>The cross-component dependencies could result in tight coupling of components and make encapsulation difficult and the system difficult to test.</p>
+<p>At my company, <a href="https://www.okcupid.com/careers">OkCupid</a>, we&rsquo;ve built such a component (<code>&lt;LocationSearch&gt;</code>) that lets you specify a country and a query term (zip code or city name) to find a location anywhere in the world. This seems pretty straight-forward until you consider all the edge cases this component has to handle.</p>
+<ul>
+<li>The component interfaces with an API that provides an array of location objects that best match the country and query search term. Based on the length of this array, the component could display a success message, a variety of error messages, and another selection UI to disambiguate the search by selecting from a list of best matches.</li>
+<li>A bonus feature of this component is that if it&rsquo;s used on a mobile device, there&rsquo;s a button that lets you locate yourself automatically using your GPS location (latitude and longitude). The same API accepts the GPS location as input and responds with the locations array.</li>
+<li>The component needs to handles client-side input validation errors like invalid zip code as well as network errors.</li>
+<li>Furthermore, the component can be mounted with a <strong>preloaded</strong> location, which needs to be reflected in the country dropdown, zip code/city name input, and success message immediately when the component first mounts.</li>
+</ul>
+<p>If you see this design spec in a Jira ticket, it might seem a bit overwhelming. There&rsquo;s a lot of logic that needs to be implemented. But having all the functional requirements up-front is actually a blessing in disguise - it enables us to think more holistically about the design of this component and pick an architecture that can effectively manage all of the complexity of this component.</p>
+<h3 id="enumeration-of-all-ui-states">Enumeration of All UI States</h3>
+<p>A nice thing about working on a cross-functional team with a designer is that you get all the mocks before you start the implementation. The mocks can be used to devise the architecture.</p>
+<p>Since this is an article about UI State modeling using FSM, you may have seen it coming. We are going to assign a UI State to each mock, which represents a snapshot of the component in action.</p>
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-90" >
+  
+    <a class="fancybox" href="https://chestnutkurisu.github.io/post/images/fsm/location-search-all-states.png" title="LocationSearch output in every state" data-fancybox="">
+  
+    <img class="fig-img" src="https://chestnutkurisu.github.io/post/images/fsm/location-search-all-states.png"  alt="LocationSearch output in every state">
+  
+    </a>
+  
+   
+    <span class="caption">LocationSearch output in every state</span>
+  
+</div>
+
+  <div style="clear:both;"></div>
+
+<p>These images depict the output of the system (what the user sees) in each state. Let&rsquo;s take a look at what the outputs have in common in the different states. This will give us an idea on how to split up our <code>&lt;LocationSearch&gt;</code> component into sub-systems.</p>
+<ul>
+<li>In the SUCCESS state all the error states, a feedback message is displayed. The text color depends on the state.</li>
+<li>In the SUCCESS state, the DISAMBIGUATION state, and all the error states, an icon is displayed next to the input (checkmark and exclamation mark).</li>
+<li>In all the states except LOADING, the country dropdown, query input, and geo-location search button (labeled &ldquo;USE CURRENT LOCATION&rdquo;) are enabled and accepting input from the user.</li>
+</ul>
+<p>Based on these observations, we can start to delegate the rendering logic to different presentational components.</p>
+<table>
+<thead>
+<tr>
+<th>Component</th>
+<th>What it renders</th>
+<th>Value depends on</th>
+<th>Affected by uiStates</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Countries</td>
+<td>Dropdown menu containing countries retrieved from the server</td>
+<td>- Found location <!-- raw HTML omitted -->- User input</td>
+<td>LOADING</td>
+</tr>
+<tr>
+<td>QueryInput</td>
+<td>- Input field containing the country/city name or zip code <!-- raw HTML omitted -->- Checkmark or exclamation mark icon for feedback</td>
+<td>- Found location <!-- raw HTML omitted -->- User input</td>
+<td>- LOADING <!-- raw HTML omitted -->- SUCCESS <!-- raw HTML omitted -->- All error states</td>
+</tr>
+<tr>
+<td>Feedback</td>
+<td>Success message containing location name</td>
+<td>- Found location <!-- raw HTML omitted -->- Static messages mapped to error states</td>
+<td>- SUCCESS <!-- raw HTML omitted -->- All error states</td>
+</tr>
+<tr>
+<td>Suggestions</td>
+<td>Dropdown menu containing matched locations</td>
+<td>Matched locations from the server</td>
+<td>DISAMBIGUATION</td>
+</tr>
+<tr>
+<td>GpsSearchButton</td>
+<td>Button to trigger location search by GPS</td>
+<td>N/A</td>
+<td>LOADING</td>
+</tr>
+</tbody>
+</table>
+<p>By delegating the implementation of the state-specific output to these components, we are able to transform <code>&lt;LocationSearch&gt;</code> into a system of loosely-coupled components that are coordinated via the UI State. We are encapsulating the FSM in <code>&lt;LocationSearch&gt;</code>, in the sense that the parent components of <code>&lt;LocationSearch&gt;</code> do not know anything about the implementation of the UI state in this component.</p>
+<p>Now we&rsquo;ve defined the states and the output of each state, we are going to specify the state transitions.</p>
+<h3 id="state-transitions">State Transitions</h3>
+<p>Similar to what we did in <code>&lt;FriendStatus&gt;</code> earlier, we are going to instantiate <code>uiState</code> as a component state of <code>&lt;LocationSearch&gt;</code> and mutate <code>uiState</code> in a <code>useEffect</code>. The evaluation of the next <code>uiState</code> will be done in a helper function <code>getUiState</code>. The advantage of making the next state evaluation explicit in <code>getUiState</code> is that we will be able to separate the concern of computing <em>when</em> to render from the concern of <em>what</em> to render.</p>
+<p>Recall FSM can be represented as a directed graph and state transitions are the edges between the nodes. This is what our FSM should look like.</p>
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-90" >
+  
+    <a class="fancybox" href="https://chestnutkurisu.github.io/post/images/fsm/location-search-fsm.png" title="FSM representing LocationSearch" data-fancybox="">
+  
+    <img class="fig-img" src="https://chestnutkurisu.github.io/post/images/fsm/location-search-fsm.png"  alt="FSM representing LocationSearch">
+  
+    </a>
+  
+   
+    <span class="caption">FSM representing LocationSearch</span>
+  
+</div>
+
+  <div style="clear:both;"></div>
+
+<p>The PENDING state is the initial state when the <code>&lt;LocationSearch&gt;</code> first mounts. As the component can mount with a preloaded location, there&rsquo;s an arrow going directly from the PENDING state to the SUCCESS state. We can also reach the SUCCESS state by providing a country+query to the server or a GPS location to the server.</p>
+<p>The ERROR_NOT_ZIP_CODE state is reached via client-side input validation and does not depend on the result of the server request. On the other hand, all the other error states would be reached only after making a request to the server.</p>
+<h2 id="conclusion">Conclusion</h2>
+<p>In this post, we learned what an FSM is and how to model a complex React component as a system of loosely coupled sub-systems coordinated via the UI State. The FSM allowed us to build a robust system that is understandable, extendable, and <a href="https://programmingisterrible.com/post/139222674273/how-to-write-disposable-code-in-large-systems">delete-able</a>.</p>
+<p>We&rsquo;ve seen some examples of how this is done using React primitives like <code>useState</code> and <code>useEffect</code>. There exist JavaScript libraries like <a href="https://xstate.js.org/docs/about/concepts.html">xState</a> and <a href="http://machina-js.org/">Machina.js</a> which provide a more opinionated framework for creating, interpreting, and executing finite state machines and statecharts.</p>
+<p>While the FSM is a powerful design pattern, it is not always the right thing to use for a project. Architectural design is most effective when there is a clear product vision and requirements upfront for how the full user experience should be. Pre-mature optimization could lead to worse code maintainability. Fortunately, the location search experience project was blessed with good product planning and clear design goals that made it possible to break down the problem and architect a robust technical solution.</p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/javascript/">JavaScript</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/react/">React</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/web-dev/">Web Dev</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/frontend/">Frontend</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/architecture/">Architecture</a>
+
+                  </div>
+                
+              
+            
+            <a target="_blank" href="https://www.buymeacoffee.com/"
+  data-tooltip="Buy me a coffee!"
+  id="bmc-wbtn" 
+  style="display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgb(255, 129, 63); color: white; border-radius: 32px; position: fixed; right: 18px; bottom: 18px; box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px; z-index: 999; cursor: pointer; font-weight: 600; transition: all 0.2s ease 0s; transform: scale(1);"><img src="https://cdn.buymeacoffee.com/widget/assets/coffee%20cup.svg" 
+  alt="Buy Me A Coffee" 
+  style="height: 40px; width: 40px; margin: 0; padding: 0;"
+></a>
+
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/how-i-open-sourced-an-eslint-plugin-for-okcupid/" data-tooltip="How I Open Sourced An ESLint Plugin for OkCupid" aria-label="NEXT: How I Open Sourced An ESLint Plugin for OkCupid">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/my-experience-buying-a-home-in-nyc-during-the-covid-19-pandemic/" data-tooltip="My Experience Buying a Home in NYC during the COVID-19 Pandemic" aria-label="PREVIOUS: My Experience Buying a Home in NYC during the COVID-19 Pandemic">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chestnutkurisu.github.io/post/modeling-ui-state-using-a-finite-state-machine/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chestnutkurisu.github.io/post/modeling-ui-state-using-a-finite-state-machine/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://chestnutkurisu.github.io/post/modeling-ui-state-using-a-finite-state-machine/" title="Share on Google&#43;" aria-label="Share on Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+              
+                <div id="disqus_thread"></div>
+<script>
+
+
+
+
+var disqus_config = function () {
+this.page.url = "https://chestnutkurisu.github.io/post/modeling-ui-state-using-a-finite-state-machine/";
+this.page.identifier = "Modeling UI State Using A Finite State Machine"; 
+};
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://http--github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 Param Somane. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/how-i-open-sourced-an-eslint-plugin-for-okcupid/" data-tooltip="How I Open Sourced An ESLint Plugin for OkCupid" aria-label="NEXT: How I Open Sourced An ESLint Plugin for OkCupid">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/my-experience-buying-a-home-in-nyc-during-the-covid-19-pandemic/" data-tooltip="My Experience Buying a Home in NYC during the COVID-19 Pandemic" aria-label="PREVIOUS: My Experience Buying a Home in NYC during the COVID-19 Pandemic">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chestnutkurisu.github.io/post/modeling-ui-state-using-a-finite-state-machine/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chestnutkurisu.github.io/post/modeling-ui-state-using-a-finite-state-machine/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://chestnutkurisu.github.io/post/modeling-ui-state-using-a-finite-state-machine/" title="Share on Google&#43;" aria-label="Share on Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fchestnutkurisu.github.io%2Fpost%2Fmodeling-ui-state-using-a-finite-state-machine%2F" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fchestnutkurisu.github.io%2Fpost%2Fmodeling-ui-state-using-a-finite-state-machine%2F" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fchestnutkurisu.github.io%2Fpost%2Fmodeling-ui-state-using-a-finite-state-machine%2F" aria-label="Share on Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://chestnutkurisu.github.io/images/xyang.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Param Somane</h4>
+    
+      <div id="about-card-bio">Software Engineer. Climber. Snowboarder.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Software Engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        New York
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      
+      <div id="cover" style="background-image:url('https://chestnutkurisu.github.io/images/cover-blue.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://chestnutkurisu.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

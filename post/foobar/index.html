@@ -1,0 +1,1148 @@
+
+
+  
+    
+  
+
+
+  
+
+
+
+
+
+  
+
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="generator" content="Hugo 0.56.3 with theme Tranquilpeak 0.4.3-BETA">
+    <title>Foobar</title>
+    <meta name="author" content="Param Somane">
+    <meta name="keywords" content="programming, web development, typescript, javascript, guide, best practice">
+
+    <link rel="icon" href="https://chestnutkurisu.github.io/favicon-96x96.png">
+    
+
+    
+    <meta name="description" content="What I learned working at a mature startup that&rsquo;s building new things but also has a ton of customers and products in production. Product focused and quality focused. Off-shore team.
+
+This post is a WIP.">
+    <meta property="og:description" content="What I learned working at a mature startup that&rsquo;s building new things but also has a ton of customers and products in production. Product focused and quality focused. Off-shore team.
+
+This post is a WIP.">
+    <meta property="og:type" content="blog">
+    <meta property="og:title" content="Foobar">
+    <meta property="og:url" content="https://chestnutkurisu.github.io/post/foobar/">
+    <meta property="og:site_name" content="Param Somane">
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Param Somane">
+    <meta name="twitter:description" content="What I learned working at a mature startup that&rsquo;s building new things but also has a ton of customers and products in production. Product focused and quality focused. Off-shore team.
+
+This post is a WIP.">
+    
+    
+
+    
+    
+
+    
+    
+    
+
+    
+      <meta property="og:image" content="https://chestnutkurisu.github.io/images/xyang.png">
+    
+
+    
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" integrity="sha256-eZrrJcwDc/3uDhsdt61sL2oOBY362qM3lon1gyExkL0=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/jquery.fancybox.min.css" integrity="sha256-vuXZ9LGmmwtjqFX1F+EKin1ThZMub58gKULUyf0qECk=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.4/helpers/jquery.fancybox-thumbs.min.css" integrity="sha256-SEa4XYAHihTcEP1f5gARTB2K26Uk8PsndQYHQC1f4jU=" crossorigin="anonymous" />
+    
+    
+    <link rel="stylesheet" href="https://chestnutkurisu.github.io/css/style-jsjn0006wyhpyzivf6yceb31gvpjatbcs3qzjvlumobfnugccvobqwxnnaj8.min.css" />
+    
+    
+      
+        <link rel="stylesheet"  href="https://chestnutkurisu.github.io/css/custom.css">
+      
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://chestnutkurisu.github.io/">Param Somane</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://chestnutkurisu.github.io/#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://chestnutkurisu.github.io/images/xyang.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://chestnutkurisu.github.io/#about">
+          <img class="sidebar-profile-picture" src="https://chestnutkurisu.github.io/images/xyang.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Param Somane</h4>
+        
+          <h5 class="sidebar-profile-bio">Software Engineer. Entrepreneur.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+     
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+     
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/categories/projects">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-code"></i>
+      
+      <span class="sidebar-button-desc">Projects</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+     
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/categories/blog">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-pencil"></i>
+      
+      <span class="sidebar-button-desc">Blog</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+     
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+     
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/about">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-user"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+     
+      <a class="sidebar-button-link " href="https://github.com/ChestnutKurisu/" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-github"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+     
+      <a class="sidebar-button-link " href="https://medium.com" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-medium"></i>
+      
+      <span class="sidebar-button-desc">Medium</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+     
+      <a class="sidebar-button-link " href="https://linkedin.com/in/param-somane" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+     
+      <a class="sidebar-button-link " href="https://angel.co" target="_blank" rel="noopener">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-angellist"></i>
+      
+      <span class="sidebar-button-desc">AngelList</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+     
+     <a class="sidebar-button-link " href="mailto:param.somane@xcissa.com" rel="noopener">
+     
+      <i class="sidebar-button-icon fa fa-lg fa-envelope"></i>
+      
+      <span class="sidebar-button-desc">Email Me</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title" itemprop="headline">
+      Foobar
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time itemprop="datePublished" datetime="2019-08-11T00:00:00Z">
+        
+  August 11, 2019
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://chestnutkurisu.github.io/categories/blog">blog</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>What I learned working at a mature startup that&rsquo;s building new things but also has a ton of customers and products in production. Product focused and quality focused. Off-shore team.</p>
+
+<p>This post is a WIP.</p>
+
+<h1 id="table-of-contents">Table of Contents</h1><nav id="TableOfContents">
+<ul>
+<li><a href="#testing">Testing</a>
+<ul>
+<li><a href="#unit-testing">Unit Testing</a></li>
+<li><a href="#regression-testing">Regression Testing</a></li>
+<li><a href="#accessibility-testing">Accessibility Testing</a></li>
+</ul></li>
+<li><a href="#after-deployment">After Deployment</a></li>
+<li><a href="#refactoring">Refactoring</a>
+<ul>
+<li><a href="#cost-of-refactoring">Cost of Refactoring</a></li>
+<li><a href="#how-to-refactor">How to Refactor</a>
+<ul>
+<li><a href="#simplifying-conditionals">Simplifying Conditionals</a></li>
+<li><a href="#dry">DRY</a></li>
+</ul></li>
+<li><a href="#documentation">Documentation</a>
+<ul>
+<li><a href="#readme">README</a></li>
+<li><a href="#uml">UML</a></li>
+<li><a href="#self-documenting-code">Self Documenting Code</a></li>
+</ul></li>
+</ul></li>
+<li><a href="#component-libraries">Component Libraries</a>
+<ul>
+<li><a href="#use-open-source-vs-roll-your-own">Use Open Source vs Roll Your Own</a></li>
+<li><a href="#monorepo">Monorepo</a></li>
+</ul></li>
+<li><a href="#collaboration">Collaboration</a>
+<ul>
+<li><a href="#agile">Agile</a></li>
+<li><a href="#soft-skills">Soft Skills</a></li>
+</ul></li>
+</ul>
+</nav>
+
+<h1 id="testing">Testing</h1>
+
+<p>When to test. How much testing. Breadth and depth of the coverage.</p>
+
+<ul>
+<li>Test Driven Development (TDD)</li>
+<li>Write Good Unit Tests. How to test? What to test? Link to Jest article</li>
+<li>Testing in multiple browsers</li>
+<li>Testing on staging.</li>
+<li>Monitoring after deployment to Production</li>
+<li>CI/CD - triggers typecheck</li>
+</ul>
+
+<p>If it&rsquo;s hard to test, that means you didn&rsquo;t design your software well.</p>
+
+<p>For things in production, ensure thorough test coverage. For greenfield projects, usually you don’t have good picture of what correct looks like, or it’s difficult to verify quantitatively. It&rsquo;s acceptable to iterate on the experimental code without tests at first. But once you are settled on the algorithm and design, you should turn your experimental code into production-ready code with a fews phases of refactoring and tests, depending on the complexity of the code</p>
+
+<p>Testing checklist</p>
+
+<ul>
+<li>correctness</li>
+<li>security</li>
+<li>performance</li>
+<li>stress testing</li>
+<li>internationalization</li>
+<li>usability / accessibility</li>
+</ul>
+
+<h2 id="unit-testing">Unit Testing</h2>
+
+<p>Automated Testing vs. Manual Testing</p>
+
+<h2 id="regression-testing">Regression Testing</h2>
+
+<p>Feature Parity</p>
+
+<h2 id="accessibility-testing">Accessibility Testing</h2>
+
+<p>Resources:</p>
+
+<ul>
+<li><a href="https://www.ibm.com/able/guidelines/ci162/accessibility_checklist.html" target="_blank">IBM Accessibility Checklist</a></li>
+<li><a href="https://www.w3.org/WAI/standards-guidelines/wcag/" target="_blank">WAI Standard</a></li>
+</ul>
+
+<p>Best practice for accessibility</p>
+
+<ul>
+<li>Can I use the entire page using only the keyboard but not the mouse?</li>
+<li>you should be able to Tab around the page and to go to every input and button on the page</li>
+<li>Protip: Document.activeElement - add a focus state on it.</li>
+<li>Tabbing through the page increments through the elements in the correct order</li>
+<li>Protip: use TabIndex = 0 or TabIndex = -1</li>
+<li>Pressing enter on a focused element should achieve the same result as clicking. ProTip: In addition to onClick, also add onKeyboard enter</li>
+<li>Don’t make spans buttons, use button for buttons. Use the correct HTML markup. That gives you accessibility out of the box. Use correct landmarks (eg, nav, aside, footer)</li>
+<li>Use Alt Text: Make sure your pencil icon has the correct alt text (alt text fulfills the same promise as what the icon represents). make altText  “edit”</li>
+<li>Esc key closes the modal</li>
+<li>Use automated test (1) chrome developer tool (Lighthouse) -Audit - accessibility checkbox, (2) Storybook Accessibility Tab, (3) accessibility eslint plugin: <a href="https://www.npmjs.com/package/eslint-plugin-jsx-a11y" target="_blank">eslint-plugin-jsx-a11y</a></li>
+</ul>
+
+<h1 id="after-deployment">After Deployment</h1>
+
+<p>Metric Tracking</p>
+
+<ul>
+<li><a href="https://www.newrelic.com/" target="_blank">New Relic</a></li>
+</ul>
+
+<p>Deployment</p>
+
+<ul>
+<li><a href="https://launchdarkly.com/" target="_blank">Launch Darkly</a> - feature flag and toggle management</li>
+</ul>
+
+<h1 id="refactoring">Refactoring</h1>
+
+<p>Good software design hides complexity with abstraction.</p>
+
+<p>Every refactoring has the potential to break existing functionality. Make sure to write some tests before you start refactoring.</p>
+
+<p>Whenever you are adding a new feature to a component and you find yourself copying-and-pasting a block of code from another component , that’s when you know you should add a method to your utilities class to share this block of code between the components.</p>
+
+<p>Avoid Pre-mature Optimization. Avoid writing throwaway code (tests for WIP code) Once your design approach and implementation is firmed up, add tests. Refactoring vs not refactoring. Some considerations:</p>
+
+<h2 id="cost-of-refactoring">Cost of Refactoring</h2>
+
+<p>Specifically time and effort. You need to spend time and effort to reduce tech debt or to implement new features. Also, code reviews are more difficult. Risk of refactoring - Massive refactoring carries the risk of breaking existing functionality but unit tests and regression tests help to reduce that risk.</p>
+
+<p>Cost of Not Refactoring is higher.</p>
+
+<p>Software becomes harder to extend, understand, and maintain. Adding even the smellest change requires a ton of effort and QA. Cost of testing and QA go up. See <a href="https://medium.com/@herbcaudill/lessons-from-6-software-rewrite-stories-635e4c8f7c22" target="_blank">Lesson from 6 software rewrite stories</a>.</p>
+
+<p>Refactoring code makes code more scalable =&gt; easier to add new features and make changes later.</p>
+
+<p>Not refactoring also caries risks of code entropy. Increase tech debt. Codebase becomes difficult to work with - cannot retain and attract talent.</p>
+
+<h2 id="how-to-refactor">How to Refactor</h2>
+
+<p><a href="https://sourcemaking.com/refactoring" target="_blank">Source Making</a> provides an excellent discussion on various bad code smells, how to recognize them, and strategies for getting rid of the bad code smells. I highly recommend checking out Source Making&rsquo;s website as it provides an extensive. including:</p>
+
+<h3 id="simplifying-conditionals">Simplifying Conditionals</h3>
+
+<ul>
+<li>My code has a lot of if() statements right now, it calls out for a refactor</li>
+<li>how many if statements is the threshold for refactoring?</li>
+<li>also, are they nested if statements? If so, how many levels of nesting?</li>
+</ul>
+
+<p>My favorite refactoring techniques:</p>
+
+<ul>
+<li><a href="https://sourcemaking.com/refactoring/replace-nested-conditional-with-guard-clauses" target="_blank">Replace Nested Conditionals with Guard Clauses</a></li>
+<li><a href="https://sourcemaking.com/refactoring/replace-conditional-with-polymorphism" target="_blank">Replace Conditional With Polymorphism</a></li>
+<li>Replace Conditionals with a dictionary. State machine: IsLoading&hellip;.isSelecting&hellip;isBrowsing. we can map UI / representation to a state instead of having a lot of nested ternary operators in render</li>
+
+<li><p>Use Monad (e.g., <code>Promise</code>, <code>Maybe</code>, <a href="https://sourcemaking.com/refactoring/introduce-null-object" target="_blank">Null Object</a>) avoids callback hell. Avoid callback hell - Make asynchronous behavior synchronous (React Hooks)</p>
+
+<pre><code class="language-javascript">// TODO: dictionary example
+</code></pre></li>
+</ul>
+
+<h3 id="dry">DRY</h3>
+
+<p>The evils of boilerplate</p>
+
+<ul>
+<li>Hard to review - too hard to review</li>
+<li>Shotgun surgery needed to extend a feature</li>
+<li>Creates <a href="https://sourcemaking.com/refactoring/smells/bloaters" target="_blank">Bloaters</a>. In files that are over 1000 lines of code, lint stops working and editor becomes slow.</li>
+</ul>
+
+<p><img src="https://chestnutkurisu.github.io/post/images/programming/code-review.png" alt="code review" /></p>
+
+<p>Avoid boilerplate by</p>
+
+<ul>
+<li>Create abstractions</li>
+<li>Copy-paste programming is evil. Please create mocks, generator functions, higher order functions&hellip;whatever it takes to get rid of boilerplate.</li>
+<li>Don’t copy-paste.</li>
+<li>Create Mocks and import mocks in tests.</li>
+<li>Create generator functions. Create higher order functions.</li>
+</ul>
+
+<h2 id="documentation">Documentation</h2>
+
+<h3 id="readme">README</h3>
+
+<p>Make sure to have README.md for every repo. Make sure to include information like how to set the project up for local development.</p>
+
+<h3 id="uml">UML</h3>
+
+<h3 id="self-documenting-code">Self Documenting Code</h3>
+
+<p>Self Documenting Code possible with static typing.</p>
+
+<p>We want to separate behavior from presentation so code is self documenting and easy to test. Use:</p>
+
+<ul>
+<li>react hooks</li>
+<li>state machine</li>
+<li>container components vs view components</li>
+<li>libraries</li>
+</ul>
+
+<h1 id="component-libraries">Component Libraries</h1>
+
+<p>DesignOps</p>
+
+<ul>
+<li>Design systems: UI</li>
+<li>design systems - UI kit. UIC. Typography, etc</li>
+<li>Goal: You want your users to have a consistent experience</li>
+<li>Benefits: better user experience. Help with recruiting. Easier onboarding. Increase efficiency. Easier design changes</li>
+<li>Components work well together. They have the same design principle under the hood.</li>
+<li>Palette (colors palette)</li>
+<li>Support theme</li>
+</ul>
+
+<p><a href="https://storybook.js.org/" target="_blank">Storybook</a> lets you create a catalog of UI components.</p>
+
+<h2 id="use-open-source-vs-roll-your-own">Use Open Source vs Roll Your Own</h2>
+
+<ul>
+<li>Is there a precedent for what you’re trying to do? Don’t waste time rebuilding something someone else has built.</li>
+<li>If you adopt open source, your data model has to conform to their data model</li>
+<li>Other advantages of using Open Source: (1) Already implemented and tested, (2) support from other users of the open source library (if it&rsquo;s a popular library)</li>
+<li>Using Open Source is great if you have simple need and is covered by the general use case. If you have special needs, getting maintainers of the library to make a change can be a frustrating process. Sometimes you will need to fork a repo (Fragmentation is dangerous for open source).</li>
+<li>Advantages of rolling your own: if you have a very clear vision of what you need. Sometimes it&rsquo;s less costly to implement your own than to try to tweak the open source library. Full control over functionality and aesthetics. Can iterate. Open source solutions could be too complex for your use case.</li>
+</ul>
+
+<h2 id="monorepo">Monorepo</h2>
+
+<p>Advantages of Monorepo: consistency. Good for UI library.
+Use Lerna.</p>
+
+<h1 id="collaboration">Collaboration</h1>
+
+<p>Pull Request</p>
+
+<ul>
+<li>If you are submitting a breaking change, put “Breaking Change” in both title and body of the commit / PR</li>
+<li>tDon’t address too many things in one commit. PR review will be painful if you have too many extraneous clean-up changes in your PR</li>
+<li>If you have PR that includes the absolutely necessary changes to implement the feature, followups from previous PRs, and a bug fix, the PR should include 3 commits so you can see those changes.</li>
+</ul>
+
+<p>Use this PR Template. Simply add <code>pull-request-template.md</code> to the root of your repo.</p>
+
+<pre><code class="language-markdown">### Jira Issue
+
+[Jira Link]()
+
+### Notable changes
+
+(add line annotations and or files)
+
+### Screenshots (optional)
+
+(provide visual feedback about what's changed)
+
+### Cleanup
+
+(mention any cleanup, like typescript types, renaming, etc)
+
+### Test Plan
+
+#### Special test cases
+
+(e.g. Tested for plurals, CJK and RTL)
+
+#### Manual Testing
+
+(what might need to be tested that was difficult to capture with unit tests)
+
+#### Regression Testing
+
+(what existing functionality might break as a result of this change)
+
+### Preview link (optional)
+
+[Link on Staging]()
+
+</code></pre>
+
+<h2 id="agile">Agile</h2>
+
+<p>New concepts:</p>
+
+<ul>
+<li>Velocity</li>
+<li>Sprints</li>
+<li>Story Points</li>
+<li>Tech Debt</li>
+<li>Backlog</li>
+</ul>
+
+<p>Planning</p>
+
+<ul>
+<li>Agile - Weekly Sprints, Estimates. Backlog, Points</li>
+<li>Daily Standup, Task Breakdown, Dev Diary</li>
+<li>Agile, Scrum, Test Driven Development (TDD), Service Oriented Architecture and APIs (SOA)</li>
+<li>Continuous Deployment - multiple times a day</li>
+<li>Full test automation - we have no QA Team</li>
+<li>DevOps is not a team, it’s a culture</li>
+</ul>
+
+<h2 id="soft-skills">Soft Skills</h2>
+
+<p><img src="https://chestnutkurisu.github.io/post/images/soft-skills-grading-sheet.png" alt="Soft Skills Grading Sheet" /></p>
+              
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/javascript/">JavaScript</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/typescript/">TypeScript</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/guide/">Guide</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/software-design/">Software Design</a>
+
+                  </div>
+                
+              
+            
+            
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/beyond-minimum-viable-product-a-lesson-on-building-production-ready-software/" data-tooltip="Beyond Minimum Viable Product: A Lesson on Building Production-ready Software">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/a-guide-for-migrating-your-project-to-typescript/" data-tooltip="A Guide For Migrating Your Project to TypeScript">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chestnutkurisu.github.io/post/foobar/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chestnutkurisu.github.io/post/foobar/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://chestnutkurisu.github.io/post/foobar/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+            
+              
+                <div id="disqus_thread"></div>
+<script>
+
+
+
+
+var disqus_config = function () {
+this.page.url = "https://chestnutkurisu.github.io/post/foobar/";
+this.page.identifier = "Foobar"; 
+};
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://http--github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2019 Param Somane. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+  <div class="post-actions-wrap">
+      <nav >
+        <ul class="post-actions post-action-nav">
+          
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/beyond-minimum-viable-product-a-lesson-on-building-production-ready-software/" data-tooltip="Beyond Minimum Viable Product: A Lesson on Building Production-ready Software">
+              
+                  <i class="fa fa-angle-left"></i>
+                  <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+                </a>
+            </li>
+            <li class="post-action">
+              
+                <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/a-guide-for-migrating-your-project-to-typescript/" data-tooltip="A Guide For Migrating Your Project to TypeScript">
+              
+                  <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+                  <i class="fa fa-angle-right"></i>
+                </a>
+            </li>
+          
+        </ul>
+      </nav>
+    <ul class="post-actions post-action-share" >
+      
+        <li class="post-action hide-lg hide-md hide-sm">
+          <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions">
+            <i class="fa fa-share-alt"></i>
+          </a>
+        </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chestnutkurisu.github.io/post/foobar/">
+              <i class="fa fa-facebook-official"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chestnutkurisu.github.io/post/foobar/">
+              <i class="fa fa-twitter"></i>
+            </a>
+          </li>
+        
+          <li class="post-action hide-xs">
+            <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://chestnutkurisu.github.io/post/foobar/">
+              <i class="fa fa-google-plus"></i>
+            </a>
+          </li>
+        
+      
+      
+        <li class="post-action">
+          <a class="post-action-btn btn btn--default" href="#disqus_thread">
+            <i class="fa fa-comment-o"></i>
+          </a>
+        </li>
+      
+      <li class="post-action">
+        
+          <a class="post-action-btn btn btn--default" href="#table-of-contents">
+        
+          <i class="fa fa-list"></i>
+        </a>
+      </li>
+    </ul>
+  </div>
+
+
+      </div>
+      <div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-close"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fchestnutkurisu.github.io%2Fpost%2Ffoobar%2F">
+          <i class="fa fa-facebook-official"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fchestnutkurisu.github.io%2Fpost%2Ffoobar%2F">
+          <i class="fa fa-twitter"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fchestnutkurisu.github.io%2Fpost%2Ffoobar%2F">
+          <i class="fa fa-google-plus"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-remove"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://chestnutkurisu.github.io/images/xyang.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Param Somane</h4>
+    
+      <div id="about-card-bio">Software Engineer. Entrepreneur.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Software Engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker"></i>
+        <br/>
+        New York
+      </div>
+    
+  </div>
+</div>
+
+    <div id="algolia-search-modal" class="modal-container">
+  <div class="modal">
+    <div class="modal-header">
+      <span class="close-button"><i class="fa fa-close"></i></span>
+      <a href="https://algolia.com" target="_blank" rel="noopener" class="searchby-algolia text-color-light link-unstyled">
+        <span class="searchby-algolia-text text-color-light text-small">by</span>
+        <img class="searchby-algolia-logo" src="https://www.algolia.com/static_assets/images/press/downloads/algolia-light.svg">
+      </a>
+      <i class="search-icon fa fa-search"></i>
+      <form id="algolia-search-form">
+        <input type="text" id="algolia-search-input" name="search"
+          class="form-control input--large search-input" placeholder="Search" />
+      </form>
+    </div>
+    <div class="modal-body">
+      <div class="no-result text-color-light text-center">no post found</div>
+      <div class="results">
+        
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://chestnutkurisu.github.io/post/beyond-minimum-viable-product-a-lesson-on-building-production-ready-software/">
+                <h3 class="media-heading">Beyond Minimum Viable Product: A Lesson on Building Production-ready Software</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>What I learned working at a mature startup that&rsquo;s building new things but also has a ton of customers and products in production. Product focused and quality focused. Off-shore team.</p>
+
+<p>This post is a WIP.</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://chestnutkurisu.github.io/post/foobar/">
+                <h3 class="media-heading">Foobar</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Aug 8, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>What I learned working at a mature startup that&rsquo;s building new things but also has a ton of customers and products in production. Product focused and quality focused. Off-shore team.</p>
+
+<p>This post is a WIP.</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://chestnutkurisu.github.io/post/a-guide-for-migrating-your-project-to-typescript/">
+                <h3 class="media-heading">A Guide For Migrating Your Project to TypeScript</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Introduction to TypeScript and guide for how to migrate your project from Flow to TypeScript.</p>
+
+<p>This post is a WIP.</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://chestnutkurisu.github.io/post/the-algorithm-for-managing-stress/">
+                <h3 class="media-heading">The Algorithm for Managing Stress</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jul 7, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>What is stress? Stress is your subconscious telling you that you have sh*t to do. Feeling stressed about your health? Go to the gym everyday. Feeling stressed about your financial situation? Get a more high paying job. If only things were that simple. In this post, I&rsquo;m going to teach you how to get rid your stress by understanding where your stress is coming from, then come up with an action plan and execute actions to address the source of your stress. This is not another &ldquo;top 10 things you can do to &hellip;.&rdquo; article. I will be discussing specific algorithms and heuristics with roots in computer science and mathematics that can be followed for every step of your journey to eliminating the source of your stress.</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://chestnutkurisu.github.io/post/get-started-with-go/">
+                <h3 class="media-heading">Get Started With Go</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Feb 2, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Go is becoming pretty mainstream. Every job posting I&rsquo;ve seen recently requires Go as a want-to-have or a need-to-have skill. This post serves as a guide to help you hit the ground running with Go.</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://chestnutkurisu.github.io/post/thirsty-plant-automated-plant-waterer/">
+                <h3 class="media-heading">Thirsty Plant: Automated Plant Waterer</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Jan 1, 2019
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p><em>by <a href="https://github.com/ChestnutKurisu/" target="_blank">Param Somane</a> and <a href="https://github.com/clydeshaffer" target="_blank">Clyde Shaffer</a></em></p>
+
+<p>I love indoor plants but I&rsquo;m bad a keeping them alive. I once had a cactus that died from thirst. I purchased a few Aqua Bulbs, which has been great help in keeping the big plant watered enough for me to get around to taking care of it. However, I can&rsquo;t use the Aqua Bulb on my smaller plant. Also, Aqua Bulbs break easily and refilling it with water is always a hassle. This motivated me to build an automated plant waterer. Let&rsquo;s call it ThirstyPlant.</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://chestnutkurisu.github.io/post/from-public-sector-to-senior-software-engineer-how-i-made-the-transition/">
+                <h3 class="media-heading">From Public Sector To Senior Software Engineer:  How I made the Transition</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>I joined the US Navy after graduating from college. The service commitment is 5 years. At the end of my service commitment during my terminal leave, I obtained a position with a mature startup in NYC as a Senior Software Engineer. There were a lot of bumps in the road during the last five years, especially the last 3 weeks of my transition out of the Navy. I will share the story of how I prepared for my career transition and shed some light on how job search works today.</p>
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-70" >
+  
+    <a class="fancybox" href="https://images2.imgbox.com/26/21/MQB5dNYd_o.png" title="My KeyValues filter" data-fancybox-group="">
+  
+    <img class="fig-img" src="https://images2.imgbox.com/26/21/MQB5dNYd_o.png"  alt="My KeyValues filter">
+  
+    </a>
+  
+   
+    <span class="caption">My KeyValues filter</span>
+  
+</div></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://chestnutkurisu.github.io/post/when-to-use-immutable-data-structures/">
+                <h3 class="media-heading">When To Use Immutable Data Structures</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>Suppose you are asked this question during a technical interview:</p>
+
+<blockquote>
+<p>When do you use immutable (functional) data structures and when do you use mutable data structure?</p>
+</blockquote></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://chestnutkurisu.github.io/post/security-considerations-for-web-applications-and-best-practices/">
+                <h3 class="media-heading">Security Considerations for Web Applications and Best Practices</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Dec 12, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>This article discusses some pitfalls and techniques for securiing your JavaScript application against attacks such as XSS, CSRF, reverse tabnabbing, and security considerations working with open source.</p></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+          <div class="media">
+            
+            <div class="media-body">
+              <a class="link-unstyled" href="https://chestnutkurisu.github.io/post/cribsheet-for-javascript-coding-interview/">
+                <h3 class="media-heading">Cribsheet for JavaScript Coding Interview</h3>
+              </a>
+              <span class="media-meta">
+                <span class="media-date text-small">
+                  Oct 10, 2018
+                </span>
+              </span>
+              <div class="media-content hide-xs font-merryweather"><p>The coding interviews / coding challenges are designed to assess how productive someone can be with the language. In contrast to the algorithm whiteboarding interview, which assesses how the candidate go about solving a problem, or the architecture design interview, which assesses how the candidate&rsquo;s experience in system engineering and product design, the coding interview is is utilized by the company interviewing you to answer one question:</p>
+
+<blockquote>
+<p>Can you be productive with JavaScript?</p>
+</blockquote></div>
+            </div>
+            <div style="clear:both;"></div>
+            <hr>
+          </div>
+        
+      </div>
+    </div>
+    <div class="modal-footer">
+      <p class="results-count text-medium"
+         data-message-zero="no post found"
+         data-message-one="1 post found"
+         data-message-other="{n} posts found">
+         38 posts found
+      </p>
+    </div>
+  </div>
+</div>
+    
+  
+    
+    <div id="cover" style="background-image:url('https://chestnutkurisu.github.io/images/cover-blue.jpg');"></div>
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js" integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js" integrity="sha256-/BfiIkHlHoVihZdc6TFuj7MmJ0TWcWsMXkeDFwhi0zw=" crossorigin="anonymous"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/2.1.7/js/jquery.fancybox.min.js" integrity="sha256-GEAnjcTqVP+vBp3SSc8bEDQqvWAZMiHyUSIorrWwH50=" crossorigin="anonymous"></script>
+
+
+<script src="https://chestnutkurisu.github.io/js/script-qi9wbxp2ya2j6p7wx1i6tgavftewndznf4v0hy2gvivk1rxgc3lm7njqb6bz.min.js"></script>
+
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/languages/go.min.js"></script>
+  
+
+  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.8/languages/typescript.min.js"></script>
+  
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+  
+    
+      <script>
+        var disqus_config = function () {
+          this.page.url = 'https:\/\/chestnutkurisu.github.io\/post\/foobar\/';
+          
+            this.page.identifier = '\/post\/foobar\/'
+          
+        };
+        (function() {
+          
+          
+          if (window.location.hostname == "localhost") {
+            return;
+          }
+          var d = document, s = d.createElement('script');
+          var disqus_shortname = 'http--github-io';
+          s.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+
+          s.setAttribute('data-timestamp', +new Date());
+          (d.head || d.body).appendChild(s);
+        })();
+      </script>
+    
+  
+
+
+
+    
+  </body>
+</html>
+

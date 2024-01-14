@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/chestnutkurisu.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "Param Somane",
+    
+    "image": "https://chestnutkurisu.github.io/images/xyang.png"
+    
+  },
+  "name":"Param Somane",
+  "description":"\u003cp\u003eIn this post, I\u0026rsquo;ll share some best practices, tips, and practical examples for managing states and data in a frontend applications. Although the examples are targeted at frontend developers working with React and Redux, the best practices discussion are applicable for frontend developers working with any framework.\u003c\/p\u003e",
+  "url":"https:\/\/chestnutkurisu.github.io\/post\/best-practices-for-state-management-with-react-and-redux\/",
+  "keywords":"[JavaScript, React, Redux, Best Practices, Web Design, Web Development, Redux, React.js]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.113.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="Param Somane">
+<meta name="keywords" content="JavaScript, React, Redux, Best Practices, Web Design, Web Development, Redux, React.js">
+<meta name="description" content="In this post, I&rsquo;ll share some best practices, tips, and practical examples for managing states and data in a frontend applications. Although the examples are targeted at frontend developers working with React and Redux, the best practices discussion are applicable for frontend developers working with any framework.">
+
+
+<meta property="og:description" content="In this post, I&rsquo;ll share some best practices, tips, and practical examples for managing states and data in a frontend applications. Although the examples are targeted at frontend developers working with React and Redux, the best practices discussion are applicable for frontend developers working with any framework.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Best Practices For State Management With React And Redux">
+<meta name="twitter:title" content="Best Practices For State Management With React And Redux">
+<meta property="og:url" content="https://chestnutkurisu.github.io/post/best-practices-for-state-management-with-react-and-redux/">
+<meta property="twitter:url" content="https://chestnutkurisu.github.io/post/best-practices-for-state-management-with-react-and-redux/">
+<meta property="og:site_name" content="Param Somane">
+<meta property="og:description" content="In this post, I&rsquo;ll share some best practices, tips, and practical examples for managing states and data in a frontend applications. Although the examples are targeted at frontend developers working with React and Redux, the best practices discussion are applicable for frontend developers working with any framework.">
+<meta name="twitter:description" content="In this post, I&rsquo;ll share some best practices, tips, and practical examples for managing states and data in a frontend applications. Although the examples are targeted at frontend developers working with React and Redux, the best practices discussion are applicable for frontend developers working with any framework.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2018-01-05T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-01-05T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="blog">
+    
+  
+  
+    
+      <meta property="article:tag" content="JavaScript">
+    
+      <meta property="article:tag" content="React">
+    
+      <meta property="article:tag" content="Web Dev">
+    
+      <meta property="article:tag" content="Frontend">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://chestnutkurisu.github.io/images/xyang.png">
+  <meta property="twitter:image" content="https://chestnutkurisu.github.io/images/xyang.png">
+
+
+
+
+
+  <meta property="og:image" content="https://chestnutkurisu.github.io/post/images/company-culture-plant.png">
+  <meta property="twitter:image" content="https://chestnutkurisu.github.io/post/images/company-culture-plant.png">
+
+
+    <title>Best Practices For State Management With React And Redux</title>
+
+    <link rel="icon" href="https://chestnutkurisu.github.io/favicon-96x96.png">
+    
+
+    
+
+    <link rel="canonical" href="https://chestnutkurisu.github.io/post/best-practices-for-state-management-with-react-and-redux/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://chestnutkurisu.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+      
+        <link rel="stylesheet" href="https://chestnutkurisu.github.io/css/custom.css">
+      
+    
+      
+        <link rel="stylesheet" href="https://chestnutkurisu.github.io/css/syntax.css">
+      
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://chestnutkurisu.github.io/" aria-label="Go to homepage">Param Somane</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://chestnutkurisu.github.io/#about" aria-label="Open the link: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://chestnutkurisu.github.io/images/xyang.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://chestnutkurisu.github.io/#about" aria-label="Read more about the author">
+          <img class="sidebar-profile-picture" src="https://chestnutkurisu.github.io/images/xyang.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Param Somane</h4>
+        
+          <h5 class="sidebar-profile-bio">Software Engineer. Climber. Snowboarder.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/categories/projects" title="Projects">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-code"></i>
+      
+      <span class="sidebar-button-desc">Projects</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/categories/blog" title="Blog">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-pen-square"></i>
+      
+      <span class="sidebar-button-desc">Blog</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/about" title="About">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-user"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/ChestnutKurisu/" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://medium.com" target="_blank" rel="noopener" title="Medium">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-medium"></i>
+      
+      <span class="sidebar-button-desc">Medium</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://linkedin.com/in/param-somane" target="_blank" rel="noopener" title="Linkedin">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://angel.co" target="_blank" rel="noopener" title="AngelList">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-angellist"></i>
+      
+      <span class="sidebar-button-desc">AngelList</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:xyang232@gmail.com" target="_blank" rel="noopener" title="Email Me">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope"></i>
+      
+      <span class="sidebar-button-desc">Email Me</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      Best Practices For State Management With React And Redux
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2018-01-05T00:00:00Z">
+        
+  January 5, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://chestnutkurisu.github.io/categories/blog">blog</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>In this post, I&rsquo;ll share some best practices, tips, and practical examples for managing states and data in a frontend applications. Although the examples are targeted at frontend developers working with React and Redux, the best practices discussion are applicable for frontend developers working with any framework.</p>
+<h1 id="a-closer-look-at-the-react-paradigm">A Closer Look at the React Paradigm</h1>
+<p>When React first came out in May 2013, it offered developer a framework for frontend applications which was a radical departure from what had been done before.</p>
+<p>In its early days, frontend applications had been synonymous with side effects. Libraries and frameworks like jQuery, Backbone.js, and Ember, and Angular 1 had been popular with frontend developers. These libraries and framework relied on two-way data binding whereby data and JavaScript are attached to existing DOM specified in an HTML file after the application mounts in the browser.</p>
+<p>React challenged this paradigm by introducing one-way data flow.</p>
+<p>In React, application data flows unidirectionally via the state and props objects to generate the DOM.
+A React component can use the data or pass the data to its children. If the component uses the data, the data controls the DOM rendered by the component. Anytime the data changes, the DOM changes. The data upstream controls the lifecycle of the DOM. React is not a repackaging of something that already exists. React is a paradigm shift.</p>
+<p>React gives the developer full control of the DOM and covers the rendering of initial state and updating the state to reflect changes based on user or server input.</p>
+<p>We can declare methods to hook into the component&rsquo;s lifecycle to control the behavior of components in your app. Some examples of these lifecycle hooks are <code>componentDidMount()</code>, <code>componentWillMount()</code>, <code>componentWillUnmount()</code>, <code>shouldComponentUpdate()</code>, <code>componentWillUpdate()</code> and more.</p>
+<p>The unidirectional dataflow model is not unique to React. D3.js was built on the same principle. However, React excels at being a declarative, efficient, and flexible library for building user interfaces.</p>
+<p>Like anything that&rsquo;s flexible, there are the wrong ways of doing something and there are the right ways. This post seeks to address common pitfalls with building frontend web applications using React, in particular when it comes to how to manage states of data in React.</p>
+<h1 id="react-state-store-vs-redux-store">React State Store vs. Redux Store</h1>
+<p>Feel free to skip this section if you are familiar with or have worked with React and Redux.</p>
+<h1 id="best-practices">Best Practices</h1>
+<h2 id="1-use-state-store-when-consuming-an-api">#1 Use State Store When Consuming an API</h2>
+<p>A frontend application generally consumes an API (i.e., getting the JSON data from an API endpoint and use it to render DOM), but sometimes it can also request changes to the data in the database by sending</p>
+<h2 id="2-use-redux-store-when-component-makes-post-requests-sometimes">#2 Use Redux Store When Component Makes POST Requests (Sometimes)</h2>
+<p>A frontend application generally consumes an API (i.e., getting the JSON data from an API endpoint and use it to render DOM), but sometimes it can also request changes to the data in the database by sending</p>
+<p>A React component can use the data or pass the data to its children. This means that, in a multi-component hierachy, a common parent component should manage the state and pass it down to its children components via the prop.</p>
+<p>The first time I used Redux was when building a React Native</p>
+<h2 id="3-use-component-store-for-animated-components">#3 Use Component Store for Animated Components</h2>
+<p>Practial example is status alerts.</p>
+<h2 id="4-use-redux-store-for-multi-page-applications">#4 Use Redux Store for Multi-Page Applications</h2>
+<p>React Router</p>
+<h2 id="5-the-magic-of-componentwillreceiveprops">#5 The Magic of ComponentWillReceiveProps</h2>
+<p>When your frontend application has multiple data</p>
+<h2 id="6-componentdidmount-vs-componentwillmount">#6 ComponentDidMount vs. ComponentWillMount</h2>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/javascript/">JavaScript</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/react/">React</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/web-dev/">Web Dev</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/frontend/">Frontend</a>
+
+                  </div>
+                
+              
+            
+            <a target="_blank" href="https://www.buymeacoffee.com/"
+  data-tooltip="Buy me a coffee!"
+  id="bmc-wbtn" 
+  style="display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgb(255, 129, 63); color: white; border-radius: 32px; position: fixed; right: 18px; bottom: 18px; box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px; z-index: 999; cursor: pointer; font-weight: 600; transition: all 0.2s ease 0s; transform: scale(1);"><img src="https://cdn.buymeacoffee.com/widget/assets/coffee%20cup.svg" 
+  alt="Buy Me A Coffee" 
+  style="height: 40px; width: 40px; margin: 0; padding: 0;"
+></a>
+
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/how-formal-education-may-close-doors-to-opportunities/" data-tooltip="How Formal Education May Close Doors To Opportunities" aria-label="NEXT: How Formal Education May Close Doors To Opportunities">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/how-functional-programming-promotes-developer-productivity/" data-tooltip="How Functional Programming Promotes Developer Productivity" aria-label="PREVIOUS: How Functional Programming Promotes Developer Productivity">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chestnutkurisu.github.io/post/best-practices-for-state-management-with-react-and-redux/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chestnutkurisu.github.io/post/best-practices-for-state-management-with-react-and-redux/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://chestnutkurisu.github.io/post/best-practices-for-state-management-with-react-and-redux/" title="Share on Google&#43;" aria-label="Share on Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+              
+                <div id="disqus_thread"></div>
+<script>
+
+
+
+
+var disqus_config = function () {
+this.page.url = "https://chestnutkurisu.github.io/post/best-practices-for-state-management-with-react-and-redux/";
+this.page.identifier = "Best Practices For State Management With React And Redux"; 
+};
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://http--github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 Param Somane. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/how-formal-education-may-close-doors-to-opportunities/" data-tooltip="How Formal Education May Close Doors To Opportunities" aria-label="NEXT: How Formal Education May Close Doors To Opportunities">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/how-functional-programming-promotes-developer-productivity/" data-tooltip="How Functional Programming Promotes Developer Productivity" aria-label="PREVIOUS: How Functional Programming Promotes Developer Productivity">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chestnutkurisu.github.io/post/best-practices-for-state-management-with-react-and-redux/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chestnutkurisu.github.io/post/best-practices-for-state-management-with-react-and-redux/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://chestnutkurisu.github.io/post/best-practices-for-state-management-with-react-and-redux/" title="Share on Google&#43;" aria-label="Share on Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fchestnutkurisu.github.io%2Fpost%2Fbest-practices-for-state-management-with-react-and-redux%2F" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fchestnutkurisu.github.io%2Fpost%2Fbest-practices-for-state-management-with-react-and-redux%2F" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fchestnutkurisu.github.io%2Fpost%2Fbest-practices-for-state-management-with-react-and-redux%2F" aria-label="Share on Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://chestnutkurisu.github.io/images/xyang.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Param Somane</h4>
+    
+      <div id="about-card-bio">Software Engineer. Climber. Snowboarder.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Software Engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        New York
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      
+      <div id="cover" style="background-image:url('https://chestnutkurisu.github.io/images/cover-blue.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://chestnutkurisu.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

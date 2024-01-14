@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    
+    <script type="application/ld+json">
+
+{  
+  "@context":"http://schema.org",
+  "@type":"Website",
+  "@id":"https:\/\/chestnutkurisu.github.io\/",
+  "author": {
+    "@type": "Person",
+    "name": "Param Somane",
+    
+    "image": "https://chestnutkurisu.github.io/images/xyang.png"
+    
+  },
+  "name":"Param Somane",
+  "description":"\u003cp\u003eI\u0026rsquo;ve always lived by the \u0026ldquo;Separation of Concern\u0026rdquo; principle when it comes to software design.  Recently, I\u0026rsquo;ve came to love a new design pattern for web apps called the isomorphic web app that sacrifices some of the simplicity of a SPA with a backend API for a significant boost in performance.\u003c\/p\u003e",
+  "url":"https:\/\/chestnutkurisu.github.io\/post\/building-an-isomorphic-webapp\/",
+  "keywords":"[]"
+}
+
+</script>
+    <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="generator" content="Hugo 0.113.0 with theme Tranquilpeak 0.5.3-BETA">
+<meta name="author" content="Param Somane">
+<meta name="keywords" content="">
+<meta name="description" content="I&rsquo;ve always lived by the &ldquo;Separation of Concern&rdquo; principle when it comes to software design.  Recently, I&rsquo;ve came to love a new design pattern for web apps called the isomorphic web app that sacrifices some of the simplicity of a SPA with a backend API for a significant boost in performance.">
+
+
+<meta property="og:description" content="I&rsquo;ve always lived by the &ldquo;Separation of Concern&rdquo; principle when it comes to software design.  Recently, I&rsquo;ve came to love a new design pattern for web apps called the isomorphic web app that sacrifices some of the simplicity of a SPA with a backend API for a significant boost in performance.">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Building an Isomorphic Webapp">
+<meta name="twitter:title" content="Building an Isomorphic Webapp">
+<meta property="og:url" content="https://chestnutkurisu.github.io/post/building-an-isomorphic-webapp/">
+<meta property="twitter:url" content="https://chestnutkurisu.github.io/post/building-an-isomorphic-webapp/">
+<meta property="og:site_name" content="Param Somane">
+<meta property="og:description" content="I&rsquo;ve always lived by the &ldquo;Separation of Concern&rdquo; principle when it comes to software design.  Recently, I&rsquo;ve came to love a new design pattern for web apps called the isomorphic web app that sacrifices some of the simplicity of a SPA with a backend API for a significant boost in performance.">
+<meta name="twitter:description" content="I&rsquo;ve always lived by the &ldquo;Separation of Concern&rdquo; principle when it comes to software design.  Recently, I&rsquo;ve came to love a new design pattern for web apps called the isomorphic web app that sacrifices some of the simplicity of a SPA with a backend API for a significant boost in performance.">
+<meta property="og:locale" content="en-us">
+
+  
+    <meta property="article:published_time" content="2018-03-08T00:00:00">
+  
+  
+    <meta property="article:modified_time" content="2018-03-08T00:00:00">
+  
+  
+  
+    
+      <meta property="article:section" content="projects">
+    
+  
+  
+    
+      <meta property="article:tag" content="Web Dev">
+    
+      <meta property="article:tag" content="Frontend">
+    
+      <meta property="article:tag" content="Backend">
+    
+      <meta property="article:tag" content="Open Source">
+    
+      <meta property="article:tag" content="React">
+    
+      <meta property="article:tag" content="Node">
+    
+      <meta property="article:tag" content="Software Design">
+    
+  
+
+
+<meta name="twitter:card" content="summary">
+
+
+
+
+
+
+
+  <meta property="og:image" content="https://chestnutkurisu.github.io/images/xyang.png">
+  <meta property="twitter:image" content="https://chestnutkurisu.github.io/images/xyang.png">
+
+
+
+
+
+  <meta property="og:image" content="https://chestnutkurisu.github.io/post/images/theFuture.png">
+  <meta property="twitter:image" content="https://chestnutkurisu.github.io/post/images/theFuture.png">
+
+
+    <title>Building an Isomorphic Webapp</title>
+
+    <link rel="icon" href="https://chestnutkurisu.github.io/favicon-96x96.png">
+    
+
+    
+
+    <link rel="canonical" href="https://chestnutkurisu.github.io/post/building-an-isomorphic-webapp/">
+
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" integrity="sha512-H9jrZiiopUdsLpg94A333EfumgUBpO9MdbxStdeITo+KEIMaNfHNvwyjjDJb+ERPaRS6DpyRlKbvPUasNItRyw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    
+    
+    
+    <link rel="stylesheet" href="https://chestnutkurisu.github.io/css/style-h6ccsoet3mzkbb0wngshlfbaweimexgqcxj0h5hu4h82olsdzz6wmqdkajm.min.css" />
+    
+    
+      
+        <link rel="stylesheet" href="https://chestnutkurisu.github.io/css/custom.css">
+      
+    
+      
+        <link rel="stylesheet" href="https://chestnutkurisu.github.io/css/syntax.css">
+      
+    
+
+    
+      
+    
+    
+  </head>
+
+  <body>
+    <div id="blog">
+      <header id="header" data-behavior="4">
+  <i id="btn-open-sidebar" class="fa fa-lg fa-bars"></i>
+  <div class="header-title">
+    <a class="header-title-link" href="https://chestnutkurisu.github.io/" aria-label="Go to homepage">Param Somane</a>
+  </div>
+  
+    
+      <a class="header-right-picture "
+         href="https://chestnutkurisu.github.io/#about" aria-label="Open the link: /#about">
+    
+    
+    
+      
+        <img class="header-picture" src="https://chestnutkurisu.github.io/images/xyang.png" alt="Author&#39;s picture" />
+      
+    
+    </a>
+  
+</header>
+
+      <nav id="sidebar" data-behavior="4">
+  <div class="sidebar-container">
+    
+      <div class="sidebar-profile">
+        <a href="https://chestnutkurisu.github.io/#about" aria-label="Read more about the author">
+          <img class="sidebar-profile-picture" src="https://chestnutkurisu.github.io/images/xyang.png" alt="Author&#39;s picture" />
+        </a>
+        <h4 class="sidebar-profile-name">Param Somane</h4>
+        
+          <h5 class="sidebar-profile-bio">Software Engineer. Climber. Snowboarder.</h5>
+        
+      </div>
+    
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/" title="Home">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-home"></i>
+      
+      <span class="sidebar-button-desc">Home</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/categories/projects" title="Projects">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-code"></i>
+      
+      <span class="sidebar-button-desc">Projects</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/categories/blog" title="Blog">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-pen-square"></i>
+      
+      <span class="sidebar-button-desc">Blog</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/tags" title="Tags">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-tags"></i>
+      
+      <span class="sidebar-button-desc">Tags</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://chestnutkurisu.github.io/about" title="About">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-user"></i>
+      
+      <span class="sidebar-button-desc">About</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://github.com/ChestnutKurisu/" target="_blank" rel="noopener" title="GitHub">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-github" aria-hidden="true"></i>
+      
+      <span class="sidebar-button-desc">GitHub</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://medium.com" target="_blank" rel="noopener" title="Medium">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-medium"></i>
+      
+      <span class="sidebar-button-desc">Medium</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://linkedin.com/in/param-somane" target="_blank" rel="noopener" title="Linkedin">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-linkedin"></i>
+      
+      <span class="sidebar-button-desc">Linkedin</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="https://angel.co" target="_blank" rel="noopener" title="AngelList">
+    
+      <i class="sidebar-button-icon fab fa-lg fa-angellist"></i>
+      
+      <span class="sidebar-button-desc">AngelList</span>
+    </a>
+  </li>
+
+  <li class="sidebar-button">
+    
+      <a class="sidebar-button-link " href="mailto:xyang232@gmail.com" target="_blank" rel="noopener" title="Email Me">
+    
+      <i class="sidebar-button-icon fa fa-lg fa-envelope"></i>
+      
+      <span class="sidebar-button-desc">Email Me</span>
+    </a>
+  </li>
+
+
+    </ul>
+    <ul class="sidebar-buttons">
+      
+
+    </ul>
+  </div>
+</nav>
+
+      
+
+      <div id="main" data-behavior="4"
+        class="
+               hasCoverMetaIn
+               ">
+        <article class="post" itemscope itemType="http://schema.org/BlogPosting">
+          
+          
+            <div class="post-header main-content-wrap text-left">
+  
+    <h1 class="post-title">
+      Building an Isomorphic Webapp
+    </h1>
+  
+  
+  <div class="postShorten-meta post-meta">
+    
+      <time datetime="2018-03-08T00:00:00Z">
+        
+  March 8, 2018
+
+      </time>
+    
+    
+  
+  
+    <span>in</span>
+    
+      <a class="category-link" href="https://chestnutkurisu.github.io/categories/projects">projects</a>
+    
+  
+
+  </div>
+
+</div>
+          
+          <div class="post-content markdown" itemprop="articleBody">
+            <div class="main-content-wrap">
+              <p>I&rsquo;ve always lived by the &ldquo;Separation of Concern&rdquo; principle when it comes to software design.  Recently, I&rsquo;ve came to love a new design pattern for web apps called the isomorphic web app that sacrifices some of the simplicity of a SPA with a backend API for a significant boost in performance.</p>
+<h2 id="overview">Overview</h2>
+<p>At a high level, isomorphic web app is a design pattern that renders the same web page from both the server side and the client side. In the isomorphic web app starter project built using React.js, Node.js, we take advantage of the fact that both the server and client are built in JavaScript. This enables us to use the same code for rendering the web pages for both the server and client rendering. The complicated part is to build a server wrapper and a client wrapper for the shared code.</p>
+<h2 id="motivation">Motivation</h2>
+<p>For web development, the Single Page Application (SPA) that talks to a server API was once the gold standard as it provides the most clear division of responsibilities between the server app and client app. The server serves the data (usually JSON) to the client app to render the web page in the browser. What could go wrong with this approach? Performance.</p>
+<p>A SPA is a client side (browser rendered) application that bootstraps the entire website after initial load. This means when you visit example.com using your browser, example.com’s server sends a HTML template and some javascript for your browser to execute the code that renders the actual content of the webpage. Because the tight coupling of the code that creates the DOM and the DOM, SPAs can handle complex DOM manipulation.</p>
+<p>We are all familiar with the features of a SPA: quick response to user input, highly interactive webpages (think google docs), and ability to use it offline once the page loads. Most importantly for a startup founder such as myself who’s trying to quickly create a prototype of a website with some dummy data, a SPA lets you build a website independently from a server application. In many cases, you can get away with not building a server application at all if you used a sophisticated front end library like React, Amazon S3 for hosting, and data you store in a CSV file. That’s exactly what I did for <a href="http://looseleafapp.com/">LooseLeaf</a>.</p>
+<p>This separation of concerns improves productivity initially when you are prototyping a MVP for your website, but there’s a point of diminishing returns for a website deployed as a SPA that talks to a server with an API for data. The main disadvantages of this approach are:</p>
+<h3 id="long-load-time-bad-ux">Long load time (bad UX)</h3>
+<p>because the website is bootstrapped, it takes some time for the page content to display itself after the initial load. Initial load occurs when you type the example.com into your browser and press enter. Whatever the browser gets back from the initial load is whatever the server sends.</p>
+<p>If the server sends a blank HTML template and javascript to render stuff into that template, then the user will see a blank page and a maybe a page loading animation. How long the user has to wait until something is displayed scales with the complexity of the webpage and how fast their internet service is so on a mobile device, pages tend to load much slower.</p>
+<h3 id="bad-seo-bad-for-business">Bad SEO (bad for business)</h3>
+<p>Search engines and social sharing are two of the most important means of acquiring new users.</p>
+<p>Think of search engine optimization (SEO) as ways to get Google to rank your webpage higher on the list to relevant query searches. For Google to rank your webpage content, it needs to know what content’s in your webpage. Google deploys an army of crawlers, which are just programs that make requests to webpages, look at the response, scrap content off the HTML, and look at how to rank that webpage amongst other webpages on the internet based on relevance. These crawlers don’t generally run JavaScript or wait around for a long time for the page to render itself. If your webpage gives the crawler blank pages on initial load, then Google will not know what your page is about to accurately place your webpage high up on the hits list when a relevant search query is entered on google.com.</p>
+<p>The same thing happens with social media sites like Facebook and Twitter sharing who have their own army of crawlers to render a preview of the page based on meta tags in the header of HTML. The header is rendered on the server side and don’t change when the content changes based on dynamic loading when the webpage is bootstrapped in the browser. This means if you have a website that sells books and a SPA that uses the same template HTML to render different pages for different books, then when you share a link to the page for a particular book on Facebook, the preview will display a generic preview about your website which says something like it’s a place which sells thousands of titles, but will not display any unique information for the particular book. <a href="https://medium.com/@cereallarceny/server-side-rendering-with-create-react-app-fiber-react-router-v4-helmet-redux-and-thunk-275cb25ca972">This article</a> did a good job laying out the limitation of a SPA in its ability to generate unique header for social sharing and how to use server rendering to solve that.</p>
+<h3 id="what-about-pure-server-rendering-solutions">What about Pure Server Rendering Solutions?</h3>
+<p>If you are reading this, that means I’ve convinced you that a simple SPA is not the way to go. A pure server side application is not the way to go either because from a development standpoint, we want to be able to build our client application and server application separately. From a user experience standpoint, once a SPA is fully loaded, user experience may greatly exceed that of a server-rendered webpage. Also I don’t want the entire page to reload every time I click a button.</p>
+<p>So the shortcoming of a pure SPA is in the initial load. The shortcoming of the pure server rendering solution is with what happens after the initial load. What can we do to get the best of both worlds? 🤔</p>
+<h2 id="isomorphic-web-app-starter-project">Isomorphic Web App Starter Project</h2>
+<p>I like to think of an isomorphic web app as SPA 2.0. It’s SPA with server side rendering. An isomorphic web app gives you the best of both server side rendering and single page application (SPA). There have been many articles written about the benefits of an isomorphic web app, like <a href="https://medium.com/@ghengeveld/isomorphism-vs-universal-javascript-4b47fb481beb">this</a>, <a href="https://writing.pupius.co.uk/beyond-pushstate-building-single-page-applications-4353246f4480">this</a>, <a href="https://medium.com/airbnb-engineering/isomorphic-javascript-the-future-of-web-apps-10882b7a2ebc">this</a>, and <a href="https://ponyfoo.com/articles/stop-breaking-the-web">this</a>. There’s <a href="https://livebook.manning.com/#!/book/isomorphic-web-applications/chapter-1/v-10/106">a book</a> being written about it. However, not that many tutorials, guides or starter projects to help you get started building an isomorphic app.</p>
+<p>Through reading dozens of articles, tutorials, books, and undergoing trial and error, I managed to set up an isomorphic web app that uses the latest stack in the Node and React ecosystem. This include React Router v4, Webpack 4, and Babel.</p>
+<p>The isomorphic web app starter project I created takes advantage of the fact that JavaScript is used to build both the client application and the server application. This promotes code reusability as we can use the same code to render the SPA as well as the HTML for the server to send for the initial load.</p>
+<p>All the code is contained in this repository:
+<a href="https://github.com/ChestnutKurisu//isomorphic-router-demo">https://github.com/ChestnutKurisu//isomorphic-router-demo</a></p>
+<p>To get the code up and running on <a href="localhost:3000">localhost:3000</a>, simply do:</p>
+<pre tabindex="0"><code>$ git clone https://github.com/ChestnutKurisu//isomorphic-router-demo.git
+$ cd isomorphic-router-demo
+$ npm install
+$ npm start
+</code></pre><p>Here&rsquo;s a preview for what it looks like:</p>
+<p>
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-33" >
+  
+    <a class="fancybox" href="https://chestnutkurisu.github.io/post/images/projects/iso1.png" title="Home Page" data-fancybox="">
+  
+    <img class="fig-img" src="https://chestnutkurisu.github.io/post/images/projects/iso1.png"  alt="Home Page">
+  
+    </a>
+  
+   
+    <span class="caption">Home Page</span>
+  
+</div>
+
+
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-33" >
+  
+    <a class="fancybox" href="https://chestnutkurisu.github.io/post/images/projects/iso2.png" title="About Page" data-fancybox="">
+  
+    <img class="fig-img" src="https://chestnutkurisu.github.io/post/images/projects/iso2.png"  alt="About Page">
+  
+    </a>
+  
+   
+    <span class="caption">About Page</span>
+  
+</div>
+
+
+ 
+  
+  
+  
+  
+    
+      
+    
+  
+    
+      
+    
+  
+    
+  
+
+ 
+  
+  
+  
+  
+    
+  
+    
+      
+    
+  
+
+<div class="figure fig-33" >
+  
+    <a class="fancybox" href="https://chestnutkurisu.github.io/post/images/projects/iso3.png" title="Not Found Page" data-fancybox="">
+  
+    <img class="fig-img" src="https://chestnutkurisu.github.io/post/images/projects/iso3.png"  alt="Not Found Page">
+  
+    </a>
+  
+   
+    <span class="caption">Not Found Page</span>
+  
+</div>
+
+  <div style="clear:both;"></div>
+</p>
+<h3 id="bottomline">Bottomline</h3>
+<p>Client side rendering and server side rendering complement each other. We can build an isomorphic web app that enhances the capability of a server rendered page with a SPA. As articulated in <a href="https://www.lullabot.com/articles/what-is-an-isomorphic-application">Lullabot&rsquo;s article</a>, there&rsquo;s a considerable learning curve when building an isomorphic application for the first time, but like anything with a steep learning curve, there&rsquo;s nothing you can&rsquo;t figure out with a bit of googling, experimentation, and leveraging <a href="https://hackernoon.com/get-an-isomorphic-web-app-up-and-running-in-5-minutes-72da028c15dd">tutorials</a> and <a href="https://github.com/ChestnutKurisu//isomorphic-router-demo">sample projects</a>.</p>
+              
+
+
+            </div>
+          </div>
+          <div id="post-footer" class="post-footer main-content-wrap">
+            
+              
+                
+                
+                  <div class="post-footer-tags">
+                    <span class="text-color-light text-small">TAGGED IN</span><br/>
+                    
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/web-dev/">Web Dev</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/frontend/">Frontend</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/backend/">Backend</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/open-source/">Open Source</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/react/">React</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/node/">Node</a>
+
+  <a class="tag tag--primary tag--small" href="https://chestnutkurisu.github.io/tags/software-design/">Software Design</a>
+
+                  </div>
+                
+              
+            
+            <a target="_blank" href="https://www.buymeacoffee.com/"
+  data-tooltip="Buy me a coffee!"
+  id="bmc-wbtn" 
+  style="display: flex; align-items: center; justify-content: center; width: 64px; height: 64px; background: rgb(255, 129, 63); color: white; border-radius: 32px; position: fixed; right: 18px; bottom: 18px; box-shadow: rgba(0, 0, 0, 0.4) 0px 4px 8px; z-index: 999; cursor: pointer; font-weight: 600; transition: all 0.2s ease 0s; transform: scale(1);"><img src="https://cdn.buymeacoffee.com/widget/assets/coffee%20cup.svg" 
+  alt="Buy Me A Coffee" 
+  style="height: 40px; width: 40px; margin: 0; padding: 0;"
+></a>
+
+            
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/building-a-react-native-travel-app/" data-tooltip="Building A React Native Travel App" aria-label="NEXT: Building A React Native Travel App">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/lets-get-productive-with-javascript/" data-tooltip="Let&#39;s Get Productive With JavaScript" aria-label="PREVIOUS: Let&#39;s Get Productive With JavaScript">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chestnutkurisu.github.io/post/building-an-isomorphic-webapp/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chestnutkurisu.github.io/post/building-an-isomorphic-webapp/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://chestnutkurisu.github.io/post/building-an-isomorphic-webapp/" title="Share on Google&#43;" aria-label="Share on Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+            
+              
+                <div id="disqus_thread"></div>
+<script>
+
+
+
+
+var disqus_config = function () {
+this.page.url = "https://chestnutkurisu.github.io/post/building-an-isomorphic-webapp/";
+this.page.identifier = "Building an Isomorphic Webapp"; 
+};
+
+(function() { 
+var d = document, s = d.createElement('script');
+s.src = 'https://http--github-io.disqus.com/embed.js';
+s.setAttribute('data-timestamp', +new Date());
+(d.head || d.body).appendChild(s);
+})();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+
+              
+            
+          </div>
+        </article>
+        <footer id="footer" class="main-content-wrap">
+  <span class="copyrights">
+    &copy; 2023 Param Somane. All Rights Reserved
+  </span>
+</footer>
+
+      </div>
+      <div id="bottom-bar" class="post-bottom-bar" data-behavior="4">
+        
+<div class="post-actions-wrap">
+  <nav >
+    <ul class="post-actions post-action-nav">
+      
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/building-a-react-native-travel-app/" data-tooltip="Building A React Native Travel App" aria-label="NEXT: Building A React Native Travel App">
+          
+              <i class="fa fa-angle-left"></i>
+              <span class="hide-xs hide-sm text-small icon-ml">NEXT</span>
+            </a>
+        </li>
+        <li class="post-action">
+          
+            <a class="post-action-btn btn btn--default tooltip--top" href="https://chestnutkurisu.github.io/post/lets-get-productive-with-javascript/" data-tooltip="Let&#39;s Get Productive With JavaScript" aria-label="PREVIOUS: Let&#39;s Get Productive With JavaScript">
+          
+              <span class="hide-xs hide-sm text-small icon-mr">PREVIOUS</span>
+              <i class="fa fa-angle-right"></i>
+            </a>
+        </li>
+      
+    </ul>
+  </nav>
+<ul class="post-actions post-action-share" >
+  
+    <li class="post-action hide-lg hide-md hide-sm">
+      <a class="post-action-btn btn btn--default btn-open-shareoptions" href="#btn-open-shareoptions" aria-label="Share this post">
+        <i class="fa fa-share-alt" aria-hidden="true"></i>
+      </a>
+    </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https://chestnutkurisu.github.io/post/building-an-isomorphic-webapp/" title="Share on Facebook" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://twitter.com/intent/tweet?text=https://chestnutkurisu.github.io/post/building-an-isomorphic-webapp/" title="Share on Twitter" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+      <li class="post-action hide-xs">
+        <a class="post-action-btn btn btn--default" target="new" href="https://plus.google.com/share?url=https://chestnutkurisu.github.io/post/building-an-isomorphic-webapp/" title="Share on Google&#43;" aria-label="Share on Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i>
+        </a>
+      </li>
+    
+  
+  
+  <li class="post-action">
+    
+      <a class="post-action-btn btn btn--default" href="#top" aria-label="Back to top">
+      <i class="fa fa-arrow-up" aria-hidden="true"></i>
+    
+    </a>
+  </li>
+</ul>
+</div>
+
+
+      </div>
+      
+<div id="share-options-bar" class="share-options-bar" data-behavior="4">
+  <i id="btn-close-shareoptions" class="fa fa-times"></i>
+  <ul class="share-options">
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fchestnutkurisu.github.io%2Fpost%2Fbuilding-an-isomorphic-webapp%2F" aria-label="Share on Facebook">
+          <i class="fa-facebook-official" aria-hidden="true"></i><span>Share on Facebook</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://twitter.com/intent/tweet?text=https%3A%2F%2Fchestnutkurisu.github.io%2Fpost%2Fbuilding-an-isomorphic-webapp%2F" aria-label="Share on Twitter">
+          <i class="fa-twitter" aria-hidden="true"></i><span>Share on Twitter</span>
+        </a>
+      </li>
+    
+      <li class="share-option">
+        <a class="share-option-btn" target="new" href="https://plus.google.com/share?url=https%3A%2F%2Fchestnutkurisu.github.io%2Fpost%2Fbuilding-an-isomorphic-webapp%2F" aria-label="Share on Google&#43;">
+          <i class="fa-google-plus" aria-hidden="true"></i><span>Share on Google&#43;</span>
+        </a>
+      </li>
+    
+  </ul>
+</div>
+<div id="share-options-mask" class="share-options-mask"></div>
+
+
+    </div>
+    
+    <div id="about">
+  <div id="about-card">
+    <div id="about-btn-close">
+      <i class="fa fa-times"></i>
+    </div>
+    
+      <img id="about-card-picture" src="https://chestnutkurisu.github.io/images/xyang.png" alt="Author&#39;s picture" />
+    
+    <h4 id="about-card-name">Param Somane</h4>
+    
+      <div id="about-card-bio">Software Engineer. Climber. Snowboarder.</div>
+    
+    
+      <div id="about-card-job">
+        <i class="fa fa-briefcase"></i>
+        <br/>
+        Software Engineer
+      </div>
+    
+    
+      <div id="about-card-location">
+        <i class="fa fa-map-marker-alt"></i>
+        <br/>
+        New York
+      </div>
+    
+  </div>
+</div>
+
+    
+
+    
+  
+    
+      
+      <div id="cover" style="background-image:url('https://chestnutkurisu.github.io/images/cover-blue.jpg');"></div>
+    
+  
+
+
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.1.0/highlight.min.js" integrity="sha512-z+/WWfyD5tccCukM4VvONpEtLmbAm5LDu7eKiyMQJ9m7OfPEDL7gENyDRL3Yfe8XAuGsS2fS4xSMnl6d30kqGQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js" integrity="sha512-uURl+ZXMBrF4AwGaWmEetzrd+J5/8NRkWAvJx5sbPSSuOb0bZLqf+tOzniObO00BjHa/dD7gub9oCGMLPQHtQA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+
+<script src="https://chestnutkurisu.github.io/js/script-yqzy9wdlzix4lbbwdnzvwx3egsne77earqmn73v9uno8aupuph8wfguccut.min.js"></script>
+
+
+
+<script>
+$(document).ready(function() {
+  hljs.configure({ classPrefix: '', useBR: false });
+  $('pre.code-highlight > code, pre > code').each(function(i, block) {
+    if (!$(this).hasClass('codeblock')) {
+      $(this).addClass('codeblock');
+    }
+    hljs.highlightBlock(block);
+  });
+});
+</script>
+
+
+
+
+    
+  </body>
+</html>
+

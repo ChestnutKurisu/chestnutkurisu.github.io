@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>TypeScript on Param Somane</title>
+    <link>https://chestnutkurisu.github.io/tags/typescript/</link>
+    <description>Recent content in TypeScript on Param Somane</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>param.somane@xcissa.com (Param Somane)</managingEditor>
+    <webMaster>param.somane@xcissa.com (Param Somane)</webMaster>
+    <lastBuildDate>Mon, 12 Aug 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://chestnutkurisu.github.io/tags/typescript/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Beyond Minimum Viable Product: A Lesson on Building Production-ready Software</title>
+      <link>https://chestnutkurisu.github.io/post/beyond-minimum-viable-product-a-lesson-on-building-production-ready-software/</link>
+      <pubDate>Mon, 12 Aug 2019 00:00:00 +0000</pubDate>
+      <author>param.somane@xcissa.com (Param Somane)</author>
+      <guid>https://chestnutkurisu.github.io/post/beyond-minimum-viable-product-a-lesson-on-building-production-ready-software/</guid>
+      <description>&lt;p&gt;What I learned working at a mature startup that&amp;rsquo;s building new things but also has a ton of customers and products in production.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>A Guide For Migrating Your Project to TypeScript</title>
+      <link>https://chestnutkurisu.github.io/post/a-guide-for-migrating-your-project-to-typescript/</link>
+      <pubDate>Wed, 24 Jul 2019 00:00:00 +0000</pubDate>
+      <author>param.somane@xcissa.com (Param Somane)</author>
+      <guid>https://chestnutkurisu.github.io/post/a-guide-for-migrating-your-project-to-typescript/</guid>
+      <description>&lt;p&gt;Introduction to TypeScript and guide for how to migrate your project from Flow to TypeScript.&lt;/p&gt;
+&lt;p&gt;This post is a WIP.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

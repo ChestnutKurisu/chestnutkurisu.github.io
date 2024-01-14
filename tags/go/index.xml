@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Go on Param Somane</title>
+    <link>https://chestnutkurisu.github.io/tags/go/</link>
+    <description>Recent content in Go on Param Somane</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <managingEditor>param.somane@xcissa.com (Param Somane)</managingEditor>
+    <webMaster>param.somane@xcissa.com (Param Somane)</webMaster>
+    <lastBuildDate>Sun, 03 Feb 2019 00:00:00 +0000</lastBuildDate><atom:link href="https://chestnutkurisu.github.io/tags/go/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Get Started With Go</title>
+      <link>https://chestnutkurisu.github.io/post/get-started-with-go/</link>
+      <pubDate>Sun, 03 Feb 2019 00:00:00 +0000</pubDate>
+      <author>param.somane@xcissa.com (Param Somane)</author>
+      <guid>https://chestnutkurisu.github.io/post/get-started-with-go/</guid>
+      <description>&lt;p&gt;Go is becoming pretty mainstream. Every job posting I&amp;rsquo;ve seen recently requires Go as a want-to-have or a need-to-have skill. This post serves as a guide to help you hit the ground running with Go.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
